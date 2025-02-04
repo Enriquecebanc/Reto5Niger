@@ -1,33 +1,34 @@
-from fastapi import FastAPI as fa
-from pydantic import BaseModel as bm
-from typing import Optional as op, List
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import Optional, List
 
-app = fa()
+app = FastAPI()
 
-class Recetas(bm):
-    id: str
+class Receta(BaseModel):
+    id: int
     nombre: str
     ingredientes: str
     preparacion: str
-    valoracion: op[int] = None
+    valoracion: Optional[int] = None
 
-recetas_db = []
+recetas_db: List[Receta] = []
 
 @app.get("/")
 def index():
     return {"message": "Hello, World!"}
 
-@app.get("/recetas/{id}")
+@app.get("/recetas/{id}", response_model=Receta)
 def get_receta(id: int):
-    if id < len(recetas_db):
-        return recetas_db[id]
-    return {"error": "Receta no encontrada"}
+    for receta in recetas_db:
+        if receta.id == id:
+            return receta
+    raise HTTPException(status_code=404, detail="Receta no encontrada")
 
-@app.post("/recetas")
-def crear_receta(receta: Recetas):
+@app.post("/recetas", response_model=Receta)
+def crear_receta(receta: Receta):
     recetas_db.append(receta)
-    return {"message": f"Receta creada: {receta.nombre}"}
+    return receta
 
-@app.get("/listarecetas", response_model=List[Recetas])
+@app.get("/recetas", response_model=List[Receta])
 def obtener_recetas():
     return recetas_db
