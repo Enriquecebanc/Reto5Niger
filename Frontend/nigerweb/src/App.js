@@ -1,5 +1,7 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Inicio from './pages/inicio/inicio'; // Asegúrate de que la ruta sea correcta
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Inicio /> {/* Aquí se renderiza el componente Inicio */}
     </div>
   );
 }
