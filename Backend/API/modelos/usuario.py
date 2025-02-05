@@ -3,8 +3,9 @@ from typing import Optional, List
 
 class Usuario(BaseModel):
     id_usuario: str
+    id_recetas: List[str]
+    id_comentarios: List[str]
     nombre: str
     correo: str
-    contrasena: str
-    foto_perfil: Optional[str] = None
-    recetas_favoritas: Optional[List[str]] = None
+    contraseña: str
+    foto_perfil: str
