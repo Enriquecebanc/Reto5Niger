@@ -22,3 +22,18 @@ def crear_categoria(categoria: Categoria):
 @router.get("/categorias", response_model=List[Categoria])
 def obtener_categorias():
     return categorias_db
+
+@router.put("/categorias/{id}", response_model=Categoria)
+def actualizar_categoria(id: str, categoria_actualizada: Categoria):
+    for i, categoria in enumerate(categorias_db):
+        if categoria.id_categoria == id:
+            categorias_db[i] = categoria_actualizada
+            return categoria_actualizada
+    raise HTTPException(status_code=404, detail="Categoría no encontrada")
+
+@router.delete("/categorias/{id}", response_model=Categoria)
+def eliminar_categoria(id: str):
+    for i, categoria in enumerate(categorias_db):
+        if categoria.id_categoria == id:
+            return categorias_db.pop(i)
+    raise HTTPException(status_code=404, detail="Categoría no encontrada")

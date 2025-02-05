@@ -22,3 +22,18 @@ def crear_usuario(usuario: Usuario):
 @router.get("/usuarios", response_model=List[Usuario])
 def obtener_usuarios():
     return usuarios_db
+
+@router.put("/usuarios/{id}", response_model=Usuario)
+def actualizar_usuario(id: str, usuario_actualizado: Usuario):
+    for i, usuario in enumerate(usuarios_db):
+        if usuario.id_usuario == id:
+            usuarios_db[i] = usuario_actualizado
+            return usuario_actualizado
+    raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+@router.delete("/usuarios/{id}", response_model=Usuario)
+def eliminar_usuario(id: str):
+    for i, usuario in enumerate(usuarios_db):
+        if usuario.id_usuario == id:
+            return usuarios_db.pop(i)
+    raise HTTPException(status_code=404, detail="Usuario no encontrado")
