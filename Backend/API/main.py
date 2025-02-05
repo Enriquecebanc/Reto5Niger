@@ -1,10 +1,11 @@
+# filepath: /c:/Users/igorl/OneDrive/Desktop/Reto5Niger/Backend/API/main.py
 from fastapi import FastAPI
-from rutas import router
+from rutas import recetas_router
 
 app = FastAPI()
 
-app.include_router(router)
+app.include_router(recetas_router)
 
 @app.get("/")
 def index():
-    return {"message": "Bienvenido al sistema!"}
+    return {"message": "Hello, World!"}
