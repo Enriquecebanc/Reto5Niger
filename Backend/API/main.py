@@ -8,4 +8,4 @@ app.include_router(recetas_router)
 
 @app.get("/")
 def index():
-    return {"message": "Hello, World!"}
+    return {"message": "Bienvenido al sistema!"}
