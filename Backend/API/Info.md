@@ -1,0 +1,1 @@
+Para empezar usar uvicorn index:app --reload   
