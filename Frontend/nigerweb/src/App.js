@@ -1,27 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Inicio from './pages/inicio/inicio'; // Asegúrate de que la ruta sea correcta
+import Inicio from './pages/inicio/inicio';
+import Postres from './pages/postres/postres';
+import Ingredientes from './pages/ingredientes/ingredientes';
+import Recetas from './pages/recetas/recetas';
+import PlatoPrin from './pages/platoPrin/platoPrin';
+import PlatoSec from './pages/platoSec/platoSec';
+import Entrantes from './pages/entrantes/entrantes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Inicio /> {/* Aquí se renderiza el componente Inicio */}
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/postres" element={<Postres />} />
+          <Route path="/ingredientes" element={<Ingredientes />} />
+          <Route path="/recetas" element={<Recetas />} />
+          <Route path="/platoPrin" element={<PlatoPrin />} />
+          <Route path="/platoSec" element={<PlatoSec />} />
+          <Route path="/entrantes" element={<Entrantes />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

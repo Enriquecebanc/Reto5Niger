@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './inicio.css'; // Asegúrate de que la ruta sea correcta
+import { Link } from 'react-router-dom';
+import './inicio.css';
 
 const recipes = [
     { id: 1, name: 'Entrantes', description: 'Platos ligeros y apetitosos para comenzar la comida, como ensaladas, sopas o aperitivos.' },
@@ -7,7 +8,6 @@ const recipes = [
     { id: 3, name: 'Segundo Plato', description: 'Opciones que complementan el plato principal, como pastas, arroces o preparaciones con verduras.' },
     { id: 4, name: 'Postres', description: 'Dulces y delicias para cerrar la comida, como tartas, helados o flanes.' },
 ];
-
 
 const Inicio = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -37,11 +37,39 @@ const Inicio = () => {
                         <div key={recipe.id} className="recipe-item">
                             <h2>{recipe.name}</h2>
                             <p>{recipe.description}</p>
+                            {recipe.name === 'Postres' && (
+                                <Link to="/postres">
+                                    <button className="view-button">Ver Postres</button>
+                                </Link>
+                            )}
+                            {recipe.name === 'Platos Principales' && (
+                                <Link to="/platoPrin">
+                                    <button className="view-button">Ver Platos Principales</button>
+                                </Link>
+                            )}
+                            {recipe.name === 'Segundo Plato' && (
+                                <Link to="/platoSec">
+                                    <button className="view-button">Ver Segundo Plato</button>
+                                </Link>
+                            )}
+                            {recipe.name === 'Entrantes' && (
+                                <Link to="/entrantes">
+                                    <button className="view-button">Ver Entrantes</button>
+                                </Link>
+                            )}
                         </div>
                     ))
                 ) : (
                     <p>No se encontraron recetas.</p>
                 )}
+            </div>
+            <div className="navigation-links">
+                <Link to="/ingredientes">
+                    <button className="nav-button">Ingredientes</button>
+                </Link>
+                <Link to="/recetas">
+                    <button className="nav-button">Recetas</button>
+                </Link>
             </div>
         </div>
     );
