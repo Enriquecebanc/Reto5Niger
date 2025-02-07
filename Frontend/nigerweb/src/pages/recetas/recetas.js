@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './recetas.css';
 
 const Recetas = () => {
@@ -6,6 +7,9 @@ const Recetas = () => {
     <div className="recetas-container">
       <h1>Recetas</h1>
       <p>Aquí encontrarás una variedad de recetas.</p>
+      <Link to="/">
+        <button className="back-button">Volver a Inicio</button>
+      </Link>
     </div>
   );
 };
