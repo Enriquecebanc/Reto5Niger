@@ -6,11 +6,8 @@ class Receta(BaseModel):
     id_receta: str
     instrucciones: str
     tiempo: int
-    personas: int
-    cantidad_ingredientes: int
+    porciones: int
     imagen: str
-    id_ingredientes: List[str]
     id_categoria: str
-    id_comentarios: str
     nombre: str
     descripcion: str
