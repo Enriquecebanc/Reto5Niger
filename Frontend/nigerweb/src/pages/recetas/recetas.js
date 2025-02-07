@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './recetas.css';
 import carbonaraImage from '../../images/Carbonara.jpg';
@@ -81,30 +81,42 @@ const recipes = [
 ];
 
 const Recetas = () => {
+  const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
+
+  const handleNext = () => {
+    setCurrentRecipeIndex((prevIndex) => (prevIndex + 1) % recipes.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentRecipeIndex((prevIndex) => (prevIndex - 1 + recipes.length) % recipes.length);
+  };
+
+  const currentRecipe = recipes[currentRecipeIndex];
+
   return (
     <div className="recetas-container">
       <h1>Recetas</h1>
       <p>Aquí encontrarás una variedad de recetas.</p>
-      <div className="recipes-list">
-        {recipes.map((recipe) => (
-          <div key={recipe.id} className="recipe-item">
-            <h2>{recipe.name}</h2>
-            <img src={recipe.image} alt={recipe.name} className="recipe-image" />
-            <p>{recipe.description}</p>
-            <h3>Ingredientes:</h3>
-            <ul>
-              {recipe.ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-            <h3>Instrucciones:</h3>
-            <ol>
-              {recipe.instructions.map((instruction, index) => (
-                <li key={index}>{instruction}</li>
-              ))}
-            </ol>
-          </div>
-        ))}
+      <div className="recipe-item">
+        <button onClick={handlePrev} className="nav-button prev-button">❮</button>
+        <div className="recipe-content">
+          <h2>{currentRecipe.name}</h2>
+          <img src={currentRecipe.image} alt={currentRecipe.name} className="recipe-image" />
+          <p>{currentRecipe.description}</p>
+          <h3>Ingredientes:</h3>
+          <ul>
+            {currentRecipe.ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+          </ul>
+          <h3>Instrucciones:</h3>
+          <ol>
+            {currentRecipe.instructions.map((instruction, index) => (
+              <li key={index}>{instruction}</li>
+            ))}
+          </ol>
+        </div>
+        <button onClick={handleNext} className="nav-button next-button">❯</button>
       </div>
       <Link to="/">
         <button className="back-button">Volver a Inicio</button>
