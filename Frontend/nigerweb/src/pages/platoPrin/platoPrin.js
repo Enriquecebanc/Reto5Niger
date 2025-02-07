@@ -96,7 +96,7 @@ const PrimerosPlatos = () => {
 
   return (
     <div className="primerosplatos-container">
-      <h1>Primeros Platos</h1>
+      <h1>Platos Principales</h1>
       <p>Aquí encontrarás una variedad de deliciosos primeros platos.</p>
       <div className="recipe-item">
         <button onClick={handlePrev} className="nav-button prev-button">❮</button>
