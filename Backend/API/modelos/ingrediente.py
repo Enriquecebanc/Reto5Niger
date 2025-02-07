@@ -4,7 +4,6 @@ from typing import Optional, List
 
 class Ingrediente(BaseModel):
     id_ingrediente: str
-    id_recetas: List[str]
-    nombre: str
+    nombre_ingrediente: str
     descripcion: str
     imagen: str
