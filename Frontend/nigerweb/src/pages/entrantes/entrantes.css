@@ -1,0 +1,11 @@
+.entrantes-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.entrantes-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+}

@@ -30,7 +30,16 @@ const Inicio = () => {
                 onChange={handleSearchChange}
                 className="search-input"
             />
-            <button className="search-button">Buscar</button>
+             <button className="search-button">Buscar</button>
+            <div className="navigation-links">
+                <Link to="/ingredientes">
+                    <button className="nav-button">Ingredientes</button>
+                </Link>
+                <Link to="/recetas">
+                    <button className="nav-button">Recetas</button>
+                </Link>
+            </div>
+        
             <div className="recipes-list">
                 {filteredRecipes.length > 0 ? (
                     filteredRecipes.map((recipe) => (
@@ -49,7 +58,7 @@ const Inicio = () => {
                             )}
                             {recipe.name === 'Segundo Plato' && (
                                 <Link to="/platoSec">
-                                    <button className="view-button">Ver Segundo Plato</button>
+                                    <button className="view-button">Ver Segundos Platos</button>
                                 </Link>
                             )}
                             {recipe.name === 'Entrantes' && (
@@ -63,14 +72,7 @@ const Inicio = () => {
                     <p>No se encontraron recetas.</p>
                 )}
             </div>
-            <div className="navigation-links">
-                <Link to="/ingredientes">
-                    <button className="nav-button">Ingredientes</button>
-                </Link>
-                <Link to="/recetas">
-                    <button className="nav-button">Recetas</button>
-                </Link>
-            </div>
+            
         </div>
     );
 };
