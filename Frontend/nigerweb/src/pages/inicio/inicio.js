@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './inicio.css';
+import logoImage from '../../images/Logo.jpg';
 
 const recipes = [
     { id: 1, name: 'Entrantes', description: 'Platos ligeros y apetitosos para comenzar la comida, como ensaladas, sopas o aperitivos.' },
@@ -23,6 +24,7 @@ const Inicio = () => {
     return (
         <div className="inicio-container">
             <h1>Bienvenido a la página de recetas</h1>
+            <img src={logoImage} alt="Logo" className="logo-image" />
             <input
                 type="text"
                 placeholder="Buscar recetas..."
@@ -31,7 +33,6 @@ const Inicio = () => {
                 className="search-input"
             />
             <button className="search-button">Buscar</button>
-
             <div className="navigation-links">
                 <Link to="/ingredientes">
                     <button className="nav-button">Ingredientes</button>
@@ -43,7 +44,6 @@ const Inicio = () => {
                     <button className="nav-button">Opiniones</button>
                 </Link>
             </div>
-
             <div className="recipes-list">
                 {filteredRecipes.length > 0 ? (
                     filteredRecipes.map((recipe) => (

@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #eee363;
+    background-color: #F7E15E;
     color: #333;
 }
 
@@ -34,9 +34,6 @@ nav a {
     text-align: center;
     transition: background-color 0.3s ease;
 }
-
-
-
 
 nav a:hover {
     background-color: #555;
@@ -94,7 +91,6 @@ input[type="text"] {
     padding: 10px;
     width: 100%;
     max-width: 400px;
-    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -141,7 +137,8 @@ input[type="text"] {
     gap: 10px;
 }
 
-.inicio-container {
-    margin-top:0px; /* Ajusta este valor según la altura de tu menú principal */
-    padding: 60px;
+.logo-image {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto 20px;
 }
