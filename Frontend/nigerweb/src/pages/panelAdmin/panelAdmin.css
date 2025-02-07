@@ -1,0 +1,109 @@
+/* filepath: /c:/Users/igorl/OneDrive/Desktop/Reto5Niger/Frontend/nigerweb/src/pages/panelAdmin/panelAdmin.css */
+.admin-panel-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff3cd;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-panel-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .admin-panel-container p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #6c757d;
+  }
+  
+  .admin-panel-container .section {
+    margin-bottom: 20px;
+  }
+  
+  .admin-panel-container .toggle-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #ffc107, #fd7e14);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 18px;
+    transition: background 0.3s ease;
+  }
+  
+  .admin-panel-container .toggle-button:hover {
+    background: linear-gradient(45deg, #fd7e14, #e8590c);
+  }
+  
+  .admin-panel-container form {
+    margin-top: 10px;
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-panel-container form h2 {
+    margin-bottom: 10px;
+    color: #343a40;
+  }
+  
+  .admin-panel-container form input,
+  .admin-panel-container form textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #e9ecef;
+    transition: border-color 0.3s ease;
+  }
+  
+  .admin-panel-container form input:focus,
+  .admin-panel-container form textarea:focus {
+    border-color: #ffc107;
+  }
+  
+  .admin-panel-container form textarea {
+    height: 120px;
+    resize: vertical;
+  }
+  
+  .admin-panel-container form button {
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #ffc107, #fd7e14);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .admin-panel-container form button:hover {
+    background: linear-gradient(45deg, #fd7e14, #e8590c);
+  }
+  
+  .back-button {
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #6c757d, #5a6268);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background: linear-gradient(45deg, #5a6268, #444950);
+  }

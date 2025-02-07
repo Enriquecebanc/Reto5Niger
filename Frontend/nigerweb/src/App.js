@@ -8,6 +8,7 @@ import Recetas from './pages/recetas/recetas';
 import PlatoPrin from './pages/platoPrin/platoPrin';
 import PlatoSec from './pages/platoSec/platoSec';
 import Entrantes from './pages/entrantes/entrantes';
+import PanelAdmin from './pages/panelAdmin/panelAdmin';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/platoPrin" element={<PlatoPrin />} />
           <Route path="/platoSec" element={<PlatoSec />} />
           <Route path="/entrantes" element={<Entrantes />} />
+          <Route path="/panelAdmin" element={<PanelAdmin />} />
         </Routes>
       </div>
     </Router>
