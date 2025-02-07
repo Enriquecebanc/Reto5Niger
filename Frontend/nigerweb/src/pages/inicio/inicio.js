@@ -8,6 +8,7 @@ const recipes = [
     { id: 2, name: 'Platos Principales', description: 'Recetas sustanciosas y completas que suelen ser el eje central de la comida, como carnes, pescados o guisos.' },
     { id: 3, name: 'Segundo Plato', description: 'Opciones que complementan el plato principal, como pastas, arroces o preparaciones con verduras.' },
     { id: 4, name: 'Postres', description: 'Dulces y delicias para cerrar la comida, como tartas, helados o flanes.' },
+    { id: 5, name: 'PanelAdmin', description: 'Esta mierda luego se quitará de aqui es para vinculo sinmas'}
 ];
 
 const Inicio = () => {
@@ -67,6 +68,11 @@ const Inicio = () => {
                             )}
                             {recipe.name === 'Entrantes' && (
                                 <Link to="/entrantes">
+                                    <button className="view-button">Ver Entrantes</button>
+                                </Link>
+                            )}
+                            {recipe.name === 'PanelAdmin' && (
+                                <Link to="/panelAdmin">
                                     <button className="view-button">Ver Entrantes</button>
                                 </Link>
                             )}
