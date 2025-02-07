@@ -35,6 +35,9 @@ nav a {
     transition: background-color 0.3s ease;
 }
 
+
+
+
 nav a:hover {
     background-color: #555;
 }
@@ -115,6 +118,7 @@ input[type="text"] {
     margin: 5px 0 0;
     line-height: 1.4;
 }
+
 .view-button, .nav-button {
     background-color: #444;
     color: #fff;
@@ -133,5 +137,11 @@ input[type="text"] {
 .navigation-links {
     margin-top: 20px;
     display: flex;
+    justify-content: center;
     gap: 10px;
+}
+
+.inicio-container {
+    margin-top:0px; /* Ajusta este valor según la altura de tu menú principal */
+    padding: 60px;
 }
