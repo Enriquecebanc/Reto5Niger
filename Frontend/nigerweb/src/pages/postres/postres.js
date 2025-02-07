@@ -68,7 +68,7 @@ const recipes = [
     id: 5,
     name: 'Helado de chocolate',
     description: 'Un postre refrescante y delicioso.',
-    ingredients: ['Nata', 'Leche', 'Azúcar', 'Chocolate', 'Frutas (opcional)'],
+    ingredients: ['Nata', 'Leche', 'Azúcar', 'Chocolate', 'Trozos de chocolate (opcional)'],
     instructions: [
       'Mezcla la nata, la leche, el azúcar y la vainilla.',
       'Si quieres, añade frutas trituradas.',
