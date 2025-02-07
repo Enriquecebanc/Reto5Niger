@@ -73,7 +73,7 @@ const Inicio = () => {
                             )}
                             {recipe.name === 'PanelAdmin' && (
                                 <Link to="/panelAdmin">
-                                    <button className="view-button">Ver Entrantes</button>
+                                    <button className="view-button">Entrar</button>
                                 </Link>
                             )}
                         </div>
