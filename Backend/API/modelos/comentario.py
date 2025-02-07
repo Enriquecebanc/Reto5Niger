@@ -9,4 +9,3 @@ class Comentario(BaseModel):
     texto: str
     fecha: int
     valoracion: int
-    
