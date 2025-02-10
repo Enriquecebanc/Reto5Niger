@@ -97,9 +97,6 @@ const Inicio = () => {
                 <Link to="/ingredientes">
                 <p>Ingredientes</p>
                 </Link>
-                <Link to="/recetas">
-                <p>Recetas</p>
-                </Link>
                 <Link to="/opiniones">
                 <p>Opiniones</p>
                 </Link>
