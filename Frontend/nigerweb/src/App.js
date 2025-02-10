@@ -11,6 +11,7 @@ import PanelAdmin from './pages/panelAdmin/panelAdmin';
 import Login from './pages/login/login';
 import ContraseñaOlvidada from './pages/login/contraseña-olvidada';
 import Registro from './pages/registro/registro'; // Importa el componente de registro
+import Opiniones from './pages/opiniones/opiniones';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,6 +48,7 @@ function App() {
               <Route path="/entrantes" element={<Entrantes />} />
               <Route path="/panelAdmin" element={<PanelAdmin />} />
               <Route path="/contraseñaOlvidada" element={<ContraseñaOlvidada />} />
+              <Route path="/opiniones" element={<Opiniones />} />
             </>
           )}
         </Routes>
