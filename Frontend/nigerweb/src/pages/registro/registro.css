@@ -1,4 +1,4 @@
-.login-container {
+.registro-container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -6,15 +6,14 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 150px;
 }
 
-.login-container h1 {
+.registro-container h1 {
     margin-bottom: 20px;
     font-size: 2em;
 }
 
-.login-form {
+.registro-form {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -39,7 +38,31 @@
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.login-button {
+.image-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.profile-image.selected {
+    border-color: #007bff;
+}
+
+.profile-image:hover {
+    border-color: #0056b3;
+}
+
+.registro-button {
     background-color: #444;
     color: #fff;
     border: none;
@@ -48,39 +71,9 @@
     border-radius: 4px;
     transition: background-color 0.3s ease;
     width: 106%;
-    margin-bottom: 10px; /* Añadir espaciado entre los botones */
-}
-
-.login-button:hover {
-    background-color: #555;
-}
-
-.register-button {
-    background-color: #444;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    width: 106%;
-}
-
-.register-button:hover {
-    background-color: #555;
-}
-
-.forgot-password {
-    text-align: center;
     margin-top: 10px;
 }
 
-.forgot-password a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.forgot-password a:hover {
-    color: #0056b3;
+.registro-button:hover {
+    background-color: #555;
 }
