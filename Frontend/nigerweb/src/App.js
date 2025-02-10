@@ -10,15 +10,18 @@ import Entrantes from './pages/entrantes/entrantes';
 import PanelAdmin from './pages/panelAdmin/panelAdmin';
 import Login from './pages/login/login';
 import ContraseñaOlvidada from './pages/login/contraseña-olvidada';
+import Registro from './pages/registro/registro'; // Importa el componente de registro
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState('');
 
   const handleLogin = (email, password) => {
     // Aquí puedes agregar la lógica para autenticar al usuario
     // Por ahora, simplemente autenticamos a cualquier usuario
-    if (email.endsWith('@gmail.com') || email.endsWith('@hotmail.com') || email.endsWith('.es') || email.endsWith('.eus')&& password) {
+    if ((email.endsWith('@gmail.com') || email.endsWith('@hotmail.com') || email.endsWith('.es') || email.endsWith('.eus')) && password) {
       setIsAuthenticated(true);
+      setUser(email.split('@')[0]); // Usar la parte del correo antes del @ como nombre de usuario
     } else {
       alert('Por favor, ingrese un correo electrónico de Gmail y una contraseña válidos.');
     }
@@ -27,12 +30,16 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {isAuthenticated && <div className="user-info">Bienvenido, {user}</div>}
         <Routes>
           {!isAuthenticated ? (
-            <Route path="/" element={<Login onLogin={handleLogin} />} />
+            <>
+              <Route path="/" element={<Login onLogin={handleLogin} />} />
+              <Route path="/registro" element={<Registro />} /> {/* Añade la ruta de registro */}
+            </>
           ) : (
             <>
-              <Route path="/" element={<Inicio />} />
+              <Route path="/" element={<Inicio user={user} />} />
               <Route path="/postres" element={<Postres />} />
               <Route path="/ingredientes" element={<Ingredientes />} />
               <Route path="/platoPrin" element={<PlatoPrin />} />

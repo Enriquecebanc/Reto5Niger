@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './contraseña-olvidada.css';
 
-const Ingredientes = () => {
+const Contraseña = () => {
   return (
     <div className="contraseña-olvidada-container">
       <h1>Si</h1>
@@ -14,4 +14,4 @@ const Ingredientes = () => {
   );
 };
 
-export default Ingredientes;
+export default Contraseña;
