@@ -95,10 +95,13 @@ const Inicio = () => {
             </div>
             <div className="navigation-links">
                 <Link to="/ingredientes">
-                <p>Ingredientes</p>
+                    <button className="nav-button">Ingredientes</button>
+                </Link>
+                <Link to="/recetas">
+                    <button className="nav-button">Recetas</button>
                 </Link>
                 <Link to="/opiniones">
-                <p>Opiniones</p>
+                    <button className="nav-button">Opiniones</button>
                 </Link>
             </div>
 
