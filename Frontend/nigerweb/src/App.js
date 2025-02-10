@@ -17,7 +17,7 @@ function App() {
   const handleLogin = (email, password) => {
     // Aquí puedes agregar la lógica para autenticar al usuario
     // Por ahora, simplemente autenticamos a cualquier usuario
-    if (email.endsWith('@gmail.com') && password) {
+    if (email.endsWith('@gmail.com') || email.endsWith('@hotmail.com')&& password) {
       setIsAuthenticated(true);
     } else {
       alert('Por favor, ingrese un correo electrónico de Gmail y una contraseña válidos.');
