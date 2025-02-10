@@ -122,7 +122,7 @@ input[type="text"] {
     line-height: 1.4;
 }
 
-.view-button, .nav-button {
+.view-button {
     background-color: #444;
     color: #fff;
     border: none;
@@ -133,15 +133,8 @@ input[type="text"] {
     margin-top: 10px;
 }
 
-.view-button:hover, .nav-button:hover {
+.view-button:hover {
     background-color: #555;
-}
-
-.navigation-links {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
 }
 
 .logo-image {
@@ -154,4 +147,27 @@ input[type="text"] {
     display: flex;
     justify-content: center;
     margin-top: 10px; /* Ajustar si es necesario */
+}
+
+.navigation-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navigation-links p {
+    background-color: #444;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin: 5px 0; /* Ajustar según sea necesario */
+    width: auto; /* Ajustar el ancho según sea necesario */
+    max-width: 200px; /* Ajustar el ancho máximo según sea necesario */
+}
+
+.navigation-links p:hover {
+    background-color: #555;
 }

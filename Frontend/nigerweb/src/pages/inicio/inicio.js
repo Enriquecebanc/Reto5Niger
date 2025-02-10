@@ -36,13 +36,13 @@ const Inicio = () => {
             <button className="search-button">Buscar</button>
             <div className="navigation-links">
                 <Link to="/ingredientes">
-                    <button className="nav-button">Ingredientes</button>
+                <p>Ingredientes</p>
                 </Link>
                 <Link to="/recetas">
-                    <button className="nav-button">Recetas</button>
+                <p>Recetas</p>
                 </Link>
                 <Link to="/opiniones">
-                    <button className="nav-button">Opiniones</button>
+                <p>Opiniones</p>
                 </Link>
             </div>
             <div className="recipes-list">
