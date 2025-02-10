@@ -142,7 +142,7 @@ const Registro = () => {
                         placeholder="Respuesta"
                         required
                     />
-                </div>
+                </div>twfx
                 <div className="form-group">
                     <ReCAPTCHA
                         sitekey="6Ld3qNIqAAAAAPxKh6xwjGu5eTBOLTweubWkbqLA" // Reemplaza con tu nueva clave de sitio de reCAPTCHA
