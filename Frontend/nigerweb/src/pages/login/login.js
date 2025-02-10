@@ -1,3 +1,4 @@
+// filepath: /c:/Users/igorl/OneDrive/Desktop/Reto5Niger/Frontend/nigerweb/src/pages/login/login.js
 import React, { useState } from 'react';
 import './login.css';
 
@@ -45,6 +46,9 @@ const Login = ({ onLogin }) => {
                     />
                 </div>
                 <button type="submit" className="login-button">Iniciar Sesión</button>
+                <div className="forgot-password">
+                    <a href="/contraseñaOlvidada">¿Has olvidado la contraseña?</a>
+                </div>
             </form>
         </div>
     );

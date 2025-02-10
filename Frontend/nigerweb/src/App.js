@@ -10,6 +10,7 @@ import PlatoSec from './pages/platoSec/platoSec';
 import Entrantes from './pages/entrantes/entrantes';
 import PanelAdmin from './pages/panelAdmin/panelAdmin';
 import Login from './pages/login/login';
+import ContraseñaOlvidada from './pages/login/contraseña-olvidada';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,6 +42,7 @@ function App() {
               <Route path="/platoSec" element={<PlatoSec />} />
               <Route path="/entrantes" element={<Entrantes />} />
               <Route path="/panelAdmin" element={<PanelAdmin />} />
+              <Route path="/contraseñaOlvidada" element={<ContraseñaOlvidada />} />
             </>
           )}
         </Routes>
