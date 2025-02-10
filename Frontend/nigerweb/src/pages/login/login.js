@@ -1,10 +1,11 @@
-// filepath: /c:/Users/igorl/OneDrive/Desktop/Reto5Niger/Frontend/nigerweb/src/pages/login/login.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -17,6 +18,10 @@ const Login = ({ onLogin }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         onLogin(email, password);
+    };
+
+    const handleRegister = () => {
+        navigate('/registro');
     };
 
     return (
@@ -46,6 +51,7 @@ const Login = ({ onLogin }) => {
                     />
                 </div>
                 <button type="submit" className="login-button">Iniciar Sesión</button>
+                <button type="button" className="register-button" onClick={handleRegister}>Registrar</button>
                 <div className="forgot-password">
                     <a href="/contraseñaOlvidada">¿Has olvidado la contraseña?</a>
                 </div>
