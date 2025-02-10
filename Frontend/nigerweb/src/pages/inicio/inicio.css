@@ -39,6 +39,13 @@ nav a:hover {
     background-color: #555;
 }
 
+.nav-button {
+    position: relative;
+    z-index: 1;
+    margin-top: 10px; /* Ajusta según necesidad */
+}
+
+
 main {
     padding: 20px;
     max-width: 1200px;
@@ -138,7 +145,13 @@ input[type="text"] {
 }
 
 .logo-image {
-    max-width: 200px;
+    max-width: 150px;
     display: block;
     margin: 0 auto 20px;
+    margin-top: 5px;
+}
+.opiniones-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Ajustar si es necesario */
 }

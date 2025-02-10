@@ -58,7 +58,7 @@
   .admin-panel-container form input,
   .admin-panel-container form textarea {
     display: block;
-    width: 100%;
+    width: 95%;
     padding: 12px;
     margin-bottom: 10px;
     border: 1px solid #ced4da;
