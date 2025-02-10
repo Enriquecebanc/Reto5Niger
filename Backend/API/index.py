@@ -1,6 +1,5 @@
-from fastapi import FastAPI
-from fastapi.openapi.utils import get_openapi
-from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, Depends
+from auth import get_current_user
 from rutas import (
     recetas_router,
     categorias_router,
@@ -20,7 +19,10 @@ app.include_router(comentarios_router)
 app.include_router(ingredientes_router)
 app.include_router(usuarios_router)
 
-
 @app.get("/")
 def index():
     return {"message": "Bienvenido al sistema!"}
+
+@app.get("/protected-route")
+def protected_route(current_user: str = Depends(get_current_user)):
+    return {"message": f"Hola, {current_user}. Esta es una ruta protegida."}
