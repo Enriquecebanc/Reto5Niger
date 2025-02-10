@@ -10,6 +10,7 @@ import PlatoSec from './pages/platoSec/platoSec';
 import Entrantes from './pages/entrantes/entrantes';
 import PanelAdmin from './pages/panelAdmin/panelAdmin';
 import Login from './pages/login/login';
+import ContraseñaOlvidada from './pages/login/contraseña-olvidada';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,7 +18,7 @@ function App() {
   const handleLogin = (email, password) => {
     // Aquí puedes agregar la lógica para autenticar al usuario
     // Por ahora, simplemente autenticamos a cualquier usuario
-    if (email.endsWith('@gmail.com') || email.endsWith('@hotmail.com')&& password) {
+    if (email.endsWith('@gmail.com') || email.endsWith('@hotmail.com') || email.endsWith('.es') || email.endsWith('.eus')&& password) {
       setIsAuthenticated(true);
     } else {
       alert('Por favor, ingrese un correo electrónico de Gmail y una contraseña válidos.');
@@ -40,6 +41,7 @@ function App() {
               <Route path="/platoSec" element={<PlatoSec />} />
               <Route path="/entrantes" element={<Entrantes />} />
               <Route path="/panelAdmin" element={<PanelAdmin />} />
+              <Route path="/contraseñaOlvidada" element={<ContraseñaOlvidada />} />
             </>
           )}
         </Routes>
