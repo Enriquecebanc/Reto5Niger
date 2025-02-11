@@ -9,7 +9,7 @@ import PlatoSec from './pages/platoSec/platoSec';
 import Entrantes from './pages/entrantes/entrantes';
 import PanelAdmin from './pages/panelAdmin/panelAdmin';
 import Login from './pages/login/login';
-import ContraseñaOlvidada from './pages/login/contraseña-olvidada';
+import ContraseñaOlvidada from './pages/login/contraseñaOlvidada';
 import Registro from './pages/registro/registro'; // Importa el componente de registro
 import Opiniones from './pages/opiniones/opiniones';
 
@@ -37,6 +37,7 @@ function App() {
             <>
               <Route path="/" element={<Login onLogin={handleLogin} />} />
               <Route path="/registro" element={<Registro />} /> {/* Añade la ruta de registro */}
+              <Route path="/contraseñaOlvidada" element={<ContraseñaOlvidada />} />
             </>
           ) : (
             <>
@@ -47,7 +48,6 @@ function App() {
               <Route path="/platoSec" element={<PlatoSec />} />
               <Route path="/entrantes" element={<Entrantes />} />
               <Route path="/panelAdmin" element={<PanelAdmin />} />
-              <Route path="/contraseñaOlvidada" element={<ContraseñaOlvidada />} />
               <Route path="/opiniones" element={<Opiniones />} />
             </>
           )}

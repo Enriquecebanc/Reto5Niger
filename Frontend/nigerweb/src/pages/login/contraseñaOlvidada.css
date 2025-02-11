@@ -1,0 +1,50 @@
+.contraseña-olvidada-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 150px;
+}
+
+.contraseña-olvidada-container h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.contraseña-olvidada-container p {
+  margin-bottom: 20px;
+}
+
+.contraseña-olvidada-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contraseña-olvidada-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submit-button, .back-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.submit-button:hover, .back-button:hover {
+  background-color: #555;
+}
