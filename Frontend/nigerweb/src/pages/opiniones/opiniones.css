@@ -1,55 +1,106 @@
+/* opiniones.css */
+
 .opiniones-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgb(0, 0, 0);
-    text-align: center;
-    margin-top: 10px;
     display: flex;
-    flex-direction: column;
-}
-
-.opiniones-container h1 {
-    margin-bottom: 20px;
-    font-size: 2em;
-}
-
-.opiniones-container p {
-    margin-bottom: 20px;
-    font-size: 1.2em;
-}
-
-.opinion {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.opinion h2 {
-    font-size: 1.5em;
+    flex-direction: column; /* Para que los elementos se apilen verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    padding: 20px;
+    font-family: sans-serif; /* Fuente de letra general */
+    background-color: #F7E15E; /* Color de fondo */
+    min-height: 100vh; /* Asegura que el contenedor ocupa toda la altura de la pantalla */
+  }
+  
+  .opiniones-section {
+    width: 80%; /* Ancho del contenedor de opiniones */
+    margin-bottom: 20px; /* Espacio entre secciones */
+    background-color: white; /* Fondo blanco para las opiniones */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
+  .opiniones-section h2 {
     margin-bottom: 10px;
-}
-
-.opinion p {
-    background-color: #f9f9f9;
+    color: #333; /* Color de título */
+  }
+  
+  .opinion {
+    border-bottom: 1px solid #eee; /* Línea separadora */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .opinion h3 {
+    color: #555; /* Color de nombre de usuario */
     margin-bottom: 5px;
+  }
+  
+  .opinion p {
+    color: #333; /* Color de comentario */
+  }
+  
+  
+  .opinar-section {
+    width: 80%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .opinar-section h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .input-field {
+    width: calc(100% - 22px); /* Ancho completo menos el padding y el borde */
     padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
     border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.back-button {
-    background-color: #444;
-    color: #fff;
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho */
+  }
+  
+  .input-field:focus {
+    border-color: #007bff; /* Color de borde al enfocar */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Sombra ligera al enfocar */
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
     border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el ratón */
+  }
+  
+  .back-button {
+    background-color: #6c757d; /* Color grisáceo */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px; /* Margen superior para separarlo del formulario */
     transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
-
-.back-button:hover {
-    background-color: #555;
-}
+  }
+  
+  .back-button:hover {
+    background-color: #5a6268;
+  }
+  
+  
+  /* Estilos para pantallas más pequeñas (responsive) */
+  @media (max-width: 768px) {
+    .opiniones-section, .opinar-section {
+      width: 90%;
+    }
+  }
