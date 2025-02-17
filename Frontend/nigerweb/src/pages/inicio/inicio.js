@@ -81,8 +81,10 @@ const Inicio = () => {
 
     return (
         <div className="inicio-container">
-            <h1>Bienvenido a la página de recetas</h1>
+            <div className="header-inicio">
             <img src={logoImage} alt="Logo" className="logo-image" />
+            <h1>¡Bienvenido a Recishare!</h1>
+            </div>
             <div className="search-container">
                 <input
                     type="text"

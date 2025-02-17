@@ -31,7 +31,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {isAuthenticated && <div className="user-info">Bienvenido, {user}</div>}
         <Routes>
           {!isAuthenticated ? (
             <>
