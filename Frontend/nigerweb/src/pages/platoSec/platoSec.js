@@ -141,7 +141,7 @@ const Segundos = () => {
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
 
   const handleNext = () => {
-    setCurrentRecipeIndex((prevIndex) => (prevIndex + 1)% recipes.length);
+    setCurrentRecipeIndex((prevIndex) => (prevIndex + 1) % recipes.length);
   };
 
   const handlePrev = () => {
