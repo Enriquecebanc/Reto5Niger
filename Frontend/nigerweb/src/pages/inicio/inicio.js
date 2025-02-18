@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // Importa useEffect
 import { Link } from 'react-router-dom';
 import './inicio.css';
-import logoImage from '../../images/Logo.jpg';
+import logoImage from '../../images/NigerLogo.jpg';
 
 // Simulación de recetas (esto debería venir de una API o base de datos)
 const allRecipes = [
@@ -23,14 +23,14 @@ const allRecipes = [
     { id: 16, name: 'Croquetas', description: 'Deliciosas croquetas crujientes por fuera y cremosas por dentro.', categoria: 'Entrantes', path: '/entrantes' },
     { id: 17, name: 'Gazpacho', description: 'Una sopa fría de tomate, perfecta para los días calurosos.', categoria: 'Entrantes', path: '/entrantes' },
     { id: 18, name: 'Patatas Bravas', description: 'Patatas fritas servidas con una salsa picante.', categoria: 'Entrantes', path: '/entrantes' },
-    { id: 1, name: 'Bruschetta', description: 'Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.', categoria: 'Entrantes', path: '/entrantes' },
-    { id: 1, name: 'Hummus', description: 'Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.', categoria: 'Entrantes', path: '/entrantes' }
+    { id: 19, name: 'Bruschetta', description: 'Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.', categoria: 'Entrantes', path: '/entrantes' },
+    { id: 20, name: 'Hummus', description: 'Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.', categoria: 'Entrantes', path: '/entrantes' }
     
 ];
 
 const recipesCategories = [ // Array de categorías (mantenemos esto)
     { id: 1, name: 'Entrantes', description: 'Platos ligeros y apetitosos para comenzar la comida.' },
-    { id: 2, name: 'Platos Principales', description: 'Recetas sustanciosas y completas para el eje central de la comida.' },
+    { id: 2, name: 'Primer Plato', description: 'Recetas sustanciosas y completas para el eje central de la comida.' },
     { id: 3, name: 'Segundo Plato', description: 'Opciones que complementan el plato principal.' },
     { id: 4, name: 'Postres', description: 'Dulces y delicias para cerrar la comida.' },
     { id: 5, name: 'PanelAdmin', description: 'Enlace al panel de administración.' }
@@ -66,7 +66,7 @@ const Inicio = () => {
         switch (categoryName) {
             case 'Postres':
                 return '/postres';
-            case 'Platos Principales':
+            case 'Primer Plato':
                 return '/platoPrin';
             case 'Segundo Plato':
                 return '/platoSec';
@@ -83,7 +83,7 @@ const Inicio = () => {
         <div className="inicio-container">
             <div className="header-inicio">
             <img src={logoImage} alt="Logo" className="logo-image" />
-            <h1>¡Bienvenido a Recishare!</h1>
+            <h1>¡Bienvenido a Recetas Niger!</h1>
             </div>
             <div className="search-container">
                 <input

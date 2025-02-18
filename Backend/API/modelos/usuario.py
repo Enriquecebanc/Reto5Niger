@@ -6,4 +6,7 @@ class Usuario(BaseModel):
     nombre: str
     correo: str
     contraseña: str
-    foto_perfil: str
+    foto_perfil: int
+    respuesta_pregunta_1: str
+    respuesta_pregunta_2: str
+    respuesta_pregunta_3: str

@@ -11,72 +11,130 @@ const recipes = [
   {
     id: 1,
     name: 'Steak a la Parrilla',
-    description: 'Jugoso filete de ternera cocinado a la parrilla.',
-    ingredients: ['Filete de ternera', 'Sal', 'Pimienta', 'Aceite de oliva', 'Ajo', 'Romero'],
+    description: (
+        <>
+            <strong>🕔 30 minutos</strong> | <strong>2 personas</strong> | Jugoso filete de ternera cocinado a la parrilla.
+        </>
+    ),
+    ingredients: [
+        '2 filetes de ternera (200g cada uno)',
+        '1 cucharadita de sal',
+        '1/2 cucharadita de pimienta negra',
+        '1 cucharada de aceite de oliva',
+        '2 dientes de ajo picados',
+        '2 ramitas de romero fresco'
+    ],
     instructions: [
-      'Sazona el filete con sal, pimienta y ajo picado.',
-      'Calienta la parrilla y unta con aceite de oliva.',
-      'Cocina el filete durante 3-4 minutos por cada lado.',
-      'Deja reposar unos minutos antes de servir con romero fresco.'
+        'Sazona el filete con sal, pimienta y ajo picado. (2 mins)',
+        'Calienta la parrilla y unta con aceite de oliva. (5 mins)',
+        'Cocina el filete durante 3-4 minutos por cada lado. (8 mins)',
+        'Deja reposar unos minutos antes de servir con romero. (5 mins)'
     ],
     image: steakImage
-  },
-  {
-    id: 2,
-    name: 'Paella',
-    description: 'Un clásico plato español con arroz y mariscos.',
-    ingredients: ['Arroz', 'Gambas', 'Mejillones', 'Pollo', 'Pimiento rojo', 'Azafrán', 'Caldo de pescado'],
-    instructions: [
-      'Sofríe el pollo y los pimientos en una paellera.',
-      'Añade el arroz y sofríelo unos minutos.',
-      'Vierte el caldo de pescado y el azafrán.',
-      'Cocina a fuego medio y agrega los mariscos al final.',
-      'Deja reposar antes de servir.'
-    ],
-    image: paellaImage
-  },
-  {
-    id: 3,
-    name: 'Salmón al Horno',
-    description: 'Salmón jugoso horneado con limón y eneldo.',
-    ingredients: ['Salmón', 'Limón', 'Eneldo', 'Aceite de oliva', 'Sal', 'Pimienta'],
-    instructions: [
-      'Precalienta el horno a 180°C.',
-      'Coloca el salmón en una bandeja para hornear.',
-      'Rocía con aceite de oliva, sal, pimienta y jugo de limón.',
-      'Hornea durante 12-15 minutos.',
-      'Sirve con eneldo fresco por encima.'
-    ],
-    image: salmonImage
-  },
-  {
-    id: 4,
-    name: 'Lasaña',
-    description: 'Un delicioso plato de pasta con carne y bechamel.',
-    ingredients: ['Láminas de lasaña', 'Carne picada', 'Tomate', 'Cebolla', 'Queso', 'Bechamel'],
-    instructions: [
-      'Sofríe la carne con cebolla y tomate.',
-      'Cocina la bechamel y reserva.',
-      'En una bandeja, alterna capas de pasta, carne y bechamel.',
-      'Cubre con queso rallado y hornea a 180°C durante 30 minutos.',
-      'Deja reposar antes de servir.'
-    ],
-    image: lasañaImage
-  },
-  {
-    id: 5,
-    name: 'Pollo al Ajillo',
-    description: 'Pollo dorado con ajo y vino blanco.',
-    ingredients: ['Pollo', 'Ajo', 'Aceite de oliva', 'Vino blanco', 'Perejil', 'Sal', 'Pimienta'],
-    instructions: [
-      'Corta el pollo en trozos y sazona con sal y pimienta.',
-      'Sofríe el ajo en aceite de oliva y añade el pollo.',
-      'Dora bien el pollo por todos los lados.',
-      'Añade el vino blanco y cocina a fuego lento hasta reducir.',
-      'Sirve con perejil fresco.'
-    ],
-    image: polloajoImage
-  }
+},
+
+{
+  id: 2,
+  name: 'Paella',
+  description: (
+    <>
+      <strong>🕔 50 minutos</strong> | <strong>4 personas</strong> | Un clásico plato español con arroz y mariscos.
+    </>
+  ),
+  ingredients: [
+    '300g de arroz',
+    '200g de gambas',
+    '150g de mejillones',
+    '200g de pollo',
+    '1 pimiento rojo',
+    '1 pizca de azafrán',
+    '800ml de caldo de pescado'
+  ],
+  instructions: [
+    'Sofríe el pollo y los pimientos en una paellera. (10 mins)',
+    'Añade el arroz y sofríelo unos minutos. (5 mins)',
+    'Vierte el caldo de pescado y el azafrán. (2 mins)',
+    'Cocina a fuego medio y agrega los mariscos al final. (25 mins)',
+    'Deja reposar antes de servir. (8 mins)'
+  ],
+  image: paellaImage
+},
+{
+  id: 3,
+  name: 'Salmón al Horno',
+  description: (
+    <>
+      <strong>🕔 25 minutos</strong> | <strong>2 personas</strong> | Salmón jugoso horneado con limón y eneldo.
+    </>
+  ),
+  ingredients: [
+    '2 filetes de salmón (150g cada uno)',
+    '1 limón',
+    '1 cucharada de eneldo',
+    '1 cucharada de aceite de oliva',
+    '1/2 cucharadita de sal',
+    '1/4 cucharadita de pimienta'
+  ],
+  instructions: [
+    'Precalienta el horno a 180°C. (5 mins)',
+    'Coloca el salmón en una bandeja para hornear. (2 mins)',
+    'Rocía con aceite de oliva, sal, pimienta y jugo de limón. (3 mins)',
+    'Hornea durante 12-15 minutos. (15 mins)',
+    'Sirve con eneldo fresco por encima. (5 mins)'
+  ],
+  image: salmonImage
+},
+{
+  id: 4,
+  name: 'Lasaña',
+  description: (
+    <>
+      <strong>🕔 1 hora</strong> | <strong>6 personas</strong> | Un delicioso plato de pasta con carne y bechamel.
+    </>
+  ),
+  ingredients: [
+    '12 láminas de lasaña',
+    '400g de carne picada',
+    '200g de tomate triturado',
+    '1 cebolla picada',
+    '150g de queso rallado',
+    '500ml de bechamel'
+  ],
+  instructions: [
+    'Sofríe la carne con cebolla y tomate. (15 mins)',
+    'Cocina la bechamel y reserva. (10 mins)',
+    'En una bandeja, alterna capas de pasta, carne y bechamel. (10 mins)',
+    'Cubre con queso rallado y hornea a 180°C durante 30 minutos. (30 mins)',
+    'Deja reposar antes de servir. (5 mins)'
+  ],
+  image: lasañaImage
+},
+{
+  id: 5,
+  name: 'Pollo al Ajillo',
+  description: (
+    <>
+      <strong>🕔 40 minutos</strong> | <strong>3 personas</strong> | Pollo dorado con ajo y vino blanco.
+    </>
+  ),
+  ingredients: [
+    '500g de pollo',
+    '4 dientes de ajo',
+    '2 cucharadas de aceite de oliva',
+    '100ml de vino blanco',
+    '1 cucharada de perejil picado',
+    '1/2 cucharadita de sal',
+    '1/4 cucharadita de pimienta'
+  ],
+  instructions: [
+    'Corta el pollo en trozos y sazona con sal y pimienta. (5 mins)',
+    'Sofríe el ajo en aceite de oliva y añade el pollo. (10 mins)',
+    'Dora bien el pollo por todos los lados. (10 mins)',
+    'Añade el vino blanco y cocina a fuego lento hasta reducir. (10 mins)',
+    'Sirve con perejil fresco. (5 mins)'
+  ],
+  image: polloajoImage
+}
 ];
 
 const Segundos = () => {

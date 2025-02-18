@@ -1,3 +1,7 @@
+create schema reto5;
+
+use reto5;
+
 create table categorias (
 id_categoria INT AUTO_INCREMENT PRIMARY KEY,
 nombre_categoria VARCHAR(100) NOT NULL UNIQUE,
@@ -10,7 +14,7 @@ id_usuario INT AUTO_INCREMENT PRIMARY KEY,
 nombre_usuario VARCHAR(32) NOT NULL UNIQUE,
 contraseña VARCHAR(32) NOT NULL,
 correo VARCHAR(128) NOT NULL,
-foto_perfil VARCHAR(200) NOT NULL,
+foto_perfil INT PRIMARY KEY AUTO_INCREMENT CHECK (valor BETWEEN 1 AND 17),
 respuesta_pregunta_1 VARCHAR(40),
 respuesta_pregunta_2 VARCHAR(40),
 respuesta_pregunta_3 VARCHAR(40)

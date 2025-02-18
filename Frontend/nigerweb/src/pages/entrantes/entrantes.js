@@ -11,8 +11,11 @@ const recipes = [
   {
     id: 1,
     name: 'Croquetas',
-    description: 'Deliciosas croquetas crujientes por fuera y cremosas por dentro.',
-    ingredients: ['Harina', 'Leche', 'Mantequilla', 'Jamón', 'Huevo', 'Pan rallado'],
+    description:(
+      <>
+        <strong>🕔 75 minutos | 4 Comensales |</strong> Deliciosas croquetas crujientes por fuera y cremosas por dentro.
+      </>),
+    ingredients: ['Harina 200g', 'Leche 750ml', 'Mantequilla 100g', 'Jamón 150g', '1 Huevo', 'Pan rallado 250g'],
     instructions: [
       'Prepara una bechamel con harina, leche y mantequilla.',
       'Añade el jamón picado a la bechamel.',
@@ -25,8 +28,11 @@ const recipes = [
   {
     id: 2,
     name: 'Gazpacho',
-    description: 'Una sopa fría de tomate, perfecta para los días calurosos.',
-    ingredients: ['Tomate', 'Pepino', 'Pimiento', 'Cebolla', 'Ajo', 'Aceite de oliva', 'Vinagre', 'Sal'],
+    description: (
+      <>
+        <strong>🕔 75 minutos | 6 Comensales |</strong> Una sopa fría de tomate, perfecta para los días calurosos.
+      </>),
+    ingredients: ['Tomate 1Kg', '1 Pepino', '1 Pimiento', 'Media cebolla', 'Ajo 2 dientes', 'Aceite de oliva 50ml', 'Vinagre 30ml', 'Sal 5g'],
     instructions: [
       'Lava y corta los vegetales.',
       'Tritura todos los ingredientes en una licuadora hasta obtener una mezcla suave.',
@@ -38,8 +44,11 @@ const recipes = [
   {
     id: 3,
     name: 'Patatas Bravas',
-    description: 'Patatas fritas servidas con una salsa picante.',
-    ingredients: ['Patatas', 'Aceite de oliva', 'Sal', 'Tomate', 'Ajo', 'Pimentón', 'Vinagre', 'Azúcar'],
+    description: (
+      <>
+        <strong>🕔 30 minutos | 4 Comensales |</strong> Patatas fritas servidas con una salsa picante.
+      </>),
+    ingredients: ['3 Patatas', 'Aceite de oliva', 'Sal', 'Tomate', 'Ajo', 'Pimentón', 'Vinagre', 'Azúcar'],
     instructions: [
       'Pela y corta las patatas en cubos.',
       'Fríe las patatas en aceite de oliva hasta que estén doradas y crujientes.',
@@ -52,7 +61,10 @@ const recipes = [
   {
     id: 4,
     name: 'Bruschetta',
-    description: 'Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.',
+    description: (
+      <>
+        <strong>🕔 10 minutos | 2 Comensales |</strong> Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.
+      </>),
     ingredients: ['Pan', 'Tomate', 'Ajo', 'Albahaca', 'Aceite de oliva', 'Sal'],
     instructions: [
       'Tuesta las rebanadas de pan.',
@@ -66,8 +78,11 @@ const recipes = [
   {
     id: 5,
     name: 'Hummus',
-    description: 'Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.',
-    ingredients: ['Garbanzos', 'Tahini', 'Ajo', 'Limón', 'Aceite de oliva', 'Sal'],
+    description: (
+      <>
+        <strong>🕔 15 minutos | 4 Comensales |</strong> Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.
+      </>),
+    ingredients: ['Garbanzos 400g', 'Tahini', '1 diente de Ajo', 'Medio limón', 'Aceite de oliva 70g', 'Sal 5g'],
     instructions: [
       'Tritura los garbanzos cocidos con tahini, ajo y jugo de limón.',
       'Añade aceite de oliva y sal al gusto.',
