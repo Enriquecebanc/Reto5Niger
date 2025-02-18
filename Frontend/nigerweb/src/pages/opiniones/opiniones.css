@@ -6,7 +6,7 @@
     align-items: center; /* Centra los elementos horizontalmente */
     padding: 20px;
     font-family: sans-serif; /* Fuente de letra general */
-    background-color: #F7E15E; /* Color de fondo */
+    background-color: #ffc15d; /* Color de fondo */
     min-height: 100vh; /* Asegura que el contenedor ocupa toda la altura de la pantalla */
   }
   
