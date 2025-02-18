@@ -1,3 +1,7 @@
+create schema reto5;
+
+use reto5;
+
 create table categorias (
 id_categoria INT AUTO_INCREMENT PRIMARY KEY,
 nombre_categoria VARCHAR(100) NOT NULL UNIQUE,

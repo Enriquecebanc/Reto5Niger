@@ -1,7 +1,7 @@
-# filepath: /c:/Users/igorl/OneDrive/Desktop/Reto5Niger/Backend/API/rutas/recetas.py
 from fastapi import APIRouter, HTTPException
 from typing import List
 from modelos.receta import Receta
+from database import get_db
 
 router = APIRouter()
 
@@ -16,6 +16,7 @@ def get_receta(id: str):
 
 @router.post("/recetas", response_model=Receta)
 def crear_receta(receta: Receta):
+    data = get_db(f"INSERT INTO recetas (nombre, descripcion, id_categoria) VALUES ('{receta.nombre}', '{receta.descripcion}', {receta.id_categoria})")
     recetas_db.append(receta)
     return receta
 

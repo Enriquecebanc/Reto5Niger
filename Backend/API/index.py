@@ -23,3 +23,4 @@ app.include_router(usuarios_router, dependencies=[Depends(get_current_user)])
 @app.get("/")
 def index():
     return {"message": "Bienvenido al sistema!"}
+
