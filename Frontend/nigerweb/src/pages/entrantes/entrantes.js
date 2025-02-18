@@ -78,8 +78,11 @@ const recipes = [
   {
     id: 5,
     name: 'Hummus',
-    description: 'Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.',
-    ingredients: ['Garbanzos', 'Tahini', 'Ajo', 'Limón', 'Aceite de oliva', 'Sal'],
+    description: (
+      <>
+        <strong>🕔 15 minutos | 4 Comensales |</strong> Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.
+      </>),
+    ingredients: ['Garbanzos 400g', 'Tahini', '1 diente de Ajo', 'Medio limón', 'Aceite de oliva 70g', 'Sal 5g'],
     instructions: [
       'Tritura los garbanzos cocidos con tahini, ajo y jugo de limón.',
       'Añade aceite de oliva y sal al gusto.',
