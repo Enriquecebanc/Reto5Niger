@@ -13,16 +13,13 @@ app = FastAPI(
     description="Esta es una API para gestionar recetas, categorías, comentarios, ingredientes y usuarios.",
 )
 
-app.include_router(recetas_router)
-app.include_router(categorias_router)
-app.include_router(comentarios_router)
-app.include_router(ingredientes_router)
-app.include_router(usuarios_router)
+# Proteger todas las rutas de los routers
+app.include_router(recetas_router, dependencies=[Depends(get_current_user)])
+app.include_router(categorias_router, dependencies=[Depends(get_current_user)])
+app.include_router(comentarios_router, dependencies=[Depends(get_current_user)])
+app.include_router(ingredientes_router, dependencies=[Depends(get_current_user)])
+app.include_router(usuarios_router, dependencies=[Depends(get_current_user)])
 
 @app.get("/")
 def index():
     return {"message": "Bienvenido al sistema!"}
-
-@app.get("/protected-route")
-def protected_route(current_user: str = Depends(get_current_user)):
-    return {"message": f"Hola, {current_user}. Esta es una ruta protegida."}

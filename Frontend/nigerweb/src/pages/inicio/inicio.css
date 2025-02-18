@@ -130,7 +130,7 @@ input[type="text"] {
     margin-top: 5px;
     border-radius: 75%; 
     border: 5px solid;
-    border-color: #ff960c;
+    border-color: #ff7434;
     float: left;
 }
 .opiniones-container {
@@ -165,7 +165,7 @@ input[type="text"] {
 .header-inicio {
     display: flex;
     flex-direction: column;
-    background-color: #f5ba41;
+    background-color: #ffa75f;
     margin-bottom: 20px;
     flex-direction: row;
     align-items: center;
