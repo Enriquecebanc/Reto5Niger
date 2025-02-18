@@ -179,3 +179,9 @@ input[type="text"] {
     font-family: Garamond, serif;
     color: #ffeddc;
 }
+
+.recipes-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px; /* Añade más espacio entre las secciones */
+}

@@ -23,8 +23,8 @@ const allRecipes = [
     { id: 16, name: 'Croquetas', description: 'Deliciosas croquetas crujientes por fuera y cremosas por dentro.', categoria: 'Entrantes', path: '/entrantes' },
     { id: 17, name: 'Gazpacho', description: 'Una sopa fría de tomate, perfecta para los días calurosos.', categoria: 'Entrantes', path: '/entrantes' },
     { id: 18, name: 'Patatas Bravas', description: 'Patatas fritas servidas con una salsa picante.', categoria: 'Entrantes', path: '/entrantes' },
-    { id: 1, name: 'Bruschetta', description: 'Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.', categoria: 'Entrantes', path: '/entrantes' },
-    { id: 1, name: 'Hummus', description: 'Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.', categoria: 'Entrantes', path: '/entrantes' }
+    { id: 19, name: 'Bruschetta', description: 'Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.', categoria: 'Entrantes', path: '/entrantes' },
+    { id: 20, name: 'Hummus', description: 'Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.', categoria: 'Entrantes', path: '/entrantes' }
     
 ];
 
@@ -66,7 +66,7 @@ const Inicio = () => {
         switch (categoryName) {
             case 'Postres':
                 return '/postres';
-            case 'Platos Principales':
+            case 'Primer Plato':
                 return '/platoPrin';
             case 'Segundo Plato':
                 return '/platoSec';
