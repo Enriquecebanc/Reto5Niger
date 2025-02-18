@@ -81,6 +81,7 @@
     border-radius: 4px;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    width: 43%;
 }
 
 .back-button:hover {

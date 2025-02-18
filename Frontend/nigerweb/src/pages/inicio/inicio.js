@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // Importa useEffect
 import { Link } from 'react-router-dom';
 import './inicio.css';
-import logoImage from '../../images/Logo.jpg';
+import logoImage from '../../images/NigerLogo.jpg';
 
 // Simulación de recetas (esto debería venir de una API o base de datos)
 const allRecipes = [
@@ -83,7 +83,7 @@ const Inicio = () => {
         <div className="inicio-container">
             <div className="header-inicio">
             <img src={logoImage} alt="Logo" className="logo-image" />
-            <h1>¡Bienvenido a Recishare!</h1>
+            <h1>¡Bienvenido a Recetas Niger!</h1>
             </div>
             <div className="search-container">
                 <input

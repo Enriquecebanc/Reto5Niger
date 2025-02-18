@@ -91,6 +91,7 @@
     cursor: pointer;
     margin-top: 20px; /* Margen superior para separarlo del formulario */
     transition: background-color 0.3s ease;
+    width: 150px;
   }
   
   .back-button:hover {
