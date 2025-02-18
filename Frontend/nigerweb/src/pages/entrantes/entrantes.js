@@ -11,11 +11,11 @@ const recipes = [
   {
     id: 1,
     name: 'Croquetas',
-    description: (
+    description:(
       <>
         <strong>🕔 75 minutos | 4 Comensales |</strong> Deliciosas croquetas crujientes por fuera y cremosas por dentro.
       </>),
-    ingredients: ['Harina', 'Leche', 'Mantequilla', 'Jamón', 'Huevo', 'Pan rallado'],
+    ingredients: ['Harina 200g', 'Leche 750ml', 'Mantequilla 100g', 'Jamón 150g', '1 Huevo', 'Pan rallado 250g'],
     instructions: [
       'Prepara una bechamel con harina, leche y mantequilla.',
       'Añade el jamón picado a la bechamel.',
@@ -28,8 +28,11 @@ const recipes = [
   {
     id: 2,
     name: 'Gazpacho',
-    description: 'Una sopa fría de tomate, perfecta para los días calurosos.',
-    ingredients: ['Tomate', 'Pepino', 'Pimiento', 'Cebolla', 'Ajo', 'Aceite de oliva', 'Vinagre', 'Sal'],
+    description: (
+      <>
+        <strong>🕔 75 minutos | 6 Comensales |</strong> Una sopa fría de tomate, perfecta para los días calurosos.
+      </>),
+    ingredients: ['Tomate 1Kg', '1 Pepino', '1 Pimiento', 'Media cebolla', 'Ajo 2 dientes', 'Aceite de oliva 50ml', 'Vinagre 30ml', 'Sal 5g'],
     instructions: [
       'Lava y corta los vegetales.',
       'Tritura todos los ingredientes en una licuadora hasta obtener una mezcla suave.',
