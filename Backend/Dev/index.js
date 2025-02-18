@@ -6,7 +6,7 @@ const STATIC_TOKEN = "Reto5Niger";
 // Función para acceder a una ruta protegida
 async function accederRutaProtegida() {
     try {
-        const response = await axios.get('http://localhost:8000/protected-route', {
+        const response = await axios.get('http://localhost:8000/recetas', {
             headers: {
                 'Authorization': `Bearer ${STATIC_TOKEN}`,
             },
