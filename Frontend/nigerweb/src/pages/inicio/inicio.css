@@ -125,9 +125,9 @@ input[type="text"] {
 }
 
 .logo-image {
-    max-width: 125px;
+    max-width: 75px;
     margin: 20px 20px 20px 20px;
-    margin-top: 5px;
+    margin-top: 20px;
     border-radius: 75%; 
     border: 5px solid;
     border-color: #ff7434;
@@ -169,6 +169,7 @@ input[type="text"] {
     margin-bottom: 20px;
     flex-direction: row;
     align-items: center;
+    height: 100px;
 }
 
 .header-inicio h1 {
