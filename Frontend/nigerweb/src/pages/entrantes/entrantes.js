@@ -61,7 +61,10 @@ const recipes = [
   {
     id: 4,
     name: 'Bruschetta',
-    description: 'Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.',
+    description: (
+      <>
+        <strong>🕔 10 minutos | 2 Comensales |</strong> Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.
+      </>),
     ingredients: ['Pan', 'Tomate', 'Ajo', 'Albahaca', 'Aceite de oliva', 'Sal'],
     instructions: [
       'Tuesta las rebanadas de pan.',
