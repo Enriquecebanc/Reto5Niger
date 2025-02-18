@@ -30,7 +30,7 @@ const allRecipes = [
 
 const recipesCategories = [ // Array de categorías (mantenemos esto)
     { id: 1, name: 'Entrantes', description: 'Platos ligeros y apetitosos para comenzar la comida.' },
-    { id: 2, name: 'Platos Principales', description: 'Recetas sustanciosas y completas para el eje central de la comida.' },
+    { id: 2, name: 'Primer Plato', description: 'Recetas sustanciosas y completas para el eje central de la comida.' },
     { id: 3, name: 'Segundo Plato', description: 'Opciones que complementan el plato principal.' },
     { id: 4, name: 'Postres', description: 'Dulces y delicias para cerrar la comida.' },
     { id: 5, name: 'PanelAdmin', description: 'Enlace al panel de administración.' }
