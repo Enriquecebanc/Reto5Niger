@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import './panelAdmin.css';
 
 // Función para generar un ID único de 8 dígitos
