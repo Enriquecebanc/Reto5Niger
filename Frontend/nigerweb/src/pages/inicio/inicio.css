@@ -184,4 +184,5 @@ input[type="text"] {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px; /* Añade más espacio entre las secciones */
+    margin-bottom: 20px;
 }
