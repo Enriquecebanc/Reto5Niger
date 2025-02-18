@@ -1,8 +1,12 @@
-// filepath: /c:/Users/igorl/OneDrive/Desktop/Reto5Niger/Frontend/nigerweb/src/pages/panelAdmin/panelAdmin.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './panelAdmin.css';
-import { v4 as uuidv4 } from 'uuid'; // Importa uuid para generar IDs
+
+// Función para generar un ID único de 8 dígitos
+const generateId = () => {
+  return Math.random().toString(36).substr(2, 8);
+};
 
 const AdminPanel = () => {
   const [receta, setReceta] = useState({ nombre: '', instrucciones: '', tiempo: '', personas: '', cantidad_ingredientes: '', imagen: '', id_ingredientes: '', id_categoria: '', id_comentarios: '', descripcion: '' });
@@ -20,13 +24,26 @@ const AdminPanel = () => {
   const handleIngredienteChange = (e) => setIngrediente({ ...ingrediente, [e.target.name]: e.target.value });
   const handleUsuarioChange = (e) => setUsuario({ ...usuario, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos al backend
-    console.log('Receta:', { ...receta, id_receta: uuidv4() });
-    console.log('Categoría:', { ...categoria, id_categoria: uuidv4() });
-    console.log('Ingrediente:', { ...ingrediente, id_ingrediente: uuidv4() });
-    console.log('Usuario:', { ...usuario, id_usuario: uuidv4() });
+    try {
+      if (showReceta) {
+        const newReceta = { ...receta, id_receta: generateId() };
+        console.log('Receta:', newReceta);
+        
+      } else if (showCategoria) {
+        const newCategoria = { ...categoria, id_categoria: generateId() };
+        console.log('Categoría:', newCategoria);
+      } else if (showIngrediente) {
+        const newIngrediente = { ...ingrediente, id_ingrediente: generateId() };
+        console.log('Ingrediente:', newIngrediente);
+      } else if (showUsuario) {
+        const newUsuario = { ...usuario, id_usuario: generateId() };
+        console.log('Usuario:', newUsuario);
+      }
+    } catch (error) {
+      console.error('Error al guardar los datos:', error);
+    }
   };
 
   return (
@@ -38,7 +55,7 @@ const AdminPanel = () => {
       </Link>
 
       <div className="section">
-        <button onClick={() => setShowReceta(!showReceta)} className="toggle-button">Recetas</button>
+        <button onClick={() => { setShowReceta(true); setShowCategoria(false); setShowIngrediente(false); setShowUsuario(false); }} className="toggle-button">Recetas</button>
         {showReceta && (
           <form onSubmit={handleSubmit}>
             <h2>Agregar Receta</h2>
@@ -46,7 +63,7 @@ const AdminPanel = () => {
             <textarea name="instrucciones" placeholder="Instrucciones" value={receta.instrucciones} onChange={handleRecetaChange} />
             <input type="number" name="tiempo" placeholder="Tiempo" value={receta.tiempo} onChange={handleRecetaChange} />
             <input type="number" name="personas" placeholder="Personas" value={receta.personas} onChange={handleRecetaChange} />
-            <input type="number" name="cantidad_ingredientes" placeholder="Cantidad Ingredientes" value={receta.cantidad_ingredientes} onChange={handleRecetaChange} />
+            <input type="number" name="cantidad_ingredientes" placeholder="Porciones" value={receta.cantidad_ingredientes} onChange={handleRecetaChange} />
             <input type="text" name="imagen" placeholder="Imagen" value={receta.imagen} onChange={handleRecetaChange} />
             <input type="text" name="id_ingredientes" placeholder="ID Ingredientes" value={receta.id_ingredientes} onChange={handleRecetaChange} />
             <input type="text" name="id_categoria" placeholder="ID Categoría" value={receta.id_categoria} onChange={handleRecetaChange} />
@@ -58,7 +75,7 @@ const AdminPanel = () => {
       </div>
 
       <div className="section">
-        <button onClick={() => setShowCategoria(!showCategoria)} className="toggle-button">Categorías</button>
+        <button onClick={() => { setShowReceta(false); setShowCategoria(true); setShowIngrediente(false); setShowUsuario(false); }} className="toggle-button">Categorías</button>
         {showCategoria && (
           <form onSubmit={handleSubmit}>
             <h2>Agregar Categoría</h2>
@@ -71,7 +88,7 @@ const AdminPanel = () => {
       </div>
 
       <div className="section">
-        <button onClick={() => setShowIngrediente(!showIngrediente)} className="toggle-button">Ingredientes</button>
+        <button onClick={() => { setShowReceta(false); setShowCategoria(false); setShowIngrediente(true); setShowUsuario(false); }} className="toggle-button">Ingredientes</button>
         {showIngrediente && (
           <form onSubmit={handleSubmit}>
             <h2>Agregar Ingrediente</h2>
@@ -84,7 +101,7 @@ const AdminPanel = () => {
       </div>
 
       <div className="section">
-        <button onClick={() => setShowUsuario(!showUsuario)} className="toggle-button">Usuarios</button>
+        <button onClick={() => { setShowReceta(false); setShowCategoria(false); setShowIngrediente(false); setShowUsuario(true); }} className="toggle-button">Usuarios</button>
         {showUsuario && (
           <form onSubmit={handleSubmit}>
             <h2>Agregar Usuario</h2>

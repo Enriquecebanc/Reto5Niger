@@ -8,9 +8,14 @@ def get_db_connection():
         database="reto5"
     )
 
-def get_db():
-    db = get_db_connection()
+def get_db(query):
+    data = None
     try:
-        yield db
+        db = get_db_connection()
+        db_cursor = db.cursor()
+        db_cursor.execute(query)
+        data = db_cursor.fetchall()
+    
     finally:
         db.close()
+        return data
