@@ -44,8 +44,11 @@ const recipes = [
   {
     id: 3,
     name: 'Patatas Bravas',
-    description: 'Patatas fritas servidas con una salsa picante.',
-    ingredients: ['Patatas', 'Aceite de oliva', 'Sal', 'Tomate', 'Ajo', 'Pimentón', 'Vinagre', 'Azúcar'],
+    description: (
+      <>
+        <strong>🕔 30 minutos | 4 Comensales |</strong> Patatas fritas servidas con una salsa picante.
+      </>),
+    ingredients: ['3 Patatas', 'Aceite de oliva', 'Sal', 'Tomate', 'Ajo', 'Pimentón', 'Vinagre', 'Azúcar'],
     instructions: [
       'Pela y corta las patatas en cubos.',
       'Fríe las patatas en aceite de oliva hasta que estén doradas y crujientes.',
