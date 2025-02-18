@@ -11,7 +11,10 @@ const recipes = [
   {
     id: 1,
     name: 'Croquetas',
-    description: 'Deliciosas croquetas crujientes por fuera y cremosas por dentro.',
+    description: (
+      <>
+        <strong>🕔 75 minutos | 4 Comensales |</strong> Deliciosas croquetas crujientes por fuera y cremosas por dentro.
+      </>),
     ingredients: ['Harina', 'Leche', 'Mantequilla', 'Jamón', 'Huevo', 'Pan rallado'],
     instructions: [
       'Prepara una bechamel con harina, leche y mantequilla.',
