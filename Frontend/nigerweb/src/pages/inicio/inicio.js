@@ -33,7 +33,7 @@ const recipesCategories = [ // Array de categorías (mantenemos esto)
     { id: 2, name: 'Primer Plato', description: 'Recetas sustanciosas y completas para el eje central de la comida.' },
     { id: 3, name: 'Segundo Plato', description: 'Opciones que complementan el plato principal.' },
     { id: 4, name: 'Postres', description: 'Dulces y delicias para cerrar la comida.' },
-    { id: 5, name: 'PanelAdmin', description: 'Enlace al panel de administración.' }
+    { id: 5, name: 'PanelAdmin', description: 'Enlace al panel de administración.' },
 ];
 
 const Inicio = () => {
@@ -82,8 +82,11 @@ const Inicio = () => {
     return (
         <div className="inicio-container">
             <div className="header-inicio">
-                <img src={logoImage} alt="Logo" className="logo-image" />
-                <h1>¡Bienvenido a Recetas Niger!</h1>
+            <img src={logoImage} alt="Logo" className="logo-image" />
+            <h1>¡Bienvenido a Recetas Niger!</h1>
+            <Link to="/subirReceta">
+                    <button className="upload-recipe-button">Subir Receta</button>
+            </Link>
             </div>
             <div className="perfil">
                 <Link to="/perfil">

@@ -8,5 +8,6 @@ class Receta(BaseModel):
     porciones: int
     imagen: str
     id_categoria: str
+    id_usuario: str
     nombre: str
     descripcion: str
