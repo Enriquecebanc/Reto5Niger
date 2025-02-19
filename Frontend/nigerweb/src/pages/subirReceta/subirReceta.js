@@ -119,6 +119,14 @@ const SubirReceta = () => {
                 placeholder="Nombre del ingrediente"
                 required
               />
+               <input
+                type="text"
+                name="cantidad"
+                value={ingrediente.cantidad}
+                onChange={(e) => handleIngredientChange(index, e)}
+                placeholder="Cantidad"
+                required
+              />
               <button type="button" onClick={() => handleRemoveIngredient(index)}>Eliminar</button>
             </div>
           ))}

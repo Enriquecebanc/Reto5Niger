@@ -2,12 +2,12 @@ from pydantic import BaseModel
 from typing import Optional, List
 
 class Receta(BaseModel):
-    id_receta: str
+    id_receta: int
+    id_usuario: int
+    nombre_receta: str
+    descripcion_breve: str
     instrucciones: str
+    imagen: str
+    id_categoria: int
     tiempo: int
     porciones: int
-    imagen: str
-    id_categoria: str
-    id_usuario: str
-    nombre: str
-    descripcion: str

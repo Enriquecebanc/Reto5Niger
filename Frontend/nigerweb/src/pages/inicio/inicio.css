@@ -35,6 +35,7 @@ nav a:hover {
     position: relative;
     z-index: 1;
     margin-left:5px;
+    padding: 11px;
 }
 
 main {
@@ -251,7 +252,7 @@ input[type="text"] {
     border-radius: 4px;
     transition: background-color 0.3s ease;
     margin-top: 7px;
-    margin-left: 590px; 
+    margin-left: 610px; 
   }
   
   .upload-recipe-button:hover {
