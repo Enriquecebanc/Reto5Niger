@@ -12,6 +12,7 @@ import Login from './pages/login/login';
 import ContraseñaOlvidada from './pages/login/contraseñaOlvidada';
 import Registro from './pages/registro/registro'; // Importa el componente de registro
 import Opiniones from './pages/opiniones/opiniones';
+import Perfil from './pages/perfil/perfil';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,6 +49,7 @@ function App() {
               <Route path="/entrantes" element={<Entrantes />} />
               <Route path="/panelAdmin" element={<PanelAdmin />} />
               <Route path="/opiniones" element={<Opiniones />} />
+              <Route path="/perfil" element={<Perfil/>} />
             </>
           )}
         </Routes>

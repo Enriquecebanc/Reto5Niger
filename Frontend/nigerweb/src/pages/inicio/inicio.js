@@ -82,8 +82,18 @@ const Inicio = () => {
     return (
         <div className="inicio-container">
             <div className="header-inicio">
-            <img src={logoImage} alt="Logo" className="logo-image" />
-            <h1>¡Bienvenido a Recetas Niger!</h1>
+                <img src={logoImage} alt="Logo" className="logo-image" />
+                <h1>¡Bienvenido a Recetas Niger!</h1>
+            </div>
+            <div className="perfil">
+                <Link to="/perfil">
+                    <button className="perfil-button">Mi Perfil</button>
+                </Link>
+            </div>
+            <div className="salir">
+                <Link to="/login">
+                    <button className="salir-button">Salir</button>
+                </Link>
             </div>
             <div className="search-container">
                 <input
@@ -124,10 +134,7 @@ const Inicio = () => {
                         filteredRecipes.map((recipe) => (
                             <div key={recipe.id} className="recipe-item">
                                 <h2>{recipe.name}</h2>
-                                <p>{recipe.description}</p>
-                                <Link to={recipe.path}>
                                     <button className="view-button">Ver receta</button>
-                                </Link>
                             </div>
                         ))
                     ) : (
