@@ -1,8 +1,13 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
+from dotenv import load_dotenv
+import os
+
+# Cargar las variables de entorno desde el archivo .env
+load_dotenv()
 
 # Token estático
-STATIC_TOKEN = "Reto5Niger"
+STATIC_TOKEN = os.getenv("STATIC_TOKEN")
 
 # Esquema de seguridad
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")

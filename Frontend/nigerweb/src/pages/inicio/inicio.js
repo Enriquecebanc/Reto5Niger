@@ -88,6 +88,16 @@ const Inicio = () => {
                     <button className="upload-recipe-button">Subir Receta</button>
             </Link>
             </div>
+            <div className="perfil">
+                <Link to="/perfil">
+                    <button className="perfil-button">Mi Perfil</button>
+                </Link>
+            </div>
+            <div className="salir">
+                <Link to="/login">
+                    <button className="salir-button">Salir</button>
+                </Link>
+            </div>
             <div className="search-container">
                 <input
                     type="text"
@@ -97,15 +107,11 @@ const Inicio = () => {
                     className="search-input"
                 />
                 <button onClick={handleSearchSubmit} className="search-button">Buscar</button>
-            </div>
-            <div className="navigation-links">
                 <Link to="/ingredientes">
-                    <p>Ingredientes</p>
-                </Link>
-                <Link to="/opiniones">
-                    <p>Opiniones</p>
+                <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
+            
 
             {showCategories && (
                 <div className="recipes-list">
@@ -119,18 +125,20 @@ const Inicio = () => {
                         </div>
                     ))}
                 </div>
-            )}
 
+            )}
+            <div className="navigation-links">
+                <Link to="/opiniones">
+                    <p>Opiniones</p>
+                </Link>
+            </div>
             {!showCategories && (
                 <div className="recipes-list">
                     {filteredRecipes.length > 0 ? (
                         filteredRecipes.map((recipe) => (
                             <div key={recipe.id} className="recipe-item">
                                 <h2>{recipe.name}</h2>
-                                <p>{recipe.description}</p>
-                                <Link to={recipe.path}>
                                     <button className="view-button">Ver receta</button>
-                                </Link>
                             </div>
                         ))
                     ) : (

@@ -31,7 +31,11 @@ nav a:hover {
     z-index: 1;
     margin-top: 10px; /* Ajusta según necesidad */
 }
-
+.search-button {
+    position: relative;
+    z-index: 1;
+    margin-left:5px;
+}
 
 main {
     padding: 20px;
