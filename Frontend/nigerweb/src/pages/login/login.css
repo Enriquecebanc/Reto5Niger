@@ -17,7 +17,6 @@
 .login-form {
     display: flex;
     flex-direction: column;
-    width: 90%;
 }
 
 .form-group {
@@ -47,7 +46,7 @@
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    width: 106%;
+    width: 100%;
     margin-bottom: 10px; /* Añadir espaciado entre los botones */
 }
 
@@ -63,7 +62,7 @@
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    width: 106%;
+    width: 100%;
 }
 
 .register-button:hover {

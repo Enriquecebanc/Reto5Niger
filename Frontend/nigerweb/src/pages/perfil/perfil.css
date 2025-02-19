@@ -25,10 +25,8 @@
 }
 
 .perfil-header input[type="file"] {
-    font-size: 0.9em;
-    padding: 5px;
-    border: none;
-    background-color: transparent;
+    display: block;
+    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -47,22 +45,46 @@ h2 {
 }
 
 .perfil-details p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     margin: 10px 0;
     font-size: 1em;
     color: #555;
-    width: 95%;
+    word-break: break-word;
 }
 
 .perfil-details strong {
     color: #000;
+    flex: 1;
 }
 
 .perfil-details input[type="text"],
 .perfil-details input[type="date"] {
-    width: 100%;
+    flex: 2;
     padding: 8px;
-    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
+    word-wrap: break-word;
+}
+
+.perfil-details .edit-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.perfil-details button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.perfil-details button:hover {
+    background-color: #0056b3;
 }

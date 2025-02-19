@@ -119,6 +119,14 @@ const SubirReceta = () => {
                 placeholder="Nombre del ingrediente"
                 required
               />
+               <input
+                type="text"
+                name="cantidad"
+                value={ingrediente.cantidad}
+                onChange={(e) => handleIngredientChange(index, e)}
+                placeholder="Cantidad"
+                required
+              />
               <button type="button" onClick={() => handleRemoveIngredient(index)}>Eliminar</button>
             </div>
           ))}
@@ -126,15 +134,19 @@ const SubirReceta = () => {
         </div>
         <div className="form-group">
           <label htmlFor="categoria">Categoría:</label>
-          <input
-            type="text"
+          <select
             id="categoria"
             name="categoria"
             value={receta.categoria}
             onChange={handleChange}
-            placeholder="Categoría de la receta"
             required
-          />
+          >
+            <option value="">Selecciona una categoría</option>
+            <option value="Entrante">Entrante</option>
+            <option value="Plato Principal">Plato Principal</option>
+            <option value="Plato Secundario">Plato Secundario</option>
+            <option value="Postre">Postre</option>
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="descripcion">Descripción:</label>
