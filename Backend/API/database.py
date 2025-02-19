@@ -17,14 +17,15 @@ def execute_query(query, params=None):
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
     try:
+        print(query)
         cursor.execute(query, params)
-        connection.commit()
+        # connection.commit()
         print("Consulta ejecutada exitosamente")
         return cursor.fetchall()
     except Error as e:
         print(f"Error al ejecutar la consulta: {e}")
         return None
     finally:
-        cursor.close()
+        #cursor.close()
         connection.close()
         print("Conexión a la base de datos MySQL cerrada")
