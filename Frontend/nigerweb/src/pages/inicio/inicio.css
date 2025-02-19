@@ -143,6 +143,14 @@ input[type="text"] {
     margin-top: 10px; /* Ajustar si es necesario */
 }
 
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Ajustar si es necesario */
+    margin-bottom: 10px;
+}
+
 .navigation-links {
     display: flex;
     flex-direction: column;
