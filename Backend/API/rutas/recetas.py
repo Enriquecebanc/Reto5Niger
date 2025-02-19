@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.get("/recetas/{id}", response_model=Receta)
 def get_receta(id: str):
-    query = "SELECT * FROM recetas WHERE id_receta = %s"
+    query = "SELECT * FROM receta WHERE id_receta = %s"
     params = (id,)
     result = execute_query(query, params)
     if not result:
@@ -17,7 +17,7 @@ def get_receta(id: str):
 @router.post("/recetas", response_model=Receta)
 def crear_receta(receta: Receta):
     query = """
-    INSERT INTO recetas (id_receta, nombre, instrucciones, tiempo, porciones, imagen, id_categoria, descripcion)
+    INSERT INTO receta (id_receta, nombre, instrucciones, tiempo, porciones, imagen, id_categoria, descripcion)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     """
     params = (
@@ -29,14 +29,14 @@ def crear_receta(receta: Receta):
 
 @router.get("/recetas", response_model=List[Receta])
 def obtener_recetas():
-    query = "SELECT * FROM recetas"
+    query = "SELECT * FROM receta"
     result = execute_query(query)
     return result
 
 @router.put("/recetas/{id}", response_model=Receta)
 def actualizar_receta(id: str, receta_actualizada: Receta):
     query = """
-    UPDATE recetas SET nombre = %s, instrucciones = %s, tiempo = %s, porciones = %s, imagen = %s, id_categoria = %s, descripcion = %s
+    UPDATE receta SET nombre = %s, instrucciones = %s, tiempo = %s, porciones = %s, imagen = %s, id_categoria = %s, descripcion = %s
     WHERE id_receta = %s
     """
     params = (
@@ -48,7 +48,7 @@ def actualizar_receta(id: str, receta_actualizada: Receta):
 
 @router.delete("/recetas/{id}", response_model=Receta)
 def eliminar_receta(id: str):
-    query = "DELETE FROM recetas WHERE id_receta = %s"
+    query = "DELETE FROM receta WHERE id_receta = %s"
     params = (id,)
     execute_query(query, params)
     return {"message": "Receta eliminada exitosamente"}

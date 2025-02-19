@@ -31,8 +31,9 @@
 }
 
 .form-group input,
-.form-group textarea {
-  width: 90%;
+.form-group textarea,
+.form-group select {
+  width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;

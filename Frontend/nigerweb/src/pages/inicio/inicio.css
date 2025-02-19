@@ -133,7 +133,7 @@ input[type="text"] {
     margin: 20px 20px 20px 20px;
     margin-top: 20px;
     border-radius: 75%; 
-    border: 5px solid;
+    border: 3px solid;  
     border-color: #ff7434;
     float: left;
 }
@@ -251,7 +251,7 @@ input[type="text"] {
     border-radius: 4px;
     transition: background-color 0.3s ease;
     margin-top: 7px;
-    margin-left: 610px;
+    margin-left: 590px; 
   }
   
   .upload-recipe-button:hover {
