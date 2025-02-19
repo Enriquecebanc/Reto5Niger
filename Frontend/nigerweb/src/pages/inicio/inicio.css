@@ -236,3 +236,19 @@ input[type="text"] {
         padding: 10px;
     }
 }
+
+.upload-recipe-button {
+    margin-left: 750px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-recipe-button:hover {
+    background-color: #555;
+  }
+  
