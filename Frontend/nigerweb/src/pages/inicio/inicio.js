@@ -98,11 +98,7 @@ const Inicio = () => {
                 <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
-            <div className="navigation-links">
-                <Link to="/opiniones">
-                    <p>Opiniones</p>
-                </Link>
-            </div>
+            
 
             {showCategories && (
                 <div className="recipes-list">
@@ -116,8 +112,13 @@ const Inicio = () => {
                         </div>
                     ))}
                 </div>
-            )}
 
+            )}
+            <div className="navigation-links">
+                <Link to="/opiniones">
+                    <p>Opiniones</p>
+                </Link>
+            </div>
             {!showCategories && (
                 <div className="recipes-list">
                     {filteredRecipes.length > 0 ? (
