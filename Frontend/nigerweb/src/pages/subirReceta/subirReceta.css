@@ -32,11 +32,36 @@
 
 .form-group input,
 .form-group textarea {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ingredient-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ingredient-input input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.ingredient-input button {
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.ingredient-input button:hover {
+  background-color: #ff1a1a;
 }
 
 .submit-button,
@@ -54,5 +79,20 @@
 
 .submit-button:hover,
 .back-button:hover {
+  background-color: #555;
+}
+
+button[type="button"] {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+button[type="button"]:hover {
   background-color: #555;
 }
