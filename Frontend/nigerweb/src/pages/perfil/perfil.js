@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './perfil.css';
 
 const Perfil = () => {
@@ -42,6 +43,9 @@ const Perfil = () => {
                 <p><strong>Phone:</strong> <input type="text" name="phone" value={user.phone} onChange={handleChange} /></p>
                 <p><strong>Birth Date:</strong> <input type="date" name="birthDate" value={user.birthDate} onChange={handleChange} /></p>
             </div>
+            <Link to="/">
+                <button className="back-button">Volver a Inicio</button>
+            </Link>
         </div>
     );
 };
