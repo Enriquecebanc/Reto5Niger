@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends
-#from auth import get_current_user
+from auth import get_current_user
 from rutas import (
     recetas_router,
     categorias_router,
@@ -14,17 +14,11 @@ app = FastAPI(
 )
 
 # Proteger todas las rutas de los routers
-#app.include_router(recetas_router, dependencies=[Depends(get_current_user)])
-#app.include_router(categorias_router, dependencies=[Depends(get_current_user)])
-#app.include_router(comentarios_router, dependencies=[Depends(get_current_user)])
-#app.include_router(ingredientes_router, dependencies=[Depends(get_current_user)])
-#app.include_router(usuarios_router, dependencies=[Depends(get_current_user)])
-
-app.include_router(recetas_router)
-app.include_router(categorias_router)
-app.include_router(comentarios_router)
-app.include_router(ingredientes_router)
-app.include_router(usuarios_router)
+app.include_router(recetas_router, dependencies=[Depends(get_current_user)])
+app.include_router(categorias_router, dependencies=[Depends(get_current_user)])
+app.include_router(comentarios_router, dependencies=[Depends(get_current_user)])
+app.include_router(ingredientes_router, dependencies=[Depends(get_current_user)])
+app.include_router(usuarios_router, dependencies=[Depends(get_current_user)])
 
 @app.get("/")
 def index():
