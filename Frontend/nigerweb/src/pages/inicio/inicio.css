@@ -133,7 +133,7 @@ input[type="text"] {
     margin: 20px 20px 20px 20px;
     margin-top: 20px;
     border-radius: 75%; 
-    border: 5px solid;
+    border: 3px solid;  
     border-color: #ff7434;
     float: left;
 }
