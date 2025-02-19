@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './perfil.css';
 
 const Perfil = () => {
@@ -11,6 +12,27 @@ const Perfil = () => {
         phone: '',
         birthDate: ''
     });
+
+    const [isEditing, setIsEditing] = useState({
+        name: false,
+        address: false,
+        phone: false,
+        birthDate: false
+    });
+
+    const handleEditClick = (field) => {
+        setIsEditing(prevState => ({
+            ...prevState,
+            [field]: true
+        }));
+    };
+
+    const handleSaveClick = (field) => {
+        setIsEditing(prevState => ({
+            ...prevState,
+            [field]: false
+        }));
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,11 +59,30 @@ const Perfil = () => {
             <div className="perfil-details">
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>Password:</strong> {user.password}</p>
-                <p><strong>Name:</strong> <input type="text" name="name" value={user.name} onChange={handleChange} /></p>
-                <p><strong>Address:</strong> <input type="text" name="address" value={user.address} onChange={handleChange} /></p>
-                <p><strong>Phone:</strong> <input type="text" name="phone" value={user.phone} onChange={handleChange} /></p>
-                <p><strong>Birth Date:</strong> <input type="date" name="birthDate" value={user.birthDate} onChange={handleChange} /></p>
+                <p><strong>Name:</strong> 
+                    {isEditing.name ? 
+                        <><input type="text" name="name" value={user.name} onChange={handleChange} /><button onClick={() => handleSaveClick('name')}>Save</button></> : 
+                        <>{user.name} <button onClick={() => handleEditClick('name')}>Edit</button></>}
+                </p>
+                <p><strong>Address:</strong> 
+                    {isEditing.address ? 
+                        <><input type="text" name="address" value={user.address} onChange={handleChange} /><button onClick={() => handleSaveClick('address')}>Save</button></> : 
+                        <>{user.address} <button onClick={() => handleEditClick('address')}>Edit</button></>}
+                </p>
+                <p><strong>Phone:</strong> 
+                    {isEditing.phone ? 
+                        <><input type="text" name="phone" value={user.phone} onChange={handleChange} /><button onClick={() => handleSaveClick('phone')}>Save</button></> : 
+                        <>{user.phone} <button onClick={() => handleEditClick('phone')}>Edit</button></>}
+                </p>
+                <p><strong>Birth Date:</strong> 
+                    {isEditing.birthDate ? 
+                        <><input type="date" name="birthDate" value={user.birthDate} onChange={handleChange} /><button onClick={() => handleSaveClick('birthDate')}>Save</button></> : 
+                        <>{user.birthDate} <button onClick={() => handleEditClick('birthDate')}>Edit</button></>}
+                </p>
             </div>
+            <Link to="/">
+                <button className="back-button">Volver a Inicio</button>
+            </Link>
         </div>
     );
 };

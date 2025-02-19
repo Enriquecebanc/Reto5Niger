@@ -251,7 +251,7 @@ input[type="text"] {
     border-radius: 4px;
     transition: background-color 0.3s ease;
     margin-top: 7px;
-    margin-left: 610px;
+    margin-left: 590px; 
   }
   
   .upload-recipe-button:hover {
