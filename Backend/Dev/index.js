@@ -1,7 +1,11 @@
 const axios = require('axios');
+const dotenv = require('dotenv');
+
+// Cargar las variables de entorno desde el archivo .env
+dotenv.config();
 
 // Token estático
-const STATIC_TOKEN = "Reto5Niger";
+const STATIC_TOKEN = process.env.STATIC_TOKEN;
 
 // Función para generar un ID único de 8 dígitos
 const generateId = () => {
@@ -31,7 +35,7 @@ async function crearReceta() {
         console.log('Receta creada:', response.data);
         return response.data.id_receta;
     } catch (error) {
-        console.error('Error al crear la receta:', error);
+        console.error('Error al crear la receta:', error.response ? error.response.data : error.message);
     }
 }
 
@@ -46,7 +50,7 @@ async function obtenerReceta(id_receta) {
 
         console.log('Receta obtenida:', response.data);
     } catch (error) {
-        console.error('Error al obtener la receta:', error);
+        console.error('Error al obtener la receta:', error.response ? error.response.data : error.message);
     }
 }
 
