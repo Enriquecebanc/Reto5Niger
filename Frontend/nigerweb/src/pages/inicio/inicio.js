@@ -33,7 +33,7 @@ const recipesCategories = [ // Array de categorías (mantenemos esto)
     { id: 2, name: 'Primer Plato', description: 'Recetas sustanciosas y completas para el eje central de la comida.' },
     { id: 3, name: 'Segundo Plato', description: 'Opciones que complementan el plato principal.' },
     { id: 4, name: 'Postres', description: 'Dulces y delicias para cerrar la comida.' },
-    { id: 5, name: 'PanelAdmin', description: 'Enlace al panel de administración.' }
+    { id: 5, name: 'PanelAdmin', description: 'Enlace al panel de administración.' },
 ];
 
 const Inicio = () => {
@@ -84,6 +84,19 @@ const Inicio = () => {
             <div className="header-inicio">
             <img src={logoImage} alt="Logo" className="logo-image" />
             <h1>¡Bienvenido a Recetas Niger!</h1>
+            <Link to="/subirReceta">
+                    <button className="upload-recipe-button">Subir Receta</button>
+            </Link>
+            </div>
+            <div className="perfil">
+                <Link to="/perfil">
+                    <button className="perfil-button">Mi Perfil</button>
+                </Link>
+            </div>
+            <div className="salir">
+                <Link to="/login">
+                    <button className="salir-button">Cerrar sesión</button>
+                </Link>
             </div>
             <div className="search-container">
                 <input
@@ -94,15 +107,11 @@ const Inicio = () => {
                     className="search-input"
                 />
                 <button onClick={handleSearchSubmit} className="search-button">Buscar</button>
-            </div>
-            <div className="navigation-links">
                 <Link to="/ingredientes">
-                    <p>Ingredientes</p>
-                </Link>
-                <Link to="/opiniones">
-                    <p>Opiniones</p>
+                <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
+            
 
             {showCategories && (
                 <div className="recipes-list">
@@ -116,18 +125,20 @@ const Inicio = () => {
                         </div>
                     ))}
                 </div>
-            )}
 
+            )}
+            <div className="navigation-links">
+                <Link to="/opiniones">
+                    <p>Opiniones</p>
+                </Link>
+            </div>
             {!showCategories && (
                 <div className="recipes-list">
                     {filteredRecipes.length > 0 ? (
                         filteredRecipes.map((recipe) => (
                             <div key={recipe.id} className="recipe-item">
                                 <h2>{recipe.name}</h2>
-                                <p>{recipe.description}</p>
-                                <Link to={recipe.path}>
                                     <button className="view-button">Ver receta</button>
-                                </Link>
                             </div>
                         ))
                     ) : (
