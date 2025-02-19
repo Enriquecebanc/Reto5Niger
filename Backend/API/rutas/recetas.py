@@ -1,40 +1,54 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
 from modelos.receta import Receta
-from database import get_db
+from database import execute_query
 
 router = APIRouter()
 
-recetas_db: List[Receta] = []
-
 @router.get("/recetas/{id}", response_model=Receta)
 def get_receta(id: str):
-    for receta in recetas_db:
-        if receta.id_receta == id:
-            return receta
-    raise HTTPException(status_code=404, detail="Receta no encontrada")
+    query = "SELECT * FROM recetas WHERE id_receta = %s"
+    params = (id,)
+    result = execute_query(query, params)
+    if not result:
+        raise HTTPException(status_code=404, detail="Receta no encontrada")
+    return result[0]
 
 @router.post("/recetas", response_model=Receta)
 def crear_receta(receta: Receta):
-    data = get_db(f"INSERT INTO recetas (nombre, descripcion, id_categoria) VALUES ('{receta.nombre}', '{receta.descripcion}', {receta.id_categoria})")
-    recetas_db.append(receta)
+    query = """
+    INSERT INTO recetas (id_receta, nombre, instrucciones, tiempo, porciones, imagen, id_categoria, descripcion)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    """
+    params = (
+        receta.id_receta, receta.nombre, receta.instrucciones, receta.tiempo, receta.porciones,
+        receta.imagen, receta.id_categoria, receta.descripcion
+    )
+    execute_query(query, params)
     return receta
 
 @router.get("/recetas", response_model=List[Receta])
 def obtener_recetas():
-    return recetas_db
+    query = "SELECT * FROM recetas"
+    result = execute_query(query)
+    return result
 
 @router.put("/recetas/{id}", response_model=Receta)
 def actualizar_receta(id: str, receta_actualizada: Receta):
-    for i, receta in enumerate(recetas_db):
-        if receta.id_receta == id:
-            recetas_db[i] = receta_actualizada
-            return receta_actualizada
-    raise HTTPException(status_code=404, detail="Receta no encontrada")
+    query = """
+    UPDATE recetas SET nombre = %s, instrucciones = %s, tiempo = %s, porciones = %s, imagen = %s, id_categoria = %s, descripcion = %s
+    WHERE id_receta = %s
+    """
+    params = (
+        receta_actualizada.nombre, receta_actualizada.instrucciones, receta_actualizada.tiempo, receta_actualizada.porciones,
+        receta_actualizada.imagen, receta_actualizada.id_categoria, receta_actualizada.descripcion, id
+    )
+    execute_query(query, params)
+    return receta_actualizada
 
 @router.delete("/recetas/{id}", response_model=Receta)
 def eliminar_receta(id: str):
-    for i, receta in enumerate(recetas_db):
-        if receta.id_receta == id:
-            return recetas_db.pop(i)
-    raise HTTPException(status_code=404, detail="Receta no encontrada")
+    query = "DELETE FROM recetas WHERE id_receta = %s"
+    params = (id,)
+    execute_query(query, params)
+    return {"message": "Receta eliminada exitosamente"}
