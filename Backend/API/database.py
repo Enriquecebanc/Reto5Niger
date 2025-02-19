@@ -1,21 +1,30 @@
 import mysql.connector
+from mysql.connector import Error
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="1234",
-        database="reto5"
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
     )
 
-def get_db(query):
-    data = None
+def execute_query(query, params=None):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
     try:
-        db = get_db_connection()
-        db_cursor = db.cursor()
-        db_cursor.execute(query)
-        data = db_cursor.fetchall()
-    
+        cursor.execute(query, params)
+        connection.commit()
+        print("Consulta ejecutada exitosamente")
+        return cursor.fetchall()
+    except Error as e:
+        print(f"Error al ejecutar la consulta: {e}")
+        return None
     finally:
-        db.close()
-        return data
+        cursor.close()
+        connection.close()
+        print("Conexión a la base de datos MySQL cerrada")

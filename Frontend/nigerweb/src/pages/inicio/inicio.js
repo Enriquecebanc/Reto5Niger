@@ -104,15 +104,11 @@ const Inicio = () => {
                     className="search-input"
                 />
                 <button onClick={handleSearchSubmit} className="search-button">Buscar</button>
-            </div>
-            <div className="navigation-links">
                 <Link to="/ingredientes">
-                    <p>Ingredientes</p>
-                </Link>
-                <Link to="/opiniones">
-                    <p>Opiniones</p>
+                <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
+            
 
             {showCategories && (
                 <div className="recipes-list">
@@ -126,8 +122,13 @@ const Inicio = () => {
                         </div>
                     ))}
                 </div>
-            )}
 
+            )}
+            <div className="navigation-links">
+                <Link to="/opiniones">
+                    <p>Opiniones</p>
+                </Link>
+            </div>
             {!showCategories && (
                 <div className="recipes-list">
                     {filteredRecipes.length > 0 ? (
