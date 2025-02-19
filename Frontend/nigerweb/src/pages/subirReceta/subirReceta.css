@@ -75,7 +75,8 @@
   border-radius: 4px;
   transition: background-color 0.3s ease;
   margin-top: 10px;
-  width: 43.3%;
+  width: 100%;
+  justify-content: center;
 }
 
 .submit-button:hover,
