@@ -9,21 +9,39 @@ const SubirReceta = () => {
     tiempo: '',
     porciones: '',
     imagen: '',
-    ingredientes: '',
     categoria: '',
     comentarios: '',
     descripcion: ''
   });
+
+  const [ingredientes, setIngredientes] = useState([{ nombre: '' }]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setReceta({ ...receta, [name]: value });
   };
 
+  const handleIngredientChange = (index, event) => {
+    const newIngredientes = [...ingredientes];
+    newIngredientes[index][event.target.name] = event.target.value;
+    setIngredientes(newIngredientes);
+  };
+
+  const handleAddIngredient = () => {
+    setIngredientes([...ingredientes, { nombre: '' }]);
+  };
+
+  const handleRemoveIngredient = (index) => {
+    const newIngredientes = [...ingredientes];
+    newIngredientes.splice(index, 1);
+    setIngredientes(newIngredientes);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí se puede agregar la lógica para enviar la receta al servidor
     console.log('Receta enviada:', receta);
+    console.log('Ingredientes:', ingredientes);
   };
 
   return (
@@ -91,14 +109,20 @@ const SubirReceta = () => {
         </div>
         <div className="form-group">
           <label htmlFor="ingredientes">Ingredientes:</label>
-          <textarea
-            id="ingredientes"
-            name="ingredientes"
-            value={receta.ingredientes}
-            onChange={handleChange}
-            placeholder="Lista de ingredientes"
-            required
-          />
+          {ingredientes.map((ingrediente, index) => (
+            <div key={index} className="ingredient-input">
+              <input
+                type="text"
+                name="nombre"
+                value={ingrediente.nombre}
+                onChange={(e) => handleIngredientChange(index, e)}
+                placeholder="Nombre del ingrediente"
+                required
+              />
+              <button type="button" onClick={() => handleRemoveIngredient(index)}>Eliminar</button>
+            </div>
+          ))}
+          <button type="button" onClick={handleAddIngredient}>Añadir Ingrediente</button>
         </div>
         <div className="form-group">
           <label htmlFor="categoria">Categoría:</label>
@@ -109,17 +133,6 @@ const SubirReceta = () => {
             value={receta.categoria}
             onChange={handleChange}
             placeholder="Categoría de la receta"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="comentarios">Comentarios:</label>
-          <textarea
-            id="comentarios"
-            name="comentarios"
-            value={receta.comentarios}
-            onChange={handleChange}
-            placeholder="Comentarios"
             required
           />
         </div>

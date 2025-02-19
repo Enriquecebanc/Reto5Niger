@@ -241,3 +241,19 @@ input[type="text"] {
 .salir-button:hover {
     background-color: #555;
 }
+
+.upload-recipe-button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 7px;
+    margin-left: 610px;
+  }
+  
+  .upload-recipe-button:hover {
+    background-color: #555;
+  }
