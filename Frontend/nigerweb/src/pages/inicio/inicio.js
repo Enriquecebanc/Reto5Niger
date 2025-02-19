@@ -94,11 +94,11 @@ const Inicio = () => {
                     className="search-input"
                 />
                 <button onClick={handleSearchSubmit} className="search-button">Buscar</button>
+                <Link to="/ingredientes">
+                <button className="search-button">Ingredientes</button>
+                </Link>
             </div>
             <div className="navigation-links">
-                <Link to="/ingredientes">
-                    <p>Ingredientes</p>
-                </Link>
                 <Link to="/opiniones">
                     <p>Opiniones</p>
                 </Link>
