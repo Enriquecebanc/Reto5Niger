@@ -96,7 +96,7 @@ const Inicio = () => {
             </div>
             <div className="salir">
                 <Link to="">
-                    <button className="salir-button">Cerrar sessión</button>
+                    <button className="salir-button">Cerrar sesión</button>
                 </Link>
             </div>
             <div className="search-container">
