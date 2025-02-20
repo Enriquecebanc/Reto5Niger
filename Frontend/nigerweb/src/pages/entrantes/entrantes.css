@@ -82,6 +82,7 @@
     transition: background-color 0.3s ease;
     margin-top: 20px;
     width: 43%;
+    margin-bottom: 20px;
 }
 
 .back-button:hover {

@@ -1,0 +1,105 @@
+
+
+.platoprim-container {
+    text-align: center;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Mantiene los botones dentro del contenedor */
+    margin-bottom: 20px;
+}
+
+.recipe-item {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    position: relative;
+}
+
+.recipe-content {
+    padding: 0 40px;
+}
+
+.recipe-item h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #e74c3c;  /* Un rojo/naranja para primeros platos */
+}
+
+.recipe-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.recipe-item p {
+    margin: 10px 0 0;
+    line-height: 1.6;
+}
+
+.recipe-item h3 {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #f39c12; /* Un naranja para ingredientes/instrucciones */
+}
+
+.recipe-item ul, .recipe-item ol {
+    margin: 10px 0 0;
+    padding-left: 20px;
+}
+
+.nav-button {
+    background-color: #e74c3c; /* Color de fondo */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease; /* Solo cambia el color, no el tamaño */
+    position: fixed; /* Asegura que no se mueva */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px; /* Tamaño fijo */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Tamaño del ícono o flecha */
+    z-index: 1000; /* Asegura que los botones siempre estén encima */
+}
+
+.prev-button {
+    left: 10px; /* Ajusta según necesidad */
+}
+
+.next-button {
+    right: 10px; /* Ajusta según necesidad */
+}
+
+.nav-button:hover {
+    background-color: #c0392b; /* Oscurecer al pasar el ratón */
+}
+
+.back-button-segundo {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 42.3%;
+    margin-bottom: 20px;
+}
+
+.back-button:hover {
+    background-color: #555;
+}

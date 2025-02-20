@@ -176,7 +176,7 @@ const Segundos = () => {
         <button onClick={handleNext} className="nav-button next-button">❯</button>
       </div>
       <Link to="/">
-        <button className="back-button">Volver a Inicio</button>
+        <button className="back-button-segundo">Volver a Inicio</button>
       </Link>
     </div>
   );
