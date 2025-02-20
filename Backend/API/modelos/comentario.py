@@ -2,9 +2,8 @@ from pydantic import BaseModel
 from typing import Optional, List
 
 class Comentario(BaseModel):
-    id_comentario: str
-    id_usuario: str
-    id_receta: str
+    id_comentario: int
+    id_usuario: int
+    id_receta: int
     texto: str
-    fecha: int
     valoracion: int
