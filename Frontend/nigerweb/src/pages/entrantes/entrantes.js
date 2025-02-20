@@ -132,7 +132,7 @@ const Entrantes = () => {
         <button onClick={handleNext} className="nav-button next-button">❯</button>
       </div>
       <Link to="/">
-        <button className="back-button">Volver a Inicio</button>
+        <button className="back-button-entrantes">Volver a Inicio</button>
       </Link>
     </div>
   );

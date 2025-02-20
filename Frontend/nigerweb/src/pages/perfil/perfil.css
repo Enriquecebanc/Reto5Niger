@@ -55,6 +55,17 @@ h2 {
     word-break: break-word;
 }
 
+.perfil-details p1 {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    font-size: 1em;
+    color: #555;
+    word-break: break-word;
+}
+
 .perfil-details strong {
     color: #000;
     flex: 1;

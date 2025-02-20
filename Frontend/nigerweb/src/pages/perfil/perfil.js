@@ -57,24 +57,28 @@ const Perfil = () => {
                 <input type="file" accept="image/*" onChange={handleImageChange} />
             </div>
             <div className="perfil-details">
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Password:</strong> {user.password}</p>
-                <p><strong>Name:</strong> 
+                <p1><strong>Email:</strong></p1> <p>{user.email}</p>
+                <p1><strong>Password:</strong></p1> <p>{user.password}</p>
+                <p1><strong>Name:</strong></p1>
+                <p>
                     {isEditing.name ? 
                         <><input type="text" name="name" value={user.name} onChange={handleChange} /><button onClick={() => handleSaveClick('name')}>Save</button></> : 
                         <>{user.name} <button onClick={() => handleEditClick('name')}>Edit</button></>}
                 </p>
-                <p><strong>Address:</strong> 
+                <p1><strong>Address:</strong></p1>
+                <p>
                     {isEditing.address ? 
                         <><input type="text" name="address" value={user.address} onChange={handleChange} /><button onClick={() => handleSaveClick('address')}>Save</button></> : 
                         <>{user.address} <button onClick={() => handleEditClick('address')}>Edit</button></>}
                 </p>
-                <p><strong>Phone:</strong> 
+                <p1><strong>Phone:</strong></p1>
+                <p>
                     {isEditing.phone ? 
                         <><input type="text" name="phone" value={user.phone} onChange={handleChange} /><button onClick={() => handleSaveClick('phone')}>Save</button></> : 
                         <>{user.phone} <button onClick={() => handleEditClick('phone')}>Edit</button></>}
                 </p>
-                <p><strong>Birth Date:</strong> 
+                <p1><strong>Birth Date:</strong></p1>
+                <p>
                     {isEditing.birthDate ? 
                         <><input type="date" name="birthDate" value={user.birthDate} onChange={handleChange} /><button onClick={() => handleSaveClick('birthDate')}>Save</button></> : 
                         <>{user.birthDate} <button onClick={() => handleEditClick('birthDate')}>Edit</button></>}
