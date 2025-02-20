@@ -365,4 +365,18 @@ input[type="text"] {
         width: 100px; 
         margin: 1150px -85px;
       }
+    .iconos {
+        width: 50px; 
+        position: static;
+        border: none;
+        top: 50%;
+        bottom: 50%;
+    }
+    .icono-tenedor {
+        left: 1%;
+    }
+    
+    .icono-cuchillo {
+        right: 1%; 
+    }
 }
