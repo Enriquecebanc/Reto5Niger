@@ -127,7 +127,7 @@ const SubirReceta = () => {
                 placeholder="Cantidad"
                 required
               />
-              <button type="button" onClick={() => handleRemoveIngredient(index)}>Eliminar</button>
+              <button type="button" className="borrar" onClick={() => handleRemoveIngredient(index)}>Eliminar</button>
             </div>
           ))}
           <button type="button" onClick={handleAddIngredient}>Añadir Ingrediente</button>
