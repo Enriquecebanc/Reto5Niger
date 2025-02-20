@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 from modelos.receta import Receta
 from database import execute_query
+from database import execute_query_commit
 
 router = APIRouter()
 
@@ -13,7 +14,6 @@ def print_recetas():
 def get_receta(id: int):
     print(id)
     query = f"SELECT * FROM receta WHERE id_receta = {id}"
-    #params = (id,)
     result = execute_query(query)
     if not result:
         raise HTTPException(status_code=404, detail="Receta no encontrada")
@@ -21,15 +21,11 @@ def get_receta(id: int):
 
 @router.post("/recetas", response_model=Receta)
 def crear_receta(receta: Receta):
-    query = """
+    query = f"""
     INSERT INTO receta (id_receta, id_usuario, nombre_receta, descripcion_breve, instrucciones, imagen, id_categoria, tiempo, porciones)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES ({receta.id_receta}, {receta.id_usuario}, '{receta.nombre_receta}', '{receta.descripcion_breve}', '{receta.instrucciones}', '{receta.imagen}', {receta.id_categoria}, {receta.tiempo}, {receta.porciones})
     """
-    params = (
-        receta.id_receta, receta.id_usuario, receta.nombre_receta, receta.descripcion_breve, receta.instrucciones,
-        receta.imagen, receta.id_categoria, receta.tiempo, receta.porciones
-    )
-    execute_query(query, params)
+    execute_query_commit(query)
     return receta
 
 @router.get("/recetas", response_model=List[Receta])
@@ -40,20 +36,15 @@ def obtener_recetas():
 
 @router.put("/recetas/{id}", response_model=Receta)
 def actualizar_receta(id: str, receta_actualizada: Receta):
-    query = """
-    UPDATE receta SET id_usuario = %s, nombre_receta = %s, descripcion_breve = %s, instrucciones = %s, imagen = %s, id_categoria = %s, tiempo = %s, porciones = %s
-    WHERE id_receta = %s
+    query = f"""
+    UPDATE receta SET id_usuario = {receta_actualizada.id_usuario}, nombre_receta = '{receta_actualizada.nombre_receta}', descripcion_breve = '{receta_actualizada.descripcion_breve}', instrucciones = '{receta_actualizada.instrucciones}', imagen = '{receta_actualizada.imagen}', id_categoria = {receta_actualizada.id_categoria}, tiempo = {receta_actualizada.tiempo}, porciones = {receta_actualizada.porciones}
+    WHERE id_receta = {id}
     """
-    params = (
-        receta_actualizada.id_usuario, receta_actualizada.nombre_receta, receta_actualizada.descripcion_breve, receta_actualizada.instrucciones,
-        receta_actualizada.imagen, receta_actualizada.id_categoria, receta_actualizada.tiempo, receta_actualizada.porciones, id
-    )
-    execute_query(query, params)
+    execute_query_commit(query)
     return receta_actualizada
 
-@router.delete("/recetas/{id}", response_model=Receta)
-def eliminar_receta(id: str):
-    query = "DELETE FROM receta WHERE id_receta = %s"
-    params = (id,)
-    execute_query(query, params)
+@router.delete("/recetas/{id}")
+def eliminar_receta(id: int):
+    query = f"DELETE FROM receta WHERE id_receta = {id}"
+    execute_query_commit(query)
     return {"message": "Receta eliminada exitosamente"}
