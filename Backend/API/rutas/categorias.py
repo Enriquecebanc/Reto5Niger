@@ -1,29 +1,25 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
 from modelos.categoria import Categoria
-from database import execute_query
+from database import execute_query, execute_query_commit
 
 router = APIRouter()
 
 @router.get("/categorias/{id}", response_model=Categoria)
 def get_categoria(id: str):
-    query = "SELECT * FROM categorias WHERE id_categoria = %s"
-    params = (id,)
-    result = execute_query(query, params)
+    query = f"SELECT * FROM categorias WHERE id_categoria = {id}"
+    result = execute_query(query)
     if not result:
         raise HTTPException(status_code=404, detail="Categoría no encontrada")
     return result[0]
 
 @router.post("/categorias", response_model=Categoria)
 def crear_categoria(categoria: Categoria):
-    query = """
-    INSERT INTO categorias (id_categoria, nombre, descripcion, imagen)
-    VALUES (%s, %s, %s, %s)
+    query = f"""
+    INSERT INTO categorias (id_categoria, nombre_categoria, descripcion, imagen)
+    VALUES ({categoria.id_categoria}, '{categoria.nombre_categoria}', '{categoria.descripcion}', '{categoria.imagen}')
     """
-    params = (
-        categoria.id_categoria, categoria.nombre, categoria.descripcion, categoria.imagen
-    )
-    execute_query(query, params)
+    execute_query_commit(query)
     return categoria
 
 @router.get("/categorias", response_model=List[Categoria])
@@ -34,19 +30,15 @@ def obtener_categorias():
 
 @router.put("/categorias/{id}", response_model=Categoria)
 def actualizar_categoria(id: str, categoria_actualizada: Categoria):
-    query = """
-    UPDATE categorias SET nombre = %s, descripcion = %s, imagen = %s
-    WHERE id_categoria = %s
+    query = f"""
+    UPDATE categorias SET nombre_categoria = '{categoria_actualizada.nombre_categoria}', descripcion = '{categoria_actualizada.descripcion}', imagen = '{categoria_actualizada.imagen}'
+    WHERE id_categoria = {id}
     """
-    params = (
-        categoria_actualizada.nombre, categoria_actualizada.descripcion, categoria_actualizada.imagen, id
-    )
-    execute_query(query, params)
+    execute_query_commit(query)
     return categoria_actualizada
 
-@router.delete("/categorias/{id}", response_model=Categoria)
+@router.delete("/categorias/{id}")
 def eliminar_categoria(id: str):
-    query = "DELETE FROM categorias WHERE id_categoria = %s"
-    params = (id,)
-    execute_query(query, params)
+    query = f"DELETE FROM categorias WHERE id_categoria = {id}"
+    execute_query_commit(query)
     return {"message": "Categoría eliminada exitosamente"}
