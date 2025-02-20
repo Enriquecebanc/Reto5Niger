@@ -274,4 +274,18 @@ input[type="text"] {
     input[type="text"] {
         width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
     }
+    .iconos {
+        width: 50px; 
+        position: static;
+        border: none;
+        top: 50%;
+        bottom: 50%;
+    }
+    .icono-tenedor {
+        left: 1%;
+    }
+    
+    .icono-cuchillo {
+        right: 1%; 
+    }
 }
