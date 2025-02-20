@@ -47,7 +47,7 @@ h2 {
 .perfil-details p {
     display: flex;
     justify-content: space-between;
-    text-align: center;
+    text-align: left;
     flex-wrap: wrap;
     margin: 10px 0;
     font-size: 1em;
