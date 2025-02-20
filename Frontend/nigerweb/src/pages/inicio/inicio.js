@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './inicio.css';
 import logoImage from '../../images/NigerLogo.jpg';
 import '../../App.js';
+import Tenedor from '../../iconos/Tenedor.png';
+import Cuchillo from '../../iconos/Cuchillo.png';
 
 // Simulación de recetas (esto debería venir de una API o base de datos)
 const allRecipes = [
@@ -98,6 +100,10 @@ const Inicio = () => {
                 <Link to="">
                     <button className="salir-button">Cerrar sesión</button>
                 </Link>
+            </div>
+            <div>
+                <img src={Tenedor} alt="Tenedor" className="iconos icono-tenedor" />
+                <img src={Cuchillo} alt="Cuchillo" className="iconos icono-cuchillo" />
             </div>
             <div className="search-container">
                 <input
