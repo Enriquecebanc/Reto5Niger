@@ -2,8 +2,8 @@ from pydantic import BaseModel
 from typing import Optional, List
 
 class Usuario(BaseModel):
-    id_usuario: str
-    nombre: str
+    id_usuario: int
+    nombre_usuario: str
     correo: str
     contraseña: str
     foto_perfil: int
