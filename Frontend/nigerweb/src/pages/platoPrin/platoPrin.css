@@ -75,11 +75,11 @@
 }
 
 .prev-button {
-    left: 10px; /* Ajusta según necesidad */
+    left: 10px; 
 }
 
 .next-button {
-    right: 10px; /* Ajusta según necesidad */
+    right: 20px; 
 }
 
 .nav-button:hover {

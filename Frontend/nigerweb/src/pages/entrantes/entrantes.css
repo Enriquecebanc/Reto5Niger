@@ -55,17 +55,17 @@
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.prev-button {
-    left: -60px;
+.prev-button-entrante {
+    left: 350px;
 }
 
-.next-button {
-    right: -60px;
+.next-button-entrante {
+    right: 350px;
 }
 
 .nav-button:hover {
