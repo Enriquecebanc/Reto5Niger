@@ -134,7 +134,7 @@ const Inicio = () => {
                 </div>
 
             )}
-            <div className="navigation-links">
+            <div className="review-button">
                 <Link to="/opiniones">
                     <p>Opiniones</p>
                 </Link>

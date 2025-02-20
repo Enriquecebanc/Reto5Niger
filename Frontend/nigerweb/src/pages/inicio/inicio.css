@@ -258,6 +258,21 @@ input[type="text"] {
     background-color: #555;
   }
 
+  .icono-tenedor {
+    position: absolute;
+    left: -200px;  /* Ajusta según sea necesario */
+    top: 165px;   /* Ajusta según sea necesario */
+    width: 800px; /* Ajusta el tamaño */
+}
+
+.icono-cuchillo {
+    position: absolute;
+    right: 20px; /* Ajusta según sea necesario */
+    top: 165px;   /* Ajusta según sea necesario */
+    width: 500px; /* Ajusta el tamaño */
+}
+
+
   @media (max-width: 684px) {
     .search-container {
         margin: 0 auto;
