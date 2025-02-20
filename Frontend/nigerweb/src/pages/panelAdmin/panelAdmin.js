@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './panelAdmin.css';
 
-// Función para generar un ID único de 8 dígitos
-const generateId = () => {
-  return Math.random().toString(36).substr(2, 8);
-};
-
 const AdminPanel = () => {
   const [receta, setReceta] = useState({ nombre: '', instrucciones: '', tiempo: '', personas: '', cantidad_ingredientes: '', imagen: '', id_ingredientes: '', id_categoria: '', id_comentarios: '', descripcion: '' });
   const [categoria, setCategoria] = useState({ nombre: '', descripcion: '', imagen: '' });
@@ -27,17 +22,17 @@ const AdminPanel = () => {
     e.preventDefault();
     try {
       if (showReceta) {
-        const newReceta = { ...receta, id_receta: generateId() };
+        const newReceta = { ...receta};
         console.log('Receta:', newReceta);
         
       } else if (showCategoria) {
-        const newCategoria = { ...categoria, id_categoria: generateId() };
+        const newCategoria = { ...categoria};
         console.log('Categoría:', newCategoria);
       } else if (showIngrediente) {
-        const newIngrediente = { ...ingrediente, id_ingrediente: generateId() };
+        const newIngrediente = { ...ingrediente};
         console.log('Ingrediente:', newIngrediente);
       } else if (showUsuario) {
-        const newUsuario = { ...usuario, id_usuario: generateId() };
+        const newUsuario = { ...usuario};
         console.log('Usuario:', newUsuario);
       }
     } catch (error) {
