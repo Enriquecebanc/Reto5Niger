@@ -151,7 +151,7 @@ const Postres = () => {
       <h1>Postres</h1>
       <p>Aquí encontrarás una variedad de postres deliciosos.</p>
       <div className="recipe-item">
-        <button onClick={handlePrev} className="nav-button prev-button-postre"></button>
+        <button onClick={handlePrev} className="nav-button prev-button-postre">></button>
         <div className="recipe-content">
           <h2>{currentRecipe.name}</h2>
           <img src={currentRecipe.image} alt={currentRecipe.name} className="recipe-image" />
@@ -169,7 +169,7 @@ const Postres = () => {
             ))}
           </ol>
         </div>
-        <button onClick={handleNext} className="nav-button next-button-postre"></button>
+        <button onClick={handleNext} className="nav-button next-button-postre">></button>
       </div>
       <Link to="/">
         <button className="back-button-postre">Volver a Inicio</button>
