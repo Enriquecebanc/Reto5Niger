@@ -55,31 +55,24 @@
 }
 
 .nav-button {
-    background-color: #e74c3c; /* Color de fondo */
+    background-color: #444;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s ease; /* Solo cambia el color, no el tamaño */
-    position: fixed; /* Asegura que no se mueva */
+    transition: background-color 0.3s ease;
+    position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px; /* Tamaño fijo */
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px; /* Tamaño del ícono o flecha */
-    z-index: 1000; /* Asegura que los botones siempre estén encima */
 }
 
-.prev-button {
-    left: 10px; 
+.prev-button-prin {
+    left: 1%; 
 }
 
-.next-button {
-    right: 20px; 
+.next-button-prin {
+    right: 1%; 
 }
 
 .nav-button:hover {
