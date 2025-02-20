@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'; // Importa useEffect
 import { Link } from 'react-router-dom';
 import './inicio.css';
 import logoImage from '../../images/NigerLogo.jpg';
+import '../../App.js';
 
 // Simulación de recetas (esto debería venir de una API o base de datos)
 const allRecipes = [
@@ -94,7 +95,7 @@ const Inicio = () => {
                 </Link>
             </div>
             <div className="salir">
-                <Link to="/login">
+                <Link to="">
                     <button className="salir-button">Cerrar sesión</button>
                 </Link>
             </div>

@@ -225,15 +225,13 @@ input[type="text"] {
 .salir-button {
     position: absolute;
     top: 35px;
-    right: 110px;
+    right: 105px;
     background-color: #444;
     color: #fff;
     border: none;
-    padding: 10px;
+    padding: 10px 2px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    height: 5%;
-    width: 5%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -244,6 +242,9 @@ input[type="text"] {
 }
 
 .upload-recipe-button {
+    position: absolute;
+    top: 35px;
+    right: 195px;
     background-color: #444;
     color: #fff;
     border: none;
@@ -251,10 +252,26 @@ input[type="text"] {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    margin-top: 7px;
-    margin-left: 610px; 
   }
   
   .upload-recipe-button:hover {
     background-color: #555;
   }
+
+  @media (max-width: 684px) {
+    .search-container {
+        margin: 0 auto;
+        max-width: 500px;
+        width: 80%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .search-button {
+        padding: 11px; /* Ajusta el padding según sea necesario */
+    }
+
+    input[type="text"] {
+        width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+    }
+}

@@ -15,6 +15,7 @@ import Opiniones from './pages/opiniones/opiniones';
 import Perfil from './pages/perfil/perfil';
 import SubirReceta from './pages/subirReceta/subirReceta';
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState('');
@@ -52,6 +53,7 @@ function App() {
               <Route path="/opiniones" element={<Opiniones />} />
               <Route path="/perfil" element={<Perfil/>} />
               <Route path="/subirReceta" element={<SubirReceta />} />
+              <Route path="/login" element={<Login/>} />
             </>
           )}
         </Routes>

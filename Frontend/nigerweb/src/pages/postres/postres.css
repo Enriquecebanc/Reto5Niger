@@ -51,31 +51,31 @@
   }
   
   .nav-button {
-    background-color: #d64161; /* Un color más dulce para postres */
+    background-color: #444;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translateY(-50%);
-  }
-  
-  .prev-button {
-    left: -60px;
-  }
-  
-  .next-button {
-    right: -60px;
-  }
+}
+
+.prev-button-postre {
+    left: 1%;
+}
+
+.next-button-postre {
+    right: 1%;
+}
   
   .nav-button:hover {
     background-color: #e95474;
   }
   
-  .back-button {
+  .back-button-postre {
     background-color: #444;
     color: #fff;
     border: none;
@@ -84,6 +84,8 @@
     border-radius: 4px;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    width: 43.3%;
+    margin-bottom: 20px;
   }
   
   .back-button:hover {

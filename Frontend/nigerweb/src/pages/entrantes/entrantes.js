@@ -111,7 +111,7 @@ const Entrantes = () => {
       <h1>Entrantes</h1>
       <p>Aquí encontrarás una variedad de entrantes.</p>
       <div className="recipe-item">
-        <button onClick={handlePrev} className="nav-button prev-button">❮</button>
+        <button onClick={handlePrev} className="nav-button prev-button-entrante">❮</button>
         <div className="recipe-content">
           <h2>{currentRecipe.name}</h2>
           <img src={currentRecipe.image} alt={currentRecipe.name} className="recipe-image" />
@@ -129,10 +129,10 @@ const Entrantes = () => {
             ))}
           </ol>
         </div>
-        <button onClick={handleNext} className="nav-button next-button">❯</button>
+        <button onClick={handleNext} className="nav-button next-button-entrante">❯</button>
       </div>
       <Link to="/">
-        <button className="back-button">Volver a Inicio</button>
+        <button className="back-button-entrantes">Volver a Inicio</button>
       </Link>
     </div>
   );
