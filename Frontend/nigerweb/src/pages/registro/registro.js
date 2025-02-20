@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
+import axios from 'axios';
 import './registro.css';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '../../.env' });
 
 const Registro = () => {
     const [nombre, setNombre] = useState('');
@@ -46,15 +50,35 @@ const Registro = () => {
         setCaptchaValue(value);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (!captchaValue) {
             alert('Por favor, verifica que no eres un robot.');
             return;
         }
-        // Aquí puedes agregar la lógica para registrar al usuario
-        console.log('Usuario registrado:', { nombre, email, password, fotoPerfil, respuesta1, respuesta2, respuesta3 });
-        navigate('/');
+
+        const nuevoUsuario = {
+            nombre_usuario: nombre,
+            correo: email,
+            contraseña: password,
+            foto_perfil: fotoPerfil,
+            respuesta_pregunta_1: respuesta1,
+            respuesta_pregunta_2: respuesta2,
+            respuesta_pregunta_3: respuesta3
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8000/usuarios', nuevoUsuario, {
+                headers: {
+                    'Authorization': `Bearer ${process.env.STATIC_TOKEN}`,
+                },
+            });
+
+            console.log('Usuario registrado:', response.data);
+            navigate('/');
+        } catch (error) {
+            console.error('Error al registrar el usuario:', error.response ? error.response.data : error.message);
+        }
     };
 
     const imagenes = Array.from({ length: 17 }, (_, i) => require(`../../images/${i + 1}.png`));
