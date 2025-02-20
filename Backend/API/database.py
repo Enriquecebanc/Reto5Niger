@@ -19,6 +19,25 @@ def execute_query(query, params=None):
     try:
         print(query)
         cursor.execute(query, params)
+        # cursor.execute("COMMIT")
+        # connection.commit()
+        print("Consulta ejecutada exitosamente")
+        return cursor.fetchall()
+    except Error as e:
+        print(f"Error al ejecutar la consulta: {e}")
+        return None
+    finally:
+        #cursor.close()
+        connection.close()
+        print("Conexión a la base de datos MySQL cerrada")
+        
+def execute_query_commit(query, params=None):
+    connection = get_db_connection()
+    cursor = connection.cursor(dictionary=True)
+    try:
+        print(query)
+        cursor.execute(query, params)
+        cursor.execute("COMMIT")
         # connection.commit()
         print("Consulta ejecutada exitosamente")
         return cursor.fetchall()
