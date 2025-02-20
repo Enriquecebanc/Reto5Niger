@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import './registro.css';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: '../../.env' });
 
 const Registro = () => {
     const [nombre, setNombre] = useState('');
