@@ -259,3 +259,21 @@ input[type="text"] {
   .upload-recipe-button:hover {
     background-color: #555;
   }
+
+  @media (max-width: 684px) {
+    .search-container {
+        margin: 0 auto;
+        max-width: 500px;
+        width: 80%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .search-button {
+        padding: 11px; /* Ajusta el padding según sea necesario */
+    }
+
+    input[type="text"] {
+        width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+    }
+}
