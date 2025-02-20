@@ -225,15 +225,13 @@ input[type="text"] {
 .salir-button {
     position: absolute;
     top: 35px;
-    right: 110px;
+    right: 105px;
     background-color: #444;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 2px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    height: 5%;
-    width: 5%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -246,7 +244,7 @@ input[type="text"] {
 .upload-recipe-button {
     position: absolute;
     top: 35px;
-    right: 200px;
+    right: 195px;
     background-color: #444;
     color: #fff;
     border: none;
