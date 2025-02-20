@@ -134,11 +134,7 @@ const Inicio = () => {
                 </div>
 
             )}
-            <div className="review-button">
-                <Link to="/opiniones">
-                    <p>Opiniones</p>
-                </Link>
-            </div>
+            
             {!showCategories && (
                 <div className="recipes-list">
                     {filteredRecipes.length > 0 ? (
