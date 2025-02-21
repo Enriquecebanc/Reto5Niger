@@ -47,6 +47,11 @@ const Registro = () => {
         setCaptchaValue(value);
     };
 
+    // Función para generar un ID único de 8 dígitos
+    const generateId = () => {
+        return Math.floor(Math.random() * 100000000);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!captchaValue) {
@@ -55,19 +60,23 @@ const Registro = () => {
         }
 
         const nuevoUsuario = {
+            id_usuario: generateId(), // Generar un ID aleatorio de 8 dígitos
             nombre_usuario: nombre,
             correo: email,
             contraseña: password,
-            foto_perfil: fotoPerfil,
+            foto_perfil: parseInt(fotoPerfil), // Asegúrate de que foto_perfil sea un número entero
             respuesta_pregunta_1: respuesta1,
             respuesta_pregunta_2: respuesta2,
             respuesta_pregunta_3: respuesta3
         };
 
+        // Agregar console.log para verificar los datos
+        console.log('Nuevo Usuario:', nuevoUsuario);
+
         try {
             const response = await axios.post('http://localhost:8000/usuarios', nuevoUsuario, {
                 headers: {
-                    'Authorization': `Bearer ${process.env.STATIC_TOKEN}`,
+                    'Authorization': `Bearer Reto5Niger`,
                 },
             });
 
@@ -126,7 +135,7 @@ const Registro = () => {
                                 src={src}
                                 alt={`Perfil ${index + 1}`}
                                 className={`profile-image ${fotoPerfil === src ? 'selected' : ''}`}
-                                onClick={() => handleFotoPerfilChange(src)}
+                                onClick={() => handleFotoPerfilChange(index + 1)} // Asegúrate de que foto_perfil sea un número entero
                             />
                         ))}
                     </div>
