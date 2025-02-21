@@ -376,10 +376,6 @@ input[type="text"] {
         max-width: 70%;
         justify-content: center;
     }
-    .upload-recipe-button {
-        width: 100px; 
-        margin: 1100px -20px;
-      }
 
     .logo-image {
         max-width: 60px;
@@ -389,12 +385,6 @@ input[type="text"] {
 }
 
 @media (max-width: 321px) {
-    .upload-recipe-button {
-        width: 100px; 
-        margin: 1150px -85px;
-      }
-
-      
     .iconos {
         width: 50px; 
         position: static;
