@@ -102,7 +102,7 @@ const Inicio = () => {
                 </Link>
             </div>
             <div>
-                <img src={Tenedor} alt="Tenedor" className="iconos icono-tenedor" />
+                <img src={Tenedor} alt="Tenedor" className="iconos icono-tenedor"/>
                 <img src={Cuchillo} alt="Cuchillo" className="iconos icono-cuchillo" />
             </div>
             <div className="search-container">
