@@ -4,13 +4,13 @@ import './perfil.css';
 
 const Perfil = () => {
     const [user, setUser] = useState({
-        name: '',
-        email: 'johndoe@example.com',
-        profilePicture: 'https://via.placeholder.com/150',
-        password: '********',
-        address: '',
-        phone: '',
-        birthDate: ''
+        name: '', // Nombre de usuario
+        email: '', // Correo electrónico
+        profilePicture: 'https://via.placeholder.com/150', // Imagen de perfil
+        password: '********', // Contraseña
+        address: '', // Dirección
+        phone: '', // Teléfono
+        birthDate: '' // Fecha de nacimiento
     });
 
     const [isEditing, setIsEditing] = useState({
