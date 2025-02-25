@@ -34,7 +34,7 @@ nav a:hover {
 .search-button {
     position: relative;
     z-index: 1;
-    margin-left:5px;
+    margin-left: 5px;
     padding: 11px;
 }
 
@@ -138,12 +138,12 @@ input[type="text"] {
     border-color: #ff7434;
     float: left;
 }
+
 .opiniones-container {
     display: flex;
     justify-content: center;
     margin-top: 10px; /* Ajustar si es necesario */
 }
-
 
 .search-container {
     display: flex;
@@ -216,11 +216,26 @@ input[type="text"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 .perfil-button:hover {
     background-color: #555;
+}
+
+.profile-image {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.profile-image:hover {
+    border-color: #555;
 }
 
 .salir-button {
@@ -253,13 +268,13 @@ input[type="text"] {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-  }
-  
-  .upload-recipe-button:hover {
-    background-color: #555;
-  }
+}
 
-  .icono-tenedor {
+.upload-recipe-button:hover {
+    background-color: #555;
+}
+
+.icono-tenedor {
     position: absolute;
     left: -200px;  /* Ajusta según sea necesario */
     top: 165px;   /* Ajusta según sea necesario */
@@ -273,12 +288,13 @@ input[type="text"] {
     width: 500px; /* Ajusta el tamaño */
 }
 
-  .review-button {
+.review-button {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .review-button p {
+}
+
+.review-button p {
     background-color: #444;
     color: #fff;
     padding: 10px 20px;
@@ -289,21 +305,21 @@ input[type="text"] {
     margin: 5px 0;
     width: auto;
     max-width: 200px;
-  }
+}
 
-  @media (max-width: 929px ) {
+@media (max-width: 929px) {
     .header-inicio h1 {
         font-size: 2.2em;
     }
-  }
+}
 
-  @media (max-width: 850px ) {
+@media (max-width: 850px) {
     .header-inicio h1 {
         font-size: 1.9em;
     }
-  }
+}
 
-  @media (max-width: 810px) {
+@media (max-width: 810px) {
     .perfil-button {
         top: 10px;
         right: 10px;
@@ -320,6 +336,12 @@ input[type="text"] {
         align-items: center;
         justify-content: center;
         font-size: 0.75em;
+    }
+    .profile-image {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
     }
     .salir-button {
         position: absolute;
@@ -341,10 +363,9 @@ input[type="text"] {
         right: 70px;
         font-size: 0.7em;
     }
+}
 
-  }
-
-  @media (max-width: 684px) {
+@media (max-width: 684px) {
     .header-inicio h1 {
         font-size: 1.7em;
     }
