@@ -31,7 +31,17 @@ const Login = ({ onLogin }) => {
 
             if (usuario) {
                 onLogin(email, password);
-                navigate('/');
+
+                // Obtener la información del usuario
+                const userResponse = await axios.get(`http://localhost:8000/usuarios/${usuario.id_usuario}`, {
+                    headers: {
+                        'Authorization': `Bearer Reto5Niger`,
+                    },
+                });
+                const userInfo = userResponse.data;
+
+                // Navegar a la página de inicio con la foto de perfil
+                navigate('/', { state: { id_usuario: usuario.id_usuario, foto_perfil: userInfo.foto_perfil } });
             } else {
                 setErrorMessage('Correo o contraseña incorrectos.');
             }
