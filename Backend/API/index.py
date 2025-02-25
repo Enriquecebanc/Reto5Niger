@@ -6,7 +6,8 @@ from rutas import (
     categorias_router,
     comentarios_router,
     ingredientes_router,
-    usuarios_router
+    usuarios_router,
+    cantidades_router,
 )
 
 app = FastAPI(
@@ -32,6 +33,7 @@ app.include_router(categorias_router, dependencies=[Depends(get_current_user)])
 app.include_router(comentarios_router, dependencies=[Depends(get_current_user)])
 app.include_router(ingredientes_router, dependencies=[Depends(get_current_user)])
 app.include_router(usuarios_router, dependencies=[Depends(get_current_user)])
+app.include_router(cantidades_router, dependencies=[Depends(get_current_user)])
 
 @app.get("/")
 def index():
