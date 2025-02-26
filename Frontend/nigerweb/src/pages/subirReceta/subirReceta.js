@@ -81,8 +81,10 @@ const SubirReceta = () => {
             onChange={handleChange}
             placeholder="Tiempo en minutos"
             required
+            min="1"
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="porciones">Porciones:</label>
           <input
