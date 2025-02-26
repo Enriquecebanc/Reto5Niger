@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
     width: 90%;
+    margin: 0 auto;
 }
 
 .form-group {
@@ -45,6 +46,7 @@
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .profile-image {
@@ -72,7 +74,7 @@
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    width: 106%;
+    width: 100%;
     margin-top: 10px;
 }
 

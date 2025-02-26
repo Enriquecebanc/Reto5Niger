@@ -134,8 +134,8 @@ const Registro = () => {
                                 key={index}
                                 src={src}
                                 alt={`Perfil ${index + 1}`}
-                                className={`profile-image ${fotoPerfil === src ? 'selected' : ''}`}
-                                onClick={() => handleFotoPerfilChange(index + 1)} // Asegúrate de que foto_perfil sea un número entero
+                                className={`profile-image ${fotoPerfil === index + 1 ? 'selected' : ''}`}
+                                onClick={() => handleFotoPerfilChange(index + 1)}
                             />
                         ))}
                     </div>
