@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './inicio.css';
 import logoImage from '../../images/NigerLogo.jpg';
@@ -9,6 +9,7 @@ import Cuchillo from '../../iconos/Cuchillo.png';
 
 const Inicio = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [userProfileImage, setUserProfileImage] = useState('');
     const [recipesCategories, setRecipesCategories] = useState([]);
@@ -75,6 +76,10 @@ const Inicio = () => {
         }
     };
 
+    const handleProfileClick = () => {
+        navigate('/perfil', { state: { id_usuario: location.state.id_usuario } });
+    };
+
     return (
         <div className="inicio-container">
             <div className="header-inicio">
@@ -85,13 +90,11 @@ const Inicio = () => {
                 </Link>
             </div>
             <div className="perfil">
-                <Link to="/perfil">
-                    {userProfileImage ? (
-                        <img src={userProfileImage} alt="Perfil" className="profile-image" />
-                    ) : (
-                        <button className="perfil-button">Mi Perfil</button>
-                    )}
-                </Link>
+                {userProfileImage ? (
+                    <img src={userProfileImage} alt="Perfil" className="profile-image" onClick={handleProfileClick} />
+                ) : (
+                    <button onClick={handleProfileClick} className="perfil-button">Mi Perfil</button>
+                )}
             </div>
             <div className="salir">
                 <Link to="">
