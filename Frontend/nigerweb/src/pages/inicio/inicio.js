@@ -85,7 +85,7 @@ const Inicio = () => {
             <div className="header-inicio">
                 <img src={logoImage} alt="Logo" className="logo-image" />
                 <h1>¡Bienvenido a Recetas Niger!</h1>
-                <Link to="/subirReceta">
+                <Link to="/subirReceta" state={{ id_usuario: location.state.id_usuario }}>
                     <button className="upload-recipe-button">Subir Receta</button>
                 </Link>
             </div>
@@ -97,7 +97,7 @@ const Inicio = () => {
                 )}
             </div>
             <div className="salir">
-                <Link to="">
+                <Link to="/" state={{ id_usuario: location.state.id_usuario }}>
                     <button className="salir-button">Cerrar sesión</button>
                 </Link>
             </div>

@@ -51,8 +51,13 @@
     object-fit: cover;
 }
 
+.popup-image.unselected {
+    opacity: 0.5;
+}
+
 .popup-image.selected {
-    border: 2px solid blue;
+    border: 2px solid green;
+    opacity: 1;
 }
 
 .perfil-details {

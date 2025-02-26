@@ -6,8 +6,10 @@ import './perfil.css';
 const Perfil = () => {
     const location = useLocation();
     const [user, setUser] = useState({
+        id_usuario: '',
         nombre_usuario: '',
         correo: '',
+        contraseña: '',
         foto_perfil: '',
         respuesta_pregunta_1: '',
         respuesta_pregunta_2: '',
@@ -23,7 +25,7 @@ const Perfil = () => {
 
     const [showImagePopup, setShowImagePopup] = useState(false);
     const [availableImages, setAvailableImages] = useState([]);
-    const [hoveredImage, setHoveredImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         // Obtener la información del usuario
@@ -80,17 +82,24 @@ const Perfil = () => {
         }));
     };
 
-    const handleImageChange = async (index) => {
-        try {
-            const response = await axios.put(`http://localhost:8000/usuarios/${location.state.id_usuario}/foto`, { foto_perfil: index + 1 }, {
-                headers: {
-                    'Authorization': `Bearer Reto5Niger`,
-                },
-            });
-            setUser(prevState => ({ ...prevState, foto_perfil: response.data.foto_perfil }));
-            setShowImagePopup(false);
-        } catch (error) {
-            console.error('Error al subir la imagen de perfil:', error);
+    const handleImageChange = (index) => {
+        setSelectedImage(index + 1);
+    };
+
+    const handleSaveImage = async () => {
+        if (selectedImage !== null) {
+            try {
+                const updatedUser = { ...user, foto_perfil: selectedImage };
+                await axios.put(`http://localhost:8000/usuarios/${location.state.id_usuario}`, updatedUser, {
+                    headers: {
+                        'Authorization': `Bearer Reto5Niger`,
+                    },
+                });
+                setUser(updatedUser);
+                setShowImagePopup(false);
+            } catch (error) {
+                console.error('Error al subir la imagen de perfil:', error);
+            }
         }
     };
 
@@ -108,12 +117,11 @@ const Perfil = () => {
                                     key={index}
                                     src={src}
                                     alt={`Perfil ${index + 1}`}
-                                    className={`popup-image ${hoveredImage === index + 1 ? 'selected' : ''}`}
-                                    onClick={() => handleImageChange(index + 1)}
-                                    onMouseEnter={() => setHoveredImage(index + 1)}
-                                    onMouseLeave={() => setHoveredImage(null)}
+                                    className={`popup-image ${selectedImage === index + 1 ? 'selected' : 'unselected'}`}
+                                    onClick={() => handleImageChange(index)}
                                 />
                             ))}
+                            <button onClick={handleSaveImage}>Guardar</button>
                             <button onClick={() => setShowImagePopup(false)}>Cerrar</button>
                         </div>
                     </div>
