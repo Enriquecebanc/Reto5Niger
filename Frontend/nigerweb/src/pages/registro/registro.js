@@ -27,8 +27,8 @@ const Registro = () => {
         setPassword(event.target.value);
     };
 
-    const handleFotoPerfilChange = (src) => {
-        setFotoPerfil(src);
+    const handleFotoPerfilChange = (index) => {
+        setFotoPerfil(index + 1);
     };
 
     const handleRespuesta1Change = (event) => {
@@ -128,14 +128,14 @@ const Registro = () => {
                 </div>
                 <div className="form-group">
                     <label>Elige una Foto de Perfil:</label>
-                    <div className="image-selection">
+                    <div className="registro-image-selection">
                         {imagenes.map((src, index) => (
                             <img
                                 key={index}
                                 src={src}
                                 alt={`Perfil ${index + 1}`}
-                                className={`profile-image ${fotoPerfil === index + 1 ? 'selected' : ''}`}
-                                onClick={() => handleFotoPerfilChange(index + 1)}
+                                className={`registro-profile-image ${fotoPerfil === index + 1 ? 'selected' : ''}`}
+                                onClick={() => handleFotoPerfilChange(index)}
                             />
                         ))}
                     </div>
