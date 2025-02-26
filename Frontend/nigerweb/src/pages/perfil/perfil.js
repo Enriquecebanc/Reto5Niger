@@ -21,6 +21,10 @@ const Perfil = () => {
         respuesta_pregunta_3: false
     });
 
+    const [showImagePopup, setShowImagePopup] = useState(false);
+    const [availableImages, setAvailableImages] = useState([]);
+    const [hoveredImage, setHoveredImage] = useState(null);
+
     useEffect(() => {
         // Obtener la información del usuario
         const fetchUserProfile = async () => {
@@ -37,6 +41,10 @@ const Perfil = () => {
         };
 
         fetchUserProfile();
+
+        // Cargar las imágenes disponibles
+        const images = Array.from({ length: 17 }, (_, i) => require(`../../images/${i + 1}.png`));
+        setAvailableImages(images);
     }, [location.state.id_usuario]);
 
     const handleEditClick = (field) => {
@@ -72,31 +80,44 @@ const Perfil = () => {
         }));
     };
 
-    const handleImageChange = async (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const formData = new FormData();
-            formData.append('foto_perfil', file);
-
-            try {
-                const response = await axios.post(`http://localhost:8000/usuarios/${location.state.id_usuario}/foto`, formData, {
-                    headers: {
-                        'Authorization': `Bearer Reto5Niger`,
-                        'Content-Type': 'multipart/form-data'
-                    },
-                });
-                setUser(prevState => ({ ...prevState, foto_perfil: response.data.foto_perfil }));
-            } catch (error) {
-                console.error('Error al subir la imagen de perfil:', error);
-            }
+    const handleImageChange = async (index) => {
+        try {
+            const response = await axios.put(`http://localhost:8000/usuarios/${location.state.id_usuario}/foto`, { foto_perfil: index + 1 }, {
+                headers: {
+                    'Authorization': `Bearer Reto5Niger`,
+                },
+            });
+            setUser(prevState => ({ ...prevState, foto_perfil: response.data.foto_perfil }));
+            setShowImagePopup(false);
+        } catch (error) {
+            console.error('Error al subir la imagen de perfil:', error);
         }
     };
 
     return (
         <div className="perfil-container">
             <div className="perfil-header">
-                <img src={`/images/${user.foto_perfil}.png`} alt="Profile" className="perfil-picture" />
-                <input type="file" accept="image/*" onChange={handleImageChange} />
+                {user.foto_perfil && (
+                    <img src={require(`../../images/${user.foto_perfil}.png`)} alt="Profile" className="perfil-picture" onClick={() => setShowImagePopup(true)} />
+                )}
+                {showImagePopup && (
+                    <div className="image-popup">
+                        <div className="image-popup-content">
+                            {availableImages.map((src, index) => (
+                                <img
+                                    key={index}
+                                    src={src}
+                                    alt={`Perfil ${index + 1}`}
+                                    className={`popup-image ${hoveredImage === index + 1 ? 'selected' : ''}`}
+                                    onClick={() => handleImageChange(index + 1)}
+                                    onMouseEnter={() => setHoveredImage(index + 1)}
+                                    onMouseLeave={() => setHoveredImage(null)}
+                                />
+                            ))}
+                            <button onClick={() => setShowImagePopup(false)}>Cerrar</button>
+                        </div>
+                    </div>
+                )}
             </div>
             <div className="perfil-details">
                 <p><strong>Correo:</strong> {user.correo}</p>
