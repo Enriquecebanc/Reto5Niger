@@ -226,7 +226,7 @@ const SubirReceta = () => {
                 name="cantidad"
                 value={ingrediente.cantidad}
                 onChange={(e) => handleIngredientChange(index, e)}
-                placeholder="Cantidad"
+                placeholder="Cantidad (Kg, L, etc.)"
                 required
               />
               <button type="button" className="borrar" onClick={() => handleRemoveIngredient(index)}>Eliminar</button>
