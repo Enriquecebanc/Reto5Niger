@@ -31,7 +31,7 @@ create table receta (
 id_receta INT AUTO_INCREMENT PRIMARY KEY,
 id_usuario INT,
 nombre_receta VARCHAR(32) NOT NULL,
-descripcion_breve VARCHAR(50) NOT NULL,
+descripcion_breve VARCHAR(400) NOT NULL,
 instrucciones TEXT NOT NULL,
 imagen VARCHAR(200) NOT NULL,
 id_categoria INT,
