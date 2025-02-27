@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './perfil.css';
 
-const Perfil = () => {
+const Perfil = ({ onLogout }) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         id_usuario: '',
         nombre_usuario: '',
@@ -103,6 +104,20 @@ const Perfil = () => {
         }
     };
 
+    const handleDeleteUser = async () => {
+        try {
+            await axios.delete(`http://localhost:8000/usuarios/${location.state.id_usuario}`, {
+                headers: {
+                    'Authorization': `Bearer Reto5Niger`,
+                },
+            });
+            onLogout();
+            navigate('/');
+        } catch (error) {
+            console.error('Error al borrar el usuario:', error);
+        }
+    };
+
     return (
         <div className="perfil-container">
             <div className="perfil-header">
@@ -153,6 +168,7 @@ const Perfil = () => {
             <Link to="/" state={{ id_usuario: user.id_usuario }}>
                 <button className="back-button">Volver a Inicio</button>
             </Link>
+            <button className="delete-button" onClick={handleDeleteUser}>Borrar Usuario</button>
         </div>
     );
 };
