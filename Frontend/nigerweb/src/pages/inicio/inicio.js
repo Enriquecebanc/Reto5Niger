@@ -106,7 +106,7 @@ const Inicio = ({ user, onLogout }) => {
                     <button className="upload-recipe-button" disabled>Subir Receta</button>
                 )}
             </div>
-            <div className="perfil">
+            <div className="perfil"> 
                 {userProfileImage ? (
                     <img src={userProfileImage} alt="Perfil" className="profile-image" onClick={handleProfileClick} />
                 ) : (
