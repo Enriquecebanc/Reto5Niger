@@ -195,6 +195,7 @@ const SubirReceta = () => {
             onChange={handleChange}
             placeholder="Número de porciones"
             required
+            min="1"
           />
         </div>
         <div className="form-group">
