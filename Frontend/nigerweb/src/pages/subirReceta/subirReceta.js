@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './subirReceta.css';
 
 const SubirReceta = () => {
+  const location = useLocation();
   const [receta, setReceta] = useState({
     nombre: '',
     instrucciones: '',
@@ -163,7 +164,7 @@ const SubirReceta = () => {
         </div>
         <button type="submit" className="submit-button">Subir Receta</button>
       </form>
-      <Link to="/">
+      <Link to="/" state={{ id_usuario: location.state.id_usuario }}>
         <button className="back-button">Volver a Inicio</button>
       </Link>
     </div>

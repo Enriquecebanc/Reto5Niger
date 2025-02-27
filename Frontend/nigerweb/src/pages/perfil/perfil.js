@@ -150,7 +150,7 @@ const Perfil = () => {
                         <>{user.respuesta_pregunta_3} <button onClick={() => handleEditClick('respuesta_pregunta_3')}>Editar</button></>}
                 </p>
             </div>
-            <Link to="/">
+            <Link to="/" state={{ id_usuario: user.id_usuario }}>
                 <button className="back-button">Volver a Inicio</button>
             </Link>
         </div>

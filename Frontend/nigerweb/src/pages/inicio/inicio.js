@@ -15,44 +15,48 @@ const Inicio = () => {
     const [recipesCategories, setRecipesCategories] = useState([]);
 
     useEffect(() => {
-        // Obtener la información del usuario
-        const fetchUserProfile = async () => {
-            try {
-                const response = await axios.get(`http://localhost:8000/usuarios/${location.state.id_usuario}`, {
-                    headers: {
-                        'Authorization': `Bearer Reto5Niger`,
-                    },
-                });
-                const usuario = response.data;
-                const profileImage = require(`../../images/${usuario.foto_perfil}.png`); // Importar la imagen
+        if (location.state && location.state.id_usuario) {
+            // Obtener la información del usuario
+            const fetchUserProfile = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:8000/usuarios/${location.state.id_usuario}`, {
+                        headers: {
+                            'Authorization': `Bearer Reto5Niger`,
+                        },
+                    });
+                    const usuario = response.data;
+                    const profileImage = require(`../../images/${usuario.foto_perfil}.png`); // Importar la imagen
+                    setUserProfileImage(profileImage);
+                } catch (error) {
+                    console.error('Error al obtener la información del usuario:', error);
+                }
+            };
+
+            if (location.state.foto_perfil) {
+                const profileImage = require(`../../images/${location.state.foto_perfil}.png`); // Importar la imagen
                 setUserProfileImage(profileImage);
-            } catch (error) {
-                console.error('Error al obtener la información del usuario:', error);
+            } else {
+                fetchUserProfile();
             }
-        };
 
-        if (location.state && location.state.foto_perfil) {
-            const profileImage = require(`../../images/${location.state.foto_perfil}.png`); // Importar la imagen
-            setUserProfileImage(profileImage);
+            // Obtener las categorías de recetas
+            const fetchCategories = async () => {
+                try {
+                    const response = await axios.get('http://localhost:8000/categorias', {
+                        headers: {
+                            'Authorization': `Bearer Reto5Niger`,
+                        },
+                    });
+                    setRecipesCategories(response.data);
+                } catch (error) {
+                    console.error('Error al obtener las categorías:', error);
+                }
+            };
+
+            fetchCategories();
         } else {
-            fetchUserProfile();
+            console.error('No se encontró id_usuario en el estado de la ubicación.');
         }
-
-        // Obtener las categorías de recetas
-        const fetchCategories = async () => {
-            try {
-                const response = await axios.get('http://localhost:8000/categorias', {
-                    headers: {
-                        'Authorization': `Bearer Reto5Niger`,
-                    },
-                });
-                setRecipesCategories(response.data);
-            } catch (error) {
-                console.error('Error al obtener las categorías:', error);
-            }
-        };
-
-        fetchCategories();
     }, [location.state]);
 
     const handleSearchChange = (event) => {
@@ -77,7 +81,11 @@ const Inicio = () => {
     };
 
     const handleProfileClick = () => {
-        navigate('/perfil', { state: { id_usuario: location.state.id_usuario } });
+        if (location.state && location.state.id_usuario) {
+            navigate('/perfil', { state: { id_usuario: location.state.id_usuario } });
+        } else {
+            console.error('No se encontró id_usuario en el estado de la ubicación.');
+        }
     };
 
     return (
@@ -85,9 +93,13 @@ const Inicio = () => {
             <div className="header-inicio">
                 <img src={logoImage} alt="Logo" className="logo-image" />
                 <h1>¡Bienvenido a Recetas Niger!</h1>
-                <Link to="/subirReceta" state={{ id_usuario: location.state.id_usuario }}>
-                    <button className="upload-recipe-button">Subir Receta</button>
-                </Link>
+                {location.state && location.state.id_usuario ? (
+                    <Link to="/subirReceta" state={{ id_usuario: location.state.id_usuario }}>
+                        <button className="upload-recipe-button">Subir Receta</button>
+                    </Link>
+                ) : (
+                    <button className="upload-recipe-button" disabled>Subir Receta</button>
+                )}
             </div>
             <div className="perfil">
                 {userProfileImage ? (
@@ -97,7 +109,7 @@ const Inicio = () => {
                 )}
             </div>
             <div className="salir">
-                <Link to="/" state={{ id_usuario: location.state.id_usuario }}>
+                <Link to="">
                     <button className="salir-button">Cerrar sesión</button>
                 </Link>
             </div>
