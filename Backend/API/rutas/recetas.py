@@ -62,20 +62,14 @@ def obtener_recetas_por_categoria(categoria: int):
 
     for receta in result:
         id_receta = receta["id_receta"]
-        
-        # Obtener las cantidades de cada receta
-        query_cantidades = f"SELECT cantidad, unidad FROM cantidades WHERE id_receta = {id_receta}"
+
+        # Obtener solo la cantidad_ingrediente
+        query_cantidades = f"SELECT cantidad_ingrediente FROM cantidades WHERE id_receta = {id_receta}"
         cantidades_result = execute_query(query_cantidades)
-        
-        # Obtener los ingredientes de cada receta
-        #query_ingredientes = f"SELECT nombre_ingrediente FROM ingredientes WHERE id_receta = {id_receta}"
-        #ingredientes_result = execute_query(query_ingredientes)
-        
-        # Añadir las cantidades y los ingredientes a la receta
-        receta["cantidad_ingredientes"] = cantidades_result  # Añadir cantidades
-        #receta["ingredientes"] = ingredientes_result  # Añadir ingredientes
-        
-        # Añadir la receta con sus cantidades e ingredientes a la lista final
+
+        # Asignar directamente cantidad_ingrediente (que ahora representará unidad)
+        receta["cantidad_ingrediente"] = cantidades_result
+
         recetas.append(receta)
     
-    return recetas  # Devolver la lista de recetas con las cantidades e ingredientes asociados
+    return recetas
