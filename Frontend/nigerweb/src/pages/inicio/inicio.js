@@ -7,7 +7,7 @@ import '../../App.js';
 import Tenedor from '../../iconos/Tenedor.png';
 import Cuchillo from '../../iconos/Cuchillo.png';
 
-const Inicio = () => {
+const Inicio = ({ user, onLogout }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
@@ -88,6 +88,11 @@ const Inicio = () => {
         }
     };
 
+    const handleLogout = () => {
+        onLogout();
+        navigate('/');
+    };
+
     return (
         <div className="inicio-container">
             <div className="header-inicio">
@@ -109,9 +114,7 @@ const Inicio = () => {
                 )}
             </div>
             <div className="salir">
-                <Link to="">
-                    <button className="salir-button">Cerrar sesión</button>
-                </Link>
+                <button className="salir-button" onClick={handleLogout}>Cerrar sesión</button>
             </div>
             <div>
                 <img src={Tenedor} alt="Tenedor" className="iconos icono-tenedor" />

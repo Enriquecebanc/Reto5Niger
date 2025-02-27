@@ -10,11 +10,10 @@ import Entrantes from './pages/entrantes/entrantes';
 import PanelAdmin from './pages/panelAdmin/panelAdmin';
 import Login from './pages/login/login';
 import ContraseñaOlvidada from './pages/login/contraseñaOlvidada';
-import Registro from './pages/registro/registro'; // Importa el componente de registro
+import Registro from './pages/registro/registro';
 import Opiniones from './pages/opiniones/opiniones';
 import Perfil from './pages/perfil/perfil';
 import SubirReceta from './pages/subirReceta/subirReceta';
-
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,6 +30,11 @@ function App() {
     }
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUser('');
+  };
+
   return (
     <Router>
       <div className="App">
@@ -38,12 +42,12 @@ function App() {
           {!isAuthenticated ? (
             <>
               <Route path="/" element={<Login onLogin={handleLogin} />} />
-              <Route path="/registro" element={<Registro />} /> {/* Añade la ruta de registro */}
+              <Route path="/registro" element={<Registro />} />
               <Route path="/contraseñaOlvidada" element={<ContraseñaOlvidada />} />
             </>
           ) : (
             <>
-              <Route path="/" element={<Inicio user={user} />} />
+              <Route path="/" element={<Inicio user={user} onLogout={handleLogout} />} />
               <Route path="/postres" element={<Postres />} />
               <Route path="/ingredientes" element={<Ingredientes />} />
               <Route path="/platoPrin" element={<PlatoPrin />} />
@@ -51,9 +55,8 @@ function App() {
               <Route path="/entrantes" element={<Entrantes />} />
               <Route path="/panelAdmin" element={<PanelAdmin />} />
               <Route path="/opiniones" element={<Opiniones />} />
-              <Route path="/perfil" element={<Perfil/>} />
+              <Route path="/perfil" element={<Perfil />} />
               <Route path="/subirReceta" element={<SubirReceta />} />
-              <Route path="/login" element={<Login/>} />
             </>
           )}
         </Routes>
