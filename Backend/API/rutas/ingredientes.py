@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from typing import List
+from typing import List, Optional
 from modelos.ingrediente import Ingrediente
 from database import execute_query, execute_query_commit
 
@@ -11,6 +11,14 @@ def get_ingrediente(id: str):
     result = execute_query(query)
     if not result:
         raise HTTPException(status_code=404, detail="Ingrediente no encontrado")
+    return result[0]
+
+@router.get("/ingredientes/nombre/{nombre}", response_model=Optional[Ingrediente])
+def get_ingrediente_nombre(nombre: str):
+    query = f"SELECT * FROM ingredientes WHERE nombre_ingrediente = '{nombre}'"
+    result = execute_query(query)
+    if not result:
+        return None
     return result[0]
 
 @router.post("/ingredientes", response_model=Ingrediente)
