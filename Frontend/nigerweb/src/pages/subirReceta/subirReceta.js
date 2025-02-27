@@ -72,7 +72,7 @@ const SubirReceta = () => {
       setIngredientes(newIngredientes);
       setShowIngredienteForm(false);
       setIngredienteNuevo({ id_ingrediente: '', nombre: '', descripcion: '', imagen: '' });
-      // Continuar con la verificación de los siguientes ingredientes
+      // Continuar con la verificación de los siguientes ingredientes o permitir añadir otro
       verifyIngredients(currentIngredienteIndex + 1);
     } catch (error) {
       console.error('Error al añadir el ingrediente:', error.response ? error.response.data : error.message);
@@ -81,6 +81,7 @@ const SubirReceta = () => {
 
   const verifyIngredients = async (startIndex = 0) => {
     try {
+      let shouldContinue = true;
       for (let i = startIndex; i < ingredientes.length; i++) {
         const ingrediente = ingredientes[i];
         const response = await axios.get(`http://localhost:8000/ingredientes/nombre/${ingrediente.nombre}`, {
@@ -93,15 +94,18 @@ const SubirReceta = () => {
           setCurrentIngredienteIndex(i);
           setIngredienteNuevo({ ...ingredienteNuevo, nombre: ingrediente.nombre });
           setShowIngredienteForm(true);
-          return;
+          shouldContinue = false;  // Detener el proceso hasta que se termine de agregar este ingrediente
+          break;
         } else {
           // Ingrediente existe, guardar su ID
           ingredientes[i].id_ingrediente = response.data.id_ingrediente;
         }
       }
 
-      // Todos los ingredientes verificados, proceder a añadir la receta
-      await addReceta();
+      if (shouldContinue) {
+        // Todos los ingredientes han sido verificados, proceder a añadir la receta
+        await addReceta();
+      }
     } catch (error) {
       console.error('Error al verificar los ingredientes:', error.response ? error.response.data : error.message);
     }
@@ -133,7 +137,8 @@ const SubirReceta = () => {
         });
       }
 
-      navigate('/');
+      // Después de completar la receta y los ingredientes, redirigir al inicio
+      navigate('/', { state: { id_usuario: location.state.id_usuario } });
     } catch (error) {
       console.error('Error al subir la receta:', error.response ? error.response.data : error.message);
     }
