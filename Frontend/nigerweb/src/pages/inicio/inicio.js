@@ -100,7 +100,7 @@ const Inicio = ({ user, onLogout }) => {
                 <h1>¡Bienvenido a Recetas Niger!</h1>
                 {location.state && location.state.id_usuario ? (
                     <Link to="/subirReceta" state={{ id_usuario: location.state.id_usuario }}>
-                       <button className="upload-recipe-button">Subir Receta</button>
+                        <button className="upload-recipe-button">Subir Receta</button>
                     </Link>
                 ) : (
                     <button className="upload-recipe-button" disabled>Subir Receta</button>
