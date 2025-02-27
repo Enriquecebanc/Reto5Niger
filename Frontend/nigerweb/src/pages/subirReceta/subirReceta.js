@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './subirReceta.css';
 
 const SubirReceta = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [receta, setReceta] = useState({
-    nombre: '',
+    nombre_receta: '',
+    descripcion_breve: '',
     instrucciones: '',
-    tiempo: '',
-    porciones: '',
     imagen: '',
-    categoria: '',
-    comentarios: '',
-    descripcion: ''
+    tiempo: '',
+    id_categoria: '',
+    porciones: '',
   });
 
-  const [ingredientes, setIngredientes] = useState([{ nombre: '' }]);
+  const [ingredientes, setIngredientes] = useState([{ nombre: '', cantidad: '' }]);
+  const [ingredienteNuevo, setIngredienteNuevo] = useState({ id_ingrediente: '', nombre: '', descripcion: '', imagen: '' });
+  const [showIngredienteForm, setShowIngredienteForm] = useState(false);
+  const [currentIngredienteIndex, setCurrentIngredienteIndex] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +33,7 @@ const SubirReceta = () => {
   };
 
   const handleAddIngredient = () => {
-    setIngredientes([...ingredientes, { nombre: '' }]);
+    setIngredientes([...ingredientes, { nombre: '', cantidad: '' }]);
   };
 
   const handleRemoveIngredient = (index) => {
@@ -38,11 +42,106 @@ const SubirReceta = () => {
     setIngredientes(newIngredientes);
   };
 
+  const handleIngredienteNuevoChange = (e) => {
+    const { name, value } = e.target;
+    setIngredienteNuevo({ ...ingredienteNuevo, [name]: value });
+  };
+
+  const generateRandomId = () => {
+    return Math.floor(10000000 + Math.random() * 90000000);
+  };
+
+  const handleSubmitIngredienteNuevo = async (e) => {
+    e.preventDefault();
+    try {
+      const newIngredienteId = generateRandomId();
+      const ingredienteData = {
+        id_ingrediente: newIngredienteId,
+        nombre_ingrediente: ingredienteNuevo.nombre,
+        descripcion: ingredienteNuevo.descripcion,
+        imagen: ingredienteNuevo.imagen
+      };
+      const response = await axios.post('http://localhost:8000/ingredientes', ingredienteData, {
+        headers: {
+          'Authorization': `Bearer Reto5Niger`,
+        },
+      });
+      const newIngrediente = response.data;
+      const newIngredientes = [...ingredientes];
+      newIngredientes[currentIngredienteIndex].id_ingrediente = newIngrediente.id_ingrediente;
+      setIngredientes(newIngredientes);
+      setShowIngredienteForm(false);
+      setIngredienteNuevo({ id_ingrediente: '', nombre: '', descripcion: '', imagen: '' });
+      // Continuar con la verificación de los siguientes ingredientes
+      verifyIngredients(currentIngredienteIndex + 1);
+    } catch (error) {
+      console.error('Error al añadir el ingrediente:', error.response ? error.response.data : error.message);
+    }
+  };
+
+  const verifyIngredients = async (startIndex = 0) => {
+    try {
+      for (let i = startIndex; i < ingredientes.length; i++) {
+        const ingrediente = ingredientes[i];
+        const response = await axios.get(`http://localhost:8000/ingredientes/nombre/${ingrediente.nombre}`, {
+          headers: {
+            'Authorization': `Bearer Reto5Niger`,
+          },
+        });
+        if (!response.data) {
+          // Ingrediente no existe, mostrar formulario para añadirlo
+          setCurrentIngredienteIndex(i);
+          setIngredienteNuevo({ ...ingredienteNuevo, nombre: ingrediente.nombre });
+          setShowIngredienteForm(true);
+          return;
+        } else {
+          // Ingrediente existe, guardar su ID
+          ingredientes[i].id_ingrediente = response.data.id_ingrediente;
+        }
+      }
+
+      // Todos los ingredientes verificados, proceder a añadir la receta
+      await addReceta();
+    } catch (error) {
+      console.error('Error al verificar los ingredientes:', error.response ? error.response.data : error.message);
+    }
+  };
+
+  const addReceta = async () => {
+    try {
+      const recetaResponse = await axios.post('http://localhost:8000/recetas', {
+        id_receta: generateRandomId(),
+        id_usuario: location.state.id_usuario,
+        ...receta,
+      }, {
+        headers: {
+          'Authorization': `Bearer Reto5Niger`,
+        },
+      });
+      const newReceta = recetaResponse.data;
+
+      // Añadir cantidades
+      for (const ingrediente of ingredientes) {
+        await axios.post('http://localhost:8000/cantidades', {
+          id_receta: newReceta.id_receta,
+          id_ingrediente: ingrediente.id_ingrediente,
+          cantidad: ingrediente.cantidad,
+        }, {
+          headers: {
+            'Authorization': `Bearer Reto5Niger`,
+          },
+        });
+      }
+
+      navigate('/');
+    } catch (error) {
+      console.error('Error al subir la receta:', error.response ? error.response.data : error.message);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí se puede agregar la lógica para enviar la receta al servidor
-    console.log('Receta enviada:', receta);
-    console.log('Ingredientes:', ingredientes);
+    verifyIngredients();
   };
 
   return (
@@ -50,12 +149,12 @@ const SubirReceta = () => {
       <h1>Subir Nueva Receta</h1>
       <form onSubmit={handleSubmit} className="subir-receta-form">
         <div className="form-group">
-          <label htmlFor="nombre">Nombre de la Receta:</label>
+          <label htmlFor="nombre_receta">Nombre de la Receta:</label>
           <input
             type="text"
-            id="nombre"
-            name="nombre"
-            value={receta.nombre}
+            id="nombre_receta"
+            name="nombre_receta"
+            value={receta.nombre_receta}
             onChange={handleChange}
             placeholder="Nombre de la receta"
             required
@@ -122,7 +221,7 @@ const SubirReceta = () => {
                 placeholder="Nombre del ingrediente"
                 required
               />
-               <input
+              <input
                 type="text"
                 name="cantidad"
                 value={ingrediente.cantidad}
@@ -136,27 +235,27 @@ const SubirReceta = () => {
           <button type="button" onClick={handleAddIngredient}>Añadir Ingrediente</button>
         </div>
         <div className="form-group">
-          <label htmlFor="categoria">Categoría:</label>
+          <label htmlFor="id_categoria">Categoría:</label>
           <select
-            id="categoria"
-            name="categoria"
-            value={receta.categoria}
+            id="id_categoria"
+            name="id_categoria"
+            value={receta.id_categoria}
             onChange={handleChange}
             required
           >
             <option value="">Selecciona una categoría</option>
-            <option value="Entrante">Entrante</option>
-            <option value="Plato Principal">Plato Principal</option>
-            <option value="Plato Secundario">Plato Secundario</option>
-            <option value="Postre">Postre</option>
+            <option value="1">Entrante</option>
+            <option value="2">Plato Principal</option>
+            <option value="3">Plato Secundario</option>
+            <option value="4">Postre</option>
           </select>
         </div>
         <div className="form-group">
-          <label htmlFor="descripcion">Descripción:</label>
+          <label htmlFor="descripcion_breve">Descripción:</label>
           <textarea
-            id="descripcion"
-            name="descripcion"
-            value={receta.descripcion}
+            id="descripcion_breve"
+            name="descripcion_breve"
+            value={receta.descripcion_breve}
             onChange={handleChange}
             placeholder="Descripción breve"
             required
@@ -167,6 +266,54 @@ const SubirReceta = () => {
       <Link to="/" state={{ id_usuario: location.state.id_usuario }}>
         <button className="back-button">Volver a Inicio</button>
       </Link>
+
+      {showIngredienteForm && (
+        <div className="ingrediente-form-popup">
+          <div className="ingrediente-form-overlay" onClick={() => setShowIngredienteForm(false)}></div>
+          <div className="ingrediente-form-content">
+            <h2>Añadir Ingrediente</h2>
+            <form onSubmit={handleSubmitIngredienteNuevo}>
+              <div className="form-group">
+                <label htmlFor="nombre">Nombre del Ingrediente:</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  value={ingredienteNuevo.nombre}
+                  onChange={handleIngredienteNuevoChange}
+                  placeholder="Nombre del ingrediente"
+                  required
+                  readOnly
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="descripcion">Descripción:</label>
+                <textarea
+                  id="descripcion"
+                  name="descripcion"
+                  value={ingredienteNuevo.descripcion}
+                  onChange={handleIngredienteNuevoChange}
+                  placeholder="Descripción del ingrediente"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="imagen">Imagen (URL):</label>
+                <input
+                  type="text"
+                  id="imagen"
+                  name="imagen"
+                  value={ingredienteNuevo.imagen}
+                  onChange={handleIngredienteNuevoChange}
+                  placeholder="URL de la imagen"
+                  required
+                />
+              </div>
+              <button type="submit" className="submit-button">Añadir Ingrediente</button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
