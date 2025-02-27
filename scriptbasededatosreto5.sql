@@ -37,8 +37,8 @@ imagen VARCHAR(200) NOT NULL,
 id_categoria INT,
 tiempo INT NOT NULL,
 porciones INT NOT NULL,
-FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE SET NULL,
-FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE SET NULL
+FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria) ON DELETE CASCADE,
+FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
 create table comentario (
@@ -48,16 +48,16 @@ id_receta INT,
 texto TEXT NOT NULL,
 fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 valoracion TINYINT NOT NULL CHECK (valoracion BETWEEN 0 AND 5),
-FOREIGN KEY (id_receta) REFERENCES receta(id_receta) ON DELETE SET NULL,
-FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE SET NULL
+FOREIGN KEY (id_receta) REFERENCES receta(id_receta) ON DELETE CASCADE,
+FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
 create table cantidades (
 id_receta INT,
 id_ingrediente INT,
 cantidad_ingrediente VARCHAR(40) NOT NULL,
-FOREIGN KEY (id_receta) REFERENCES receta(id_receta) ON DELETE SET NULL,
-FOREIGN KEY (id_ingrediente) REFERENCES ingredientes(id_ingrediente) ON DELETE SET NULL
+FOREIGN KEY (id_receta) REFERENCES receta(id_receta) ON DELETE CASCADE,
+FOREIGN KEY (id_ingrediente) REFERENCES ingredientes(id_ingrediente) ON DELETE CASCADE
 );
 
 INSERT INTO `reto5`.`categorias` (`id_categoria`, `nombre_categoria`, `descripcion`, `imagen`) VALUES ('1', 'Entrante', 'Platos ligeros y apetitosos para comenzar la comida, como ensaladas, sopas o aperitivos.', 'No Image');
