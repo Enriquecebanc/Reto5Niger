@@ -13,132 +13,75 @@ const Inicio = ({ user, onLogout }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [userProfileImage, setUserProfileImage] = useState('');
     const [recipesCategories, setRecipesCategories] = useState([]);
+    const idUsuario = location.state?.id_usuario;
 
     useEffect(() => {
-        if (location.state && location.state.id_usuario) {
-            // Obtener la información del usuario
+        if (idUsuario) {
             const fetchUserProfile = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:8000/usuarios/${location.state.id_usuario}`, {
-                        headers: {
-                            'Authorization': `Bearer Reto5Niger`,
-                        },
+                    const response = await axios.get(`http://localhost:8000/usuarios/${idUsuario}`, {
+                        headers: { 'Authorization': `Bearer Reto5Niger` },
                     });
-                    const usuario = response.data;
-                    const profileImage = require(`../../images/${usuario.foto_perfil}.png`); // Importar la imagen
-                    setUserProfileImage(profileImage);
+                    setUserProfileImage(require(`../../images/${response.data.foto_perfil}.png`));
                 } catch (error) {
                     console.error('Error al obtener la información del usuario:', error);
                 }
             };
+            fetchUserProfile();
 
-            if (location.state.foto_perfil) {
-                const profileImage = require(`../../images/${location.state.foto_perfil}.png`); // Importar la imagen
-                setUserProfileImage(profileImage);
-            } else {
-                fetchUserProfile();
-            }
-
-            // Obtener las categorías de recetas
             const fetchCategories = async () => {
                 try {
                     const response = await axios.get('http://localhost:8000/categorias', {
-                        headers: {
-                            'Authorization': `Bearer Reto5Niger`,
-                        },
+                        headers: { 'Authorization': `Bearer Reto5Niger` },
                     });
                     setRecipesCategories(response.data);
                 } catch (error) {
                     console.error('Error al obtener las categorías:', error);
                 }
             };
-
             fetchCategories();
-        } else {
-            console.error('No se encontró id_usuario en el estado de la ubicación.');
         }
-    }, [location.state]);
+    }, [idUsuario]);
 
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
-    };
-
-    const handleCategoryClick = (categoryName) => {
-        switch (categoryName) {
-            case 'Postres':
-                return '/postres';
-            case 'Primer Plato':
-                return '/platoPrin';
-            case 'Segundo Plato':
-                return '/platoSec';
-            case 'Entrantes':
-                return '/entrantes';
-            case 'PanelAdmin':
-                return '/panelAdmin';
-            default:
-                return '/';
-        }
-    };
-
-    const handleProfileClick = () => {
-        if (location.state && location.state.id_usuario) {
-            navigate('/perfil', { state: { id_usuario: location.state.id_usuario } });
-        } else {
-            console.error('No se encontró id_usuario en el estado de la ubicación.');
-        }
-    };
-
-    const handleLogout = () => {
-        onLogout();
-        navigate('/');
-    };
+    const categoryRoutes = ['/entrantes', '/platoPrin', '/platoSec', '/postres'];
 
     return (
         <div className="inicio-container">
             <div className="header-inicio">
                 <img src={logoImage} alt="Logo" className="logo-image" />
                 <h1>¡Bienvenido a Recetas Niger!</h1>
-                {location.state && location.state.id_usuario ? (
-                    <Link to="/subirReceta" state={{ id_usuario: location.state.id_usuario }}>
+                {idUsuario && (
+                    <Link to="/subirReceta" state={{ id_usuario: idUsuario }}>
                         <button className="upload-recipe-button">Subir Receta</button>
                     </Link>
-                ) : (
-                    <button className="upload-recipe-button" disabled>Subir Receta</button>
                 )}
             </div>
-            <div className="perfil"> 
+            <div className="perfil">
                 {userProfileImage ? (
-                    <img src={userProfileImage} alt="Perfil" className="profile-image" onClick={handleProfileClick} />
+                    <img src={userProfileImage} alt="Perfil" className="profile-image" onClick={() => navigate('/perfil', { state: { id_usuario: idUsuario } })} />
                 ) : (
-                    <button onClick={handleProfileClick} className="perfil-button">Mi Perfil</button>
+                    <button onClick={() => navigate('/perfil', { state: { id_usuario: idUsuario } })} className="perfil-button">Mi Perfil</button>
                 )}
             </div>
             <div className="salir">
-                <button className="salir-button" onClick={handleLogout}>Cerrar sesión</button>
+                <button className="salir-button" onClick={onLogout}>Cerrar sesión</button>
             </div>
             <div>
                 <img src={Tenedor} alt="Tenedor" className="iconos icono-tenedor" />
                 <img src={Cuchillo} alt="Cuchillo" className="iconos icono-cuchillo" />
             </div>
             <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Buscar recetas..."
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                    className="search-input"
-                />
-                <Link to="/ingredientes" >
+                <input type="text" placeholder="Buscar recetas..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
+                <Link to="/ingredientes">
                     <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
-
             <div className="recipes-list">
-                {recipesCategories.map((category) => (
+                {recipesCategories.map((category, index) => (
                     <div key={category.id} className="recipe-item">
                         <h2>{category.nombre_categoria}</h2>
                         <p>{category.descripcion}</p>
-                        <Link to={handleCategoryClick(category.nombre_categoria)} state={{ id_usuario: location.state.id_usuario }}>
+                        <Link to={categoryRoutes[index] || '/'} state={{ id_usuario: idUsuario }}>
                             <button className="view-button">Ver {category.nombre_categoria}</button>
                         </Link>
                     </div>
