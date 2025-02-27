@@ -125,7 +125,7 @@ const SubirReceta = () => {
         await axios.post('http://localhost:8000/cantidades', {
           id_receta: newReceta.id_receta,
           id_ingrediente: ingrediente.id_ingrediente,
-          cantidad: ingrediente.cantidad,
+          cantidad_ingrediente: ingrediente.cantidad,
         }, {
           headers: {
             'Authorization': `Bearer Reto5Niger`,

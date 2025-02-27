@@ -16,8 +16,8 @@ def get_cantidad(id_receta: int, id_ingrediente: int):
 @router.post("/cantidades", response_model=Cantidades)
 def crear_cantidad(cantidad: Cantidades):
     query = f"""
-    INSERT INTO cantidades (id_receta, id_ingrediente, cantidad)
-    VALUES ({cantidad.id_receta}, {cantidad.id_ingrediente}, '{cantidad.cantidad}')
+    INSERT INTO cantidades (id_receta, id_ingrediente, cantidad_ingrediente)
+    VALUES ({cantidad.id_receta}, {cantidad.id_ingrediente}, '{cantidad.cantidad_ingrediente}')
     """
     execute_query_commit(query)
     return cantidad
@@ -31,7 +31,7 @@ def obtener_cantidades():
 @router.put("/cantidades/{id_receta}/{id_ingrediente}", response_model=Cantidades)
 def actualizar_cantidad(id_receta: int, id_ingrediente: int, cantidad_actualizada: Cantidades):
     query = f"""
-    UPDATE cantidades SET cantidad = '{cantidad_actualizada.cantidad}'
+    UPDATE cantidades SET cantidad_ingrediente = '{cantidad_actualizada.cantidad_ingrediente}'
     WHERE id_receta = {id_receta} AND id_ingrediente = {id_ingrediente}
     """
     execute_query_commit(query)
