@@ -48,3 +48,34 @@ def eliminar_receta(id: int):
     query = f"DELETE FROM receta WHERE id_receta = {id}"
     execute_query_commit(query)
     return {"message": "Receta eliminada exitosamente"}
+
+@router.get("/recetas/categoria/{categoria}", response_model=List[Receta])
+def obtener_recetas_por_categoria(categoria: int):
+    # Obtener las recetas por categoría
+    query = f"SELECT * FROM receta WHERE id_categoria = {categoria}"
+    result = execute_query(query)
+    
+    if not result:
+        raise HTTPException(status_code=404, detail="No se encontraron recetas para esta categoría")
+    
+    recetas = []
+
+    for receta in result:
+        id_receta = receta["id_receta"]
+        
+        # Obtener las cantidades de cada receta
+        query_cantidades = f"SELECT cantidad, unidad FROM cantidades WHERE id_receta = {id_receta}"
+        cantidades_result = execute_query(query_cantidades)
+        
+        # Obtener los ingredientes de cada receta
+        #query_ingredientes = f"SELECT nombre_ingrediente FROM ingredientes WHERE id_receta = {id_receta}"
+        #ingredientes_result = execute_query(query_ingredientes)
+        
+        # Añadir las cantidades y los ingredientes a la receta
+        receta["cantidad_ingredientes"] = cantidades_result  # Añadir cantidades
+        #receta["ingredientes"] = ingredientes_result  # Añadir ingredientes
+        
+        # Añadir la receta con sus cantidades e ingredientes a la lista final
+        recetas.append(receta)
+    
+    return recetas  # Devolver la lista de recetas con las cantidades e ingredientes asociados

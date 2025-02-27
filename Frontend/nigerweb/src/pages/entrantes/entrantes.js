@@ -1,101 +1,45 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import './entrantes.css';
-import croquetasImage from '../../images/Croquetas.jpg';
-import gazpachoImage from '../../images/Gazpacho.jpg';
-import bravasImage from '../../images/Bravas.jpg';
-import bruschettaImage from '../../images/Bruschetta.jpg';
-import hummusImage from '../../images/Hummus.jpg';
-
-const recipes = [
-  {
-    id: 1,
-    name: 'Croquetas',
-    description:(
-      <>
-        <strong>🕔 75 minutos | 4 Comensales |</strong> Deliciosas croquetas crujientes por fuera y cremosas por dentro.
-      </>),
-    ingredients: ['Harina 200g', 'Leche 750ml', 'Mantequilla 100g', 'Jamón 150g', '1 Huevo', 'Pan rallado 250g'],
-    instructions: [
-      'Prepara una bechamel con harina, leche y mantequilla.',
-      'Añade el jamón picado a la bechamel.',
-      'Deja enfriar la mezcla y forma las croquetas.',
-      'Pasa las croquetas por huevo batido y pan rallado.',
-      'Fríe las croquetas hasta que estén doradas.'
-    ],
-    image: croquetasImage
-  },
-  {
-    id: 2,
-    name: 'Gazpacho',
-    description: (
-      <>
-        <strong>🕔 75 minutos | 6 Comensales |</strong> Una sopa fría de tomate, perfecta para los días calurosos.
-      </>),
-    ingredients: ['Tomate 1Kg', '1 Pepino', '1 Pimiento', 'Media cebolla', 'Ajo 2 dientes', 'Aceite de oliva 50ml', 'Vinagre 30ml', 'Sal 5g'],
-    instructions: [
-      'Lava y corta los vegetales.',
-      'Tritura todos los ingredientes en una licuadora hasta obtener una mezcla suave.',
-      'Refrigera el gazpacho durante al menos una hora antes de servir.',
-      'Sirve frío con un chorrito de aceite de oliva.'
-    ],
-    image: gazpachoImage
-  },
-  {
-    id: 3,
-    name: 'Patatas Bravas',
-    description: (
-      <>
-        <strong>🕔 30 minutos | 4 Comensales |</strong> Patatas fritas servidas con una salsa picante.
-      </>),
-    ingredients: ['3 Patatas', 'Aceite de oliva', 'Sal', 'Tomate', 'Ajo', 'Pimentón', 'Vinagre', 'Azúcar'],
-    instructions: [
-      'Pela y corta las patatas en cubos.',
-      'Fríe las patatas en aceite de oliva hasta que estén doradas y crujientes.',
-      'Para la salsa, sofríe el ajo y el pimentón en aceite de oliva.',
-      'Añade el tomate triturado, el vinagre y el azúcar, y cocina a fuego lento hasta que espese.',
-      'Sirve las patatas con la salsa por encima.'
-    ],
-    image: bravasImage
-  },
-  {
-    id: 4,
-    name: 'Bruschetta',
-    description: (
-      <>
-        <strong>🕔 10 minutos | 2 Comensales |</strong> Tostadas de pan con tomate, ajo y albahaca, un clásico aperitivo italiano.
-      </>),
-    ingredients: ['Pan', 'Tomate', 'Ajo', 'Albahaca', 'Aceite de oliva', 'Sal'],
-    instructions: [
-      'Tuesta las rebanadas de pan.',
-      'Frota el ajo sobre el pan tostado.',
-      'Corta los tomates en cubos y mézclalos con albahaca picada.',
-      'Añade aceite de oliva y sal a la mezcla de tomate.',
-      'Coloca la mezcla de tomate sobre el pan tostado y sirve.'
-    ],
-    image: bruschettaImage
-  },
-  {
-    id: 5,
-    name: 'Hummus',
-    description: (
-      <>
-        <strong>🕔 15 minutos | 4 Comensales |</strong> Un dip cremoso de garbanzos, perfecto para acompañar con pan pita.
-      </>),
-    ingredients: ['Garbanzos 400g', 'Tahini', '1 diente de Ajo', 'Medio limón', 'Aceite de oliva 70g', 'Sal 5g'],
-    instructions: [
-      'Tritura los garbanzos cocidos con tahini, ajo y jugo de limón.',
-      'Añade aceite de oliva y sal al gusto.',
-      'Mezcla hasta obtener una consistencia suave.',
-      'Sirve con pan pita o vegetales.'
-    ],
-    image: hummusImage
-  }
-];
 
 const Entrantes = () => {
+  const [recipes, setRecipes] = useState([]); // Aquí almacenamos las recetas obtenidas de la API
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
+  const [loading, setLoading] = useState(true); // Estado para manejar la carga de datos
+  const [error, setError] = useState(null); // Para manejar posibles errores
+  const [idUsuario, setIdUsuario] = useState(null); // Estado para almacenar el id_usuario
 
+  const location = useLocation(); // Para acceder a la ubicación y los datos pasados a través del state
+
+  // Obtener el id_usuario del estado de la ubicación
+  useEffect(() => {
+    if (location.state && location.state.id_usuario) {
+      setIdUsuario(location.state.id_usuario); // Asignamos el id_usuario del estado
+    }
+  }, [location]); // Este efecto se ejecuta cuando la ubicación cambia
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/recetas/categoria/1', {
+          headers: {
+            'Authorization': `Bearer Reto5Niger`, // Si necesitas autorización, asegúrate de que el token sea válido
+          },
+        });
+
+        setRecipes(response.data);  // Guardamos las recetas obtenidas en el estado
+        setLoading(false); // Cambiamos el estado de carga a falso una vez obtenemos las recetas
+      } catch (err) {
+        setError('Error al obtener las recetas');
+        setLoading(false); // También cambiamos el estado de carga si hay un error
+      }
+    };
+
+    fetchRecipes();
+  }, []); // Este efecto se ejecuta una vez cuando el componente se monta
+
+  // Función para manejar el cambio de receta (ir a la siguiente o anterior)
   const handleNext = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex + 1) % recipes.length);
   };
@@ -104,34 +48,62 @@ const Entrantes = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex - 1 + recipes.length) % recipes.length);
   };
 
-  const currentRecipe = recipes[currentRecipeIndex];
+  // Si las recetas aún están cargando, mostramos un mensaje de carga
+  if (loading) {
+    return <div>Cargando recetas...</div>;
+  }
 
+  // Si ocurre un error al obtener las recetas, mostramos el error
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  // Si las recetas están disponibles, mostramos la receta actual
+  const currentRecipe = recipes[currentRecipeIndex];
   return (
     <div className="entrantes-container">
       <h1>Entrantes</h1>
       <p>Aquí encontrarás una variedad de entrantes.</p>
+      <p>Usuario ID: {idUsuario}</p> {/* Aquí puedes mostrar el id_usuario si lo deseas */}
+
       <div className="recipe-item">
         <button onClick={handlePrev} className="nav-button prev-button-entrante">❮</button>
         <div className="recipe-content">
-          <h2>{currentRecipe.name}</h2>
-          <img src={currentRecipe.image} alt={currentRecipe.name} className="recipe-image" />
-          <p>{currentRecipe.description}</p>
-          <h3>Ingredientes:</h3>
-          <ul>
-            {currentRecipe.ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
-            ))}
-          </ul>
-          <h3>Instrucciones:</h3>
-          <ol>
-            {currentRecipe.instructions.map((instruction, index) => (
-              <li key={index}>{instruction}</li>
-            ))}
-          </ol>
+          <h2>{currentRecipe.nombre_receta}</h2>
+          <img src={currentRecipe.imagen} alt={currentRecipe.nombre_receta} className="recipe-image" />
+          <p>{currentRecipe.descripcion_breve}</p>
+
+          {/* Mostrar los ingredientes de la receta */}
+          <div className="ingredients">
+            <h3>Ingredientes:</h3>
+            <ul>
+              {currentRecipe.ingredientes && currentRecipe.ingredientes.length > 0 ? (
+                currentRecipe.ingredientes.map((ingrediente, index) => (
+                  <li key={index}>{ingrediente.nombre_ingrediente}</li>
+                ))
+              ) : (
+                <p>No se encontraron ingredientes para esta receta.</p>
+              )}
+            </ul>
+          </div>
+
+          {/* Mostrar las cantidades de la receta */}
+          <div className="quantities">
+            <h3>Cantidades:</h3>
+            <ul>
+              {currentRecipe.cantidades && currentRecipe.cantidades.length > 0 ? (
+                currentRecipe.cantidades.map((cantidad, index) => (
+                  <li key={index}>{cantidad.cantidad} {cantidad.unidad}</li>
+                ))
+              ) : (
+                <p>No se encontraron cantidades para esta receta.</p>
+              )}
+            </ul>
+          </div>
         </div>
         <button onClick={handleNext} className="nav-button next-button-entrante">❯</button>
       </div>
-      <Link to="/">
+      <Link to="/" state={{ id_usuario: location.state.id_usuario }}>
         <button className="back-button-entrantes">Volver a Inicio</button>
       </Link>
     </div>

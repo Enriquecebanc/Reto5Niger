@@ -128,7 +128,7 @@ const Inicio = ({ user, onLogout }) => {
                     onChange={handleSearchChange}
                     className="search-input"
                 />
-                <Link to="/ingredientes">
+                <Link to="/ingredientes" >
                     <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
@@ -138,7 +138,7 @@ const Inicio = ({ user, onLogout }) => {
                     <div key={category.id} className="recipe-item">
                         <h2>{category.nombre_categoria}</h2>
                         <p>{category.descripcion}</p>
-                        <Link to={handleCategoryClick(category.nombre_categoria)}>
+                        <Link to={handleCategoryClick(category.nombre_categoria)} state={{ id_usuario: location.state.id_usuario }}>
                             <button className="view-button">Ver {category.nombre_categoria}</button>
                         </Link>
                     </div>
