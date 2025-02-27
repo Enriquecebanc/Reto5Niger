@@ -55,7 +55,7 @@ function App() {
               <Route path="/entrantes" element={<Entrantes />} />
               <Route path="/panelAdmin" element={<PanelAdmin />} />
               <Route path="/opiniones" element={<Opiniones />} />
-              <Route path="/perfil" element={<Perfil />} />
+              <Route path="/perfil" element={<Perfil onLogout={handleLogout} />} />
               <Route path="/subirReceta" element={<SubirReceta />} />
             </>
           )}
