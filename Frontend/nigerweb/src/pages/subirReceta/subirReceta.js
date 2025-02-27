@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './subirReceta.css';
@@ -195,6 +195,7 @@ const SubirReceta = () => {
             onChange={handleChange}
             placeholder="Número de porciones"
             required
+            min="1"
           />
         </div>
         <div className="form-group">
