@@ -69,8 +69,13 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.perfil-details p strong {
+    margin-right: 8px; /* Espacio entre la pregunta y la respuesta */
+}
+
 .perfil-details p {
     margin: 10px 0;
+    text-align: center;
 }
 
 .perfil-details input {
@@ -81,6 +86,7 @@
 
 .perfil-details button {
     padding: 5px 10px;
+    float: right;
 }
 
 .back-button {
