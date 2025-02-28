@@ -1,141 +1,92 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import './postres.css'; // Crea un archivo postres.css
-import tartaQuesoImage from '../../images/TartaQueso.jpg';
-import brownieImage from '../../images/Brownie.jpg';
-import flanImage from '../../images/Flan.jpg';
-import arrozConLecheImage from '../../images/ArrozConLeche.jpg';
-import heladoImage from '../../images/Helado.jpg';
-
-const recipes = [
-  {
-    id: 1,
-    name: 'Tarta de Queso',
-    description: (
-      <>
-        <strong>🕔 1 hora 30 minutos</strong> | <strong>6 personas</strong> | Una deliciosa tarta de queso cremosa y suave.
-      </>
-    ),
-    ingredients: [
-      '200g de galletas',
-      '100g de mantequilla',
-      '500g de queso crema',
-      '3 huevos',
-      '150g de azúcar',
-      '200ml de nata'
-    ],
-    instructions: [
-      'Tritura las galletas y mézclalas con mantequilla derretida para hacer la base. (10 mins)',
-      'Bate el queso crema con el azúcar hasta que quede suave. (5 mins)',
-      'Añade los huevos y la nata y mezcla bien. (5 mins)',
-      'Vierte la mezcla sobre la base de galletas. (5 mins)',
-      'Hornea a 160°C durante 50 minutos. (50 mins)',
-      'Deja enfriar antes de servir. (15 mins)'
-    ],
-    image: tartaQuesoImage
-  },
-  {
-    id: 2,
-    name: 'Brownie',
-    description: (
-      <>
-        <strong>🕔 50 minutos</strong> | <strong>8 personas</strong> | Un bizcocho de chocolate denso y delicioso.
-      </>
-    ),
-    ingredients: [
-      '200g de chocolate negro',
-      '150g de mantequilla',
-      '200g de azúcar',
-      '3 huevos',
-      '100g de harina',
-      '50g de nueces (opcional)'
-    ],
-    instructions: [
-      'Derrite el chocolate con la mantequilla. (5 mins)',
-      'Bate los huevos con el azúcar hasta que estén espumosos. (5 mins)',
-      'Añade la mezcla de chocolate y la harina. (5 mins)',
-      'Incorpora las nueces si lo deseas. (3 mins)',
-      'Hornea a 180°C durante 30 minutos. (30 mins)',
-      'Deja enfriar antes de servir. (5 mins)'
-    ],
-    image: brownieImage
-  },
-  {
-    id: 3,
-    name: 'Flan',
-    description: (
-      <>
-        <strong>🕔 1 hora</strong> | <strong>4 personas</strong> | Un postre clásico de huevo y caramelo.
-      </>
-    ),
-    ingredients: [
-      '4 huevos',
-      '500ml de leche',
-      '100g de azúcar',
-      '1 cucharadita de vainilla'
-    ],
-    instructions: [
-      'Prepara un caramelo con azúcar y agua. (10 mins)',
-      'Bate los huevos con la leche, el azúcar y la vainilla. (5 mins)',
-      'Vierte la mezcla sobre el caramelo en un molde. (5 mins)',
-      'Cocina al baño maría en el horno a 160°C. (40 minutos)',
-      'Refrigera antes de desmoldar y servir. (10 mins)'
-    ],
-    image: flanImage
-  },
-  {
-    id: 4,
-    name: 'Arroz con Leche',
-    description: (
-      <>
-        <strong>🕔 45 minutos</strong> | <strong>4 personas</strong> | Un postre tradicional de arroz cocido en leche con azúcar y canela.
-      </>
-    ),
-    ingredients: [
-      '100g de arroz',
-      '1 litro de leche',
-      '100g de azúcar',
-      '1 rama de canela',
-      'Cáscara de 1 limón'
-    ],
-    instructions: [
-      'Lava el arroz. (5 mins)',
-      'Hierve la leche con la canela y la piel de limón. (5 mins)',
-      'Añade el arroz y el azúcar. (2 mins)',
-      'Cocina a fuego lento hasta que el arroz esté tierno y la leche haya espesado. (30 mins)',
-      'Espolvorea canela por encima antes de servir. (3 mins)'
-    ],
-    image: arrozConLecheImage
-  },
-  {
-    id: 5,
-    name: 'Helado de Chocolate',
-    description: (
-      <>
-        <strong>🕔 4 horas</strong> | <strong>4 personas</strong> | Un postre refrescante y delicioso.
-      </>
-    ),
-    ingredients: [
-      '250ml de nata',
-      '250ml de leche',
-      '100g de azúcar',
-      '150g de chocolate negro',
-      '50g de trozos de chocolate (opcional)'
-    ],
-    instructions: [
-      'Mezcla la nata, la leche y el azúcar en un cazo. (5 mins)',
-      'Derrite el chocolate e incorpóralo a la mezcla. (5 mins)',
-      'Si quieres, añade trozos de chocolate o frutos secos. (2 mins)',
-      'Congela la mezcla en una heladera o en el congelador, removiendo cada cierto tiempo. (3 horas)',
-      'Sirve frío. (**5 mins**)'
-    ],
-    image: heladoImage
-  }
-];
 
 const Postres = () => {
+  const [recipes, setRecipes] = useState([]); // Recetas obtenidas de la API
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [idUsuario, setIdUsuario] = useState(null);
+  const [quantities, setQuantities] = useState([]); // Cantidades de los ingredientes
+  const [ingredients, setIngredients] = useState({}); // Almacenará ingredientes por ID
 
+  const location = useLocation();
+
+  // Obtener el id_usuario desde la ubicación
+  useEffect(() => {
+    if (location.state && location.state.id_usuario) {
+      setIdUsuario(location.state.id_usuario);
+    }
+  }, [location]);
+
+  // Obtener recetas al montar el componente
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/recetas/categoria/3', {
+          headers: { 'Authorization': `Bearer Reto5Niger` },
+        });
+
+        setRecipes(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Error al obtener las recetas');
+        setLoading(false);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
+  // Obtener cantidades cuando cambie la receta actual
+  useEffect(() => {
+    if (recipes.length > 0) {
+      const currentRecipe = recipes[currentRecipeIndex];
+      fetchQuantities(currentRecipe.id_receta);
+    }
+  }, [currentRecipeIndex, recipes]);
+
+  // Función para obtener cantidades de la API
+  const fetchQuantities = async (id_receta) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/cantidades/${id_receta}`, {
+        headers: { 'Authorization': `Bearer Reto5Niger` },
+      });
+
+      setQuantities(response.data);
+
+      // Obtener ingredientes basados en los id_ingrediente de las cantidades
+      response.data.forEach((cantidad) => {
+        fetchIngredient(cantidad.id_ingrediente);
+      });
+
+    } catch (err) {
+      setQuantities([]);
+      console.error('Error al obtener las cantidades:', err);
+    }
+  };
+
+  // Función para obtener el nombre del ingrediente por su ID
+  const fetchIngredient = async (id_ingrediente) => {
+    try {
+      if (!ingredients[id_ingrediente]) { // Solo buscar si aún no se ha guardado
+        const response = await axios.get(`http://localhost:8000/ingredientes/${id_ingrediente}`, {
+          headers: { 'Authorization': `Bearer Reto5Niger` },
+        });
+
+        setIngredients((prevIngredients) => ({
+          ...prevIngredients,
+          [id_ingrediente]: response.data.nombre_ingrediente,
+        }));
+      }
+    } catch (err) {
+      console.error(`Error al obtener el ingrediente ${id_ingrediente}:`, err);
+    }
+  };
+
+  // Cambio de recetas
   const handleNext = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex + 1) % recipes.length);
   };
@@ -144,35 +95,55 @@ const Postres = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex - 1 + recipes.length) % recipes.length);
   };
 
+  if (loading) return <div>Cargando recetas...</div>;
+  if (error) return <div>{error}</div>;
+
   const currentRecipe = recipes[currentRecipeIndex];
 
   return (
-    <div className="postres-container">
-      <h1>Postres</h1>
-      <p>Aquí encontrarás una variedad de postres deliciosos.</p>
+    <div className="entrantes-container">
+      <h1>Entrantes</h1>
+      <p>Aquí encontrarás una variedad de entrantes.</p>
+      <p>Usuario ID: {idUsuario}</p>
+
       <div className="recipe-item">
-        <button onClick={handlePrev} className="nav-button prev-button-postre">&lt;</button>
+        <button onClick={handlePrev} className="nav-button prev-button-entrante">❮</button>
         <div className="recipe-content">
-          <h2>{currentRecipe.name}</h2>
-          <img src={currentRecipe.image} alt={currentRecipe.name} className="recipe-image" />
-          <p>{currentRecipe.description}</p>
-          <h3>Ingredientes:</h3>
-          <ul>
-            {currentRecipe.ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
-            ))}
-          </ul>
-          <h3>Instrucciones:</h3>
-          <ol>
-            {currentRecipe.instructions.map((instruction, index) => (
-              <li key={index}>{instruction}</li>
-            ))}
-          </ol>
+          <h2>{currentRecipe.nombre_receta}</h2>
+          <img src={currentRecipe.imagen} alt={currentRecipe.nombre_receta} className="recipe-image" />
+          <p>{currentRecipe.descripcion_breve}</p>
+
+          {/* Sección de instrucciones y tiempo */}
+          <div className="instructions">
+            <h3>Instrucciones:</h3>
+            <p>{currentRecipe.instrucciones || "No hay instrucciones disponibles."}</p>
+          </div>
+
+          <div className="time">
+            <h3>Tiempo de preparación:</h3>
+            <p>{currentRecipe.tiempo || "Tiempo no especificado."}</p>
+          </div>
+
+          {/* Sección de ingredientes */}
+          <div className="ingredients">
+            <h3>Ingredientes:</h3>
+            <ul>
+              {quantities.length > 0 ? (
+                quantities.map((cantidad, index) => (
+                  <li key={index}>
+                    {ingredients[cantidad.id_ingrediente] || "Cargando..."} - {cantidad.cantidad_ingrediente}
+                  </li>
+                ))
+              ) : (
+                <p>No se encontraron ingredientes para esta receta.</p>
+              )}
+            </ul>
+          </div>
         </div>
-        <button onClick={handleNext} className="nav-button next-button-postre">&gt;</button>
+        <button onClick={handleNext} className="nav-button next-button-entrante">❯</button>
       </div>
-      <Link to="/">
-        <button className="back-button-postre">Volver a Inicio</button>
+      <Link to="/" state={{ id_usuario: idUsuario }}>
+        <button className="back-button-entrantes">Volver a Inicio</button>
       </Link>
     </div>
   );

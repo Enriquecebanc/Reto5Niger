@@ -28,6 +28,14 @@ def obtener_cantidades():
     result = execute_query(query)
     return result
 
+@router.get("/cantidades/{id_receta}", response_model=List[Cantidades])
+def obtener_cantidades_por_receta(id_receta: int):
+    query = f"SELECT * FROM cantidades WHERE id_receta = {id_receta}"
+    result = execute_query(query)
+    if not result:
+        raise HTTPException(status_code=404, detail="No se encontraron cantidades para la receta")
+    return result
+
 @router.put("/cantidades/{id_receta}/{id_ingrediente}", response_model=Cantidades)
 def actualizar_cantidad(id_receta: int, id_ingrediente: int, cantidad_actualizada: Cantidades):
     query = f"""
