@@ -102,8 +102,8 @@ const Postres = () => {
 
   return (
     <div className="entrantes-container">
-      <h1>Entrantes</h1>
-      <p>Aquí encontrarás una variedad de entrantes.</p>
+      <h1>Postres</h1>
+      <p>Aquí encontrarás una variedad de postres.</p>
       <p>Usuario ID: {idUsuario}</p>
 
       <div className="recipe-item">

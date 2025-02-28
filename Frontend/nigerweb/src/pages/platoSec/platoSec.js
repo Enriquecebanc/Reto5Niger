@@ -102,8 +102,8 @@ const Segundos = () => {
 
   return (
     <div className="entrantes-container">
-      <h1>Entrantes</h1>
-      <p>Aquí encontrarás una variedad de entrantes.</p>
+      <h1>Platos Secundarios</h1>
+      <p>Aquí encontrarás una variedad de platos secundarios.</p>
       <p>Usuario ID: {idUsuario}</p>
 
       <div className="recipe-item">
