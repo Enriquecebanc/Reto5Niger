@@ -21,27 +21,35 @@
 }
 
 .categoria {
-    margin-bottom: 20px;
-    text-align: left;
-    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .categoria h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
+    text-align: left;
+    flex-grow: 1; /* Esto permite que el texto ocupe todo el espacio disponible a la izquierda */
 }
 
-.categoria ul {
-    list-style-type: none;
-    padding: 0;
+.categoria p {
+    font-size: 1.1em;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
-.categoria ul li {
-    background-color: #f9f9f9;
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.categoria img {
+    width: 100px; /* Ajusta el tamaño de la imagen */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-left: 15px; /* Espaciado entre el texto y la imagen */
 }
 
 .back-button {
