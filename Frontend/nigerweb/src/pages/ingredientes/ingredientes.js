@@ -1,13 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import './ingredientes.css';
 
 const Ingredientes = () => {
   // Estado para almacenar los ingredientes
+  const [idUsuario, setIdUsuario] = useState(null);
   const [ingredientes, setIngredientes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const location = useLocation();
+
+  // Obtener el id_usuario desde la ubicación
+  useEffect(() => {
+    if (location.state && location.state.id_usuario) {
+      setIdUsuario(location.state.id_usuario);
+    }
+  }, [location]);
 
   // Efecto para obtener los ingredientes
   useEffect(() => {
@@ -19,7 +29,6 @@ const Ingredientes = () => {
     })
     .then(response => {
       // Actualizar el estado con los ingredientes obtenidos
-      console.log(response.data);
       setIngredientes(response.data);
       setLoading(false);
     })
@@ -43,6 +52,9 @@ const Ingredientes = () => {
       <h1>Ingredientes</h1>
       <p>Aquí encontrarás los diferentes ingredientes que se usan para las recetas</p>
 
+      {/* Mostrar el id_usuario */}
+      {idUsuario && <p>Usuario ID: {idUsuario}</p>}
+
       {/* Mostrar ingredientes si existen */}
       {ingredientes.length > 0 ? (
         ingredientes.map((ingrediente, index) => (
@@ -58,7 +70,8 @@ const Ingredientes = () => {
         <p>No se encontraron ingredientes.</p>
       )}
 
-      <Link to="/">
+      {/* Volver a inicio y pasar el id_usuario */}
+      <Link to="/" state={{ id_usuario: idUsuario }}>
         <button className="back-button">Volver a Inicio</button>
       </Link>
     </div>

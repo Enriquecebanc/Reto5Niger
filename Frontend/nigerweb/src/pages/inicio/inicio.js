@@ -83,7 +83,7 @@ const Inicio = ({ user, onLogout }) => {
             <div className="search-container">
                 {/* Barra de búsqueda e ir a la página de ingredientes */}
                 <input type="text" placeholder="Buscar recetas..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
-                <Link to="/ingredientes">
+                <Link to="/ingredientes" state={{ id_usuario: idUsuario }}>
                     <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
