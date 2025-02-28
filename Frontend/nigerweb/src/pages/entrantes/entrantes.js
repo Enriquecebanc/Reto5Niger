@@ -4,42 +4,89 @@ import axios from 'axios';
 import './entrantes.css';
 
 const Entrantes = () => {
-  const [recipes, setRecipes] = useState([]); // Aquí almacenamos las recetas obtenidas de la API
+  const [recipes, setRecipes] = useState([]); // Recetas obtenidas de la API
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
-  const [loading, setLoading] = useState(true); // Estado para manejar la carga de datos
-  const [error, setError] = useState(null); // Para manejar posibles errores
-  const [idUsuario, setIdUsuario] = useState(null); // Estado para almacenar el id_usuario
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [idUsuario, setIdUsuario] = useState(null);
+  const [quantities, setQuantities] = useState([]); // Cantidades de los ingredientes
+  const [ingredients, setIngredients] = useState({}); // Almacenará ingredientes por ID
 
-  const location = useLocation(); // Para acceder a la ubicación y los datos pasados a través del state
+  const location = useLocation();
 
-  // Obtener el id_usuario del estado de la ubicación
+  // Obtener el id_usuario desde la ubicación
   useEffect(() => {
     if (location.state && location.state.id_usuario) {
-      setIdUsuario(location.state.id_usuario); // Asignamos el id_usuario del estado
+      setIdUsuario(location.state.id_usuario);
     }
-  }, [location]); // Este efecto se ejecuta cuando la ubicación cambia
+  }, [location]);
 
+  // Obtener recetas al montar el componente
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
         const response = await axios.get('http://localhost:8000/recetas/categoria/1', {
-          headers: {
-            'Authorization': `Bearer Reto5Niger`, // Si necesitas autorización, asegúrate de que el token sea válido
-          },
+          headers: { 'Authorization': `Bearer Reto5Niger` },
         });
 
-        setRecipes(response.data);  // Guardamos las recetas obtenidas en el estado
-        setLoading(false); // Cambiamos el estado de carga a falso una vez obtenemos las recetas
+        setRecipes(response.data);
+        setLoading(false);
       } catch (err) {
         setError('Error al obtener las recetas');
-        setLoading(false); // También cambiamos el estado de carga si hay un error
+        setLoading(false);
       }
     };
 
     fetchRecipes();
-  }, []); // Este efecto se ejecuta una vez cuando el componente se monta
+  }, []);
 
-  // Función para manejar el cambio de receta (ir a la siguiente o anterior)
+  // Obtener cantidades cuando cambie la receta actual
+  useEffect(() => {
+    if (recipes.length > 0) {
+      const currentRecipe = recipes[currentRecipeIndex];
+      fetchQuantities(currentRecipe.id_receta);
+    }
+  }, [currentRecipeIndex, recipes]);
+
+  // Función para obtener cantidades de la API
+  const fetchQuantities = async (id_receta) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/cantidades/${id_receta}`, {
+        headers: { 'Authorization': `Bearer Reto5Niger` },
+      });
+
+      setQuantities(response.data);
+
+      // Obtener ingredientes basados en los id_ingrediente de las cantidades
+      response.data.forEach((cantidad) => {
+        fetchIngredient(cantidad.id_ingrediente);
+      });
+
+    } catch (err) {
+      setQuantities([]);
+      console.error('Error al obtener las cantidades:', err);
+    }
+  };
+
+  // Función para obtener el nombre del ingrediente por su ID
+  const fetchIngredient = async (id_ingrediente) => {
+    try {
+      if (!ingredients[id_ingrediente]) { // Solo buscar si aún no se ha guardado
+        const response = await axios.get(`http://localhost:8000/ingredientes/${id_ingrediente}`, {
+          headers: { 'Authorization': `Bearer Reto5Niger` },
+        });
+
+        setIngredients((prevIngredients) => ({
+          ...prevIngredients,
+          [id_ingrediente]: response.data.nombre_ingrediente,
+        }));
+      }
+    } catch (err) {
+      console.error(`Error al obtener el ingrediente ${id_ingrediente}:`, err);
+    }
+  };
+
+  // Cambio de recetas
   const handleNext = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex + 1) % recipes.length);
   };
@@ -48,23 +95,16 @@ const Entrantes = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex - 1 + recipes.length) % recipes.length);
   };
 
-  // Si las recetas aún están cargando, mostramos un mensaje de carga
-  if (loading) {
-    return <div>Cargando recetas...</div>;
-  }
+  if (loading) return <div>Cargando recetas...</div>;
+  if (error) return <div>{error}</div>;
 
-  // Si ocurre un error al obtener las recetas, mostramos el error
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  // Si las recetas están disponibles, mostramos la receta actual
   const currentRecipe = recipes[currentRecipeIndex];
+
   return (
     <div className="entrantes-container">
       <h1>Entrantes</h1>
       <p>Aquí encontrarás una variedad de entrantes.</p>
-      <p>Usuario ID: {idUsuario}</p> {/* Aquí puedes mostrar el id_usuario si lo deseas */}
+      <p>Usuario ID: {idUsuario}</p>
 
       <div className="recipe-item">
         <button onClick={handlePrev} className="nav-button prev-button-entrante">❮</button>
@@ -73,37 +113,36 @@ const Entrantes = () => {
           <img src={currentRecipe.imagen} alt={currentRecipe.nombre_receta} className="recipe-image" />
           <p>{currentRecipe.descripcion_breve}</p>
 
-          {/* Mostrar los ingredientes de la receta */}
+          {/* Sección de instrucciones y tiempo */}
+          <div className="instructions">
+            <h3>Instrucciones:</h3>
+            <p>{currentRecipe.instrucciones || "No hay instrucciones disponibles."}</p>
+          </div>
+
+          <div className="time">
+            <h3>Tiempo de preparación:</h3>
+            <p>{currentRecipe.tiempo || "Tiempo no especificado."}</p>
+          </div>
+
+          {/* Sección de ingredientes */}
           <div className="ingredients">
             <h3>Ingredientes:</h3>
             <ul>
-              {currentRecipe.ingredientes && currentRecipe.ingredientes.length > 0 ? (
-                currentRecipe.ingredientes.map((ingrediente, index) => (
-                  <li key={index}>{ingrediente.nombre_ingrediente}</li>
+              {quantities.length > 0 ? (
+                quantities.map((cantidad, index) => (
+                  <li key={index}>
+                    {ingredients[cantidad.id_ingrediente] || "Cargando..."} - {cantidad.cantidad_ingrediente}
+                  </li>
                 ))
               ) : (
                 <p>No se encontraron ingredientes para esta receta.</p>
               )}
             </ul>
           </div>
-
-          {/* Mostrar las cantidades de la receta */}
-          <div className="quantities">
-            <h3>Cantidades:</h3>
-            <ul>
-              {currentRecipe.cantidades && currentRecipe.cantidades.length > 0 ? (
-                currentRecipe.cantidades.map((cantidad, index) => (
-                  <li key={index}>{cantidad.cantidad} {cantidad.unidad}</li>
-                ))
-              ) : (
-                <p>No se encontraron cantidades para esta receta.</p>
-              )}
-            </ul>
-          </div>
         </div>
         <button onClick={handleNext} className="nav-button next-button-entrante">❯</button>
       </div>
-      <Link to="/" state={{ id_usuario: location.state.id_usuario }}>
+      <Link to="/" state={{ id_usuario: idUsuario }}>
         <button className="back-button-entrantes">Volver a Inicio</button>
       </Link>
     </div>
