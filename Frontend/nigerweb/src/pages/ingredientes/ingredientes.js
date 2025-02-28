@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './ingredientes.css';
 
+// Array que contiene las categorías de ingredientes y sus respectivos elementos con platos asociados.
 const ingredientes = [
   { categoria: 'Lácteos y derivados', items: [
       { nombre: 'Queso crema', platos: ['Tarta de queso'] },
@@ -78,6 +79,7 @@ const ingredientes = [
   ]}
 ];
 
+// Componente que renderiza la lista de ingredientes y sus platos asociados.
 const Ingredientes = () => {
   return (
     <div className="ingredientes-container">
