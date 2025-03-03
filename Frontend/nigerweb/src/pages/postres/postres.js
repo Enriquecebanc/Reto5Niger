@@ -233,6 +233,7 @@ const Postres = () => {
           </div>
 
           <textarea
+            className="comentarios-input"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="Escribe un comentario..."
