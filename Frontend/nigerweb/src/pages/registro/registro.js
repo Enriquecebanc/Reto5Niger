@@ -70,7 +70,7 @@ const Registro = () => {
             correo: email, // Asigna el correo electrónico
             contraseña: password, // Asigna la contraseña
             foto_perfil: parseInt(fotoPerfil), // Asegúrate de que foto_perfil sea un número entero
-          respuesta_pregunta_1: respuesta1, // Asigna la respuesta a la pregunta 1
+            respuesta_pregunta_1: respuesta1, // Asigna la respuesta a la pregunta 1
             respuesta_pregunta_2: respuesta2, // Asigna la respuesta a la pregunta 2
             respuesta_pregunta_3: respuesta3 // Asigna la respuesta a la pregunta 3
         };
