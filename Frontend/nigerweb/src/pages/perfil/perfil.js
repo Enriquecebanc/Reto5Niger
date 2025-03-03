@@ -177,21 +177,21 @@ const Perfil = ({ onLogout }) => {
                         <>{user.nombre_usuario} {/* Si no está en modo de edición, muestra el valor y un botón para editar */}
                          <button onClick={() => handleEditClick('nombre_usuario')}>Editar</button></>}
                 </p>
-                <p><strong>Respuesta 1:</strong>
+                <p><strong>¿Qué nombre tiene tu perro?:</strong>
                     {/* Si está en modo de edición, muestra un campo de entrada y un botón para guardar */}
                     {isEditing.respuesta_pregunta_1 ? 
                         <><input type="text" name="respuesta_pregunta_1" value={user.respuesta_pregunta_1} onChange={handleChange} /><button onClick={() => handleSaveClick('respuesta_pregunta_1')}>Guardar</button></> : 
                         <>{user.respuesta_pregunta_1} {/* Si no está en modo de edición, muestra el valor y un botón para editar */}
                         <button onClick={() => handleEditClick('respuesta_pregunta_1')}>Editar</button></>}
                 </p>
-                <p><strong>Respuesta 2:</strong>
+                <p><strong>¿Cuál es el nombre de tu padre?:</strong>
                     {/* Si está en modo de edición, muestra un campo de entrada y un botón para guardar */}
                     {isEditing.respuesta_pregunta_2 ? 
                         <><input type="text" name="respuesta_pregunta_2" value={user.respuesta_pregunta_2} onChange={handleChange} /><button onClick={() => handleSaveClick('respuesta_pregunta_2')}>Guardar</button></> : 
                         <>{user.respuesta_pregunta_2} {/* Si no está en modo de edición, muestra el valor y un botón para editar */}
                          <button onClick={() => handleEditClick('respuesta_pregunta_2')}>Editar</button></>}
                 </p>
-                <p><strong>Respuesta 3:</strong>
+                <p><strong>¿En qué año naciste?:</strong>
                     {/* Si está en modo de edición, muestra un campo de entrada y un botón para guardar */}
                     {isEditing.respuesta_pregunta_3 ? 
                         <><input type="text" name="respuesta_pregunta_3" value={user.respuesta_pregunta_3} onChange={handleChange} /><button onClick={() => handleSaveClick('respuesta_pregunta_3')}>Guardar</button></> : 
