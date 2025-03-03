@@ -15,6 +15,8 @@ const Entrantes = () => {
   const [newComment, setNewComment] = useState("");
   const [rating, setRating] = useState(5);
   const [postError, setPostError] = useState("");
+  const [userProfilePics, setUserProfilePics] = useState({}); 
+  const [userNames, setUserNames] = useState({}); // Para almacenar los nombres de usuario
 
   const location = useLocation();
 
@@ -54,7 +56,6 @@ const Entrantes = () => {
         headers: { Authorization: `Bearer Reto5Niger` },
       });
       setQuantities(response.data);
-      // Luego de obtener las cantidades, se obtiene el nombre de los ingredientes
       response.data.forEach((quantity) => {
         fetchIngredient(quantity.id_ingrediente, quantity.cantidad_ingrediente);
       });
@@ -85,8 +86,33 @@ const Entrantes = () => {
         headers: { Authorization: `Bearer Reto5Niger` },
       });
       setComments(response.data);
+      fetchUserProfilePics(response.data); 
     } catch (err) {
       setComments([]);
+    }
+  };
+
+  const fetchUserProfilePics = async (comments) => {
+    try {
+      const userPics = {};
+      const names = {}; // Para almacenar los nombres de usuario
+
+      for (const comment of comments) {
+        const response = await axios.get(`http://localhost:8000/usuarios/${comment.id_usuario}`, {
+          headers: { Authorization: `Bearer Reto5Niger` },
+        });
+
+        const photoNumber = response.data.foto_perfil;
+        userPics[comment.id_usuario] = require(`../../images/${photoNumber}.png`);
+        
+        // Asignamos el nombre del usuario
+        names[comment.id_usuario] = response.data.nombre_usuario;
+      }
+
+      setUserProfilePics(userPics);
+      setUserNames(names); // Guardamos los nombres de los usuarios
+    } catch (err) {
+      console.error("Error al obtener las fotos de perfil y nombres de usuario", err);
     }
   };
 
@@ -140,6 +166,12 @@ const Entrantes = () => {
   const handlePrev = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex - 1 + recipes.length) % recipes.length);
   };
+  
+    const handleRating = (newRating) => {
+      setRating(newRating);
+      // Aquí puedes añadir el código para guardar el valor en la bbdd
+      console.log('Valoración guardada:', newRating);
+    };
 
   if (loading) return <div className="loading">Cargando recetas...</div>;
   if (error) return <div className="error-message">{error}</div>;
@@ -156,7 +188,14 @@ const Entrantes = () => {
         <div className="recipe-content">
           <h2>{currentRecipe.nombre_receta}</h2>
           <img src={currentRecipe.imagen} alt={currentRecipe.nombre_receta} className="recipe-image" />
+          
+          {/* Título para la sección de Descripción */}
+          <h3>Descripción:</h3>
           <p>{currentRecipe.descripcion_breve}</p>
+          
+          {/* Título para la sección de Instrucciones */}
+          <h3>Instrucciones:</h3>
+          <p>{currentRecipe.instrucciones}</p>
         </div>
         <button onClick={handleNext} className="nav-button next-button-entrante">❯</button>
       </div>
@@ -184,11 +223,14 @@ const Entrantes = () => {
         <div className="comments-section">
           <h3>Comentarios ({comments.length})</h3>
 
-          <select value={rating} onChange={(e) => setRating(parseInt(e.target.value, 10))}>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <option key={star} value={star}>{star} Estrellas</option>
+          <div className="rating-stars">
+            {[...Array(rating)].map((_, starIndex) => (
+              <span key={starIndex} className="active" onClick={() => handleRating(starIndex + 1)}>⭐</span>
             ))}
-          </select>
+            {[...Array(5 - rating)].map((_, starIndex) => (
+              <span key={starIndex + rating} onClick={() => handleRating(rating + starIndex + 1)}>☆</span>
+            ))}
+          </div>
 
           <textarea
             value={newComment}
@@ -199,14 +241,33 @@ const Entrantes = () => {
           <button onClick={handleNewComment}>Enviar</button>
 
           {postError && <p className="error-message">{postError}</p>}
-
           <ul>
             {comments.map((comment, index) => (
-              <li key={index}>
-                <strong>{comment.usuario}:</strong> {comment.texto} ({comment.valoracion}⭐)
+              <li key={index} className="comment-item">
+                {/* Mostrar la foto de perfil del autor del comentario */}
+                {userProfilePics[comment.id_usuario] && (
+                  <img src={userProfilePics[comment.id_usuario]} alt="Foto de perfil" />
+                )}
+                {/* Mostrar el nombre del usuario */}
+                <div className="comment-text">
+                  <strong style={{ fontSize: "1.2em", fontWeight: "bold" }}>
+                    {userNames[comment.id_usuario] || "Nombre no disponible"}
+                  </strong>
+                  {` - ${comment.texto}`}
+                </div>
+                {/* Mostrar las estrellas según la valoración */}
+                <div className="rating-stars">
+                  {[...Array(comment.valoracion)].map((_, starIndex) => (
+                    <span key={starIndex} className="active">⭐</span>
+                  ))}
+                  {[...Array(5 - comment.valoracion)].map((_, starIndex) => (
+                    <span key={starIndex + comment.valoracion}>☆</span>
+                  ))}
+                </div>
               </li>
             ))}
           </ul>
+
         </div>
       </div>
 

@@ -1,15 +1,9 @@
-
-
-.platoprim-container {
+.platosec-container {
     text-align: center;
     padding: 20px;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* Mantiene los botones dentro del contenedor */
-    margin-bottom: 20px;
-}
-
-.recipe-item {
+  }
+  
+  .recipe-item {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -20,42 +14,42 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left;
     position: relative;
-}
-
-.recipe-content {
+    margin-bottom: 20px;
+  }
+  
+  .recipe-content {
     padding: 0 40px;
-}
-
-.recipe-item h2 {
+  }
+  
+  .recipe-item h2 {
     margin-top: 0;
     font-size: 1.5em;
-    color: #e74c3c;  /* Un rojo/naranja para primeros platos */
-}
-
-.recipe-item img {
+  }
+  
+  .recipe-item img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     margin-top: 10px;
-}
-
-.recipe-item p {
+  }
+  
+  .recipe-item p {
     margin: 10px 0 0;
     line-height: 1.6;
-}
-
-.recipe-item h3 {
+  }
+  
+  .recipe-item h3 {
     margin-top: 20px;
     font-size: 1.2em;
-    color: #f39c12; /* Un naranja para ingredientes/instrucciones */
-}
-
-.recipe-item ul, .recipe-item ol {
+  }
+  
+  .recipe-item ul,
+  .recipe-item ol {
     margin: 10px 0 0;
     padding-left: 20px;
-}
-
-.nav-button {
+  }
+  
+  .nav-button {
     background-color: #444;
     color: #fff;
     border: none;
@@ -66,21 +60,21 @@
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-}
-
-.prev-button-sec {
+  }
+  
+  .prev-button-entrante {
     left: 1%;
-}
-
-.next-button-sec {
+  }
+  
+  .next-button-entrante {
     right: 1%;
-}
-
-.nav-button:hover {
-    background-color: #c0392b; /* Oscurecer al pasar el ratón */
-}
-
-.back-button-segundo {
+  }
+  
+  .nav-button:hover {
+    background-color: #555;
+  }
+  
+  .back-button-entrantes {
     background-color: #444;
     color: #fff;
     border: none;
@@ -89,10 +83,116 @@
     border-radius: 4px;
     transition: background-color 0.3s ease;
     margin-top: 20px;
-    width: 42.3%;
+    width: 43%;
     margin-bottom: 20px;
-}
-
-.back-button:hover {
+  }
+  
+  .back-button:hover {
     background-color: #555;
-}
+  }
+  
+  .ingredients-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .ingredients-section li {
+    margin-bottom: 10px;
+  }
+  
+  .ingredients-section li span {
+    font-weight: bold;
+  }
+  
+  .comments-section {
+    margin-top: 40px;
+  }
+  
+  .comment-input-area {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    resize: vertical;
+  }
+  
+  .rating-stars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .rating-stars button {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .rating-stars button.active {
+    color: gold;
+  }
+  
+  .rating-stars button:hover {
+    color: #f39c12;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  
+  .comment-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .comment-item .comment-text {
+    font-size: 1.1em;
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .comment-item .comment-text strong {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #444;
+  }
+  
