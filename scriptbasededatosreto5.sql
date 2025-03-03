@@ -64,3 +64,11 @@ INSERT INTO `reto5`.`categorias` (`id_categoria`, `nombre_categoria`, `descripci
 INSERT INTO `reto5`.`categorias` (`id_categoria`, `nombre_categoria`, `descripcion`, `imagen`) VALUES ('2', 'Plato_Principal', 'Recetas sustanciosas y completas que suelen ser el eje central de la comida, como carnes, pescados o guisos.', 'No Image');
 INSERT INTO `reto5`.`categorias` (`id_categoria`, `nombre_categoria`, `descripcion`, `imagen`) VALUES ('3', 'Plato_Secundario', 'Opciones que complementan el plato principal, como pastas, arroces o preparaciones con verduras.', 'No Image');
 INSERT INTO `reto5`.`categorias` (`id_categoria`, `nombre_categoria`, `descripcion`, `imagen`) VALUES ('4', 'Postre', 'Dulces y delicias para cerrar la comida, como tartas, helados o flanes.', 'No Image');
+
+CREATE USER 'admin_reto5'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON reto5.* TO 'admin_reto5'@'localhost';
+
+CREATE USER 'looker_reto5'@'localhost' IDENTIFIED BY 'look';
+GRANT SELECT ON reto5.* TO 'looker_reto5'@'localhost';
+
+FLUSH PRIVILEGES;

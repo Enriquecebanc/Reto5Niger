@@ -74,7 +74,7 @@
 }
 
 .perfil-details p {
-    margin: 10px 0;
+    margin: 10px;
     text-align: center;
 }
 
@@ -85,8 +85,8 @@
 }
 
 .perfil-details button {
-    padding: 5px 10px;
-    float: right;
+    float: center;
+    margin-left: 20px;
 }
 
 .back-button {

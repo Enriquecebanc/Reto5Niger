@@ -240,8 +240,8 @@ input[type="text"] {
 
 .salir-button {
     position: absolute;
-    top: 35px;
-    right: 105px;
+    top: 20px;
+    right: 95px;
     background-color: #444;
     color: #fff;
     border: none;
@@ -259,8 +259,8 @@ input[type="text"] {
 
 .upload-recipe-button {
     position: absolute;
-    top: 35px;
-    right: 195px;
+    top: 20px;
+    right: 185px;
     background-color: #444;
     color: #fff;
     border: none;
@@ -345,8 +345,8 @@ input[type="text"] {
     }
     .salir-button {
         position: absolute;
-        top: 65px;
-        right: 11px;
+        top: 50px;
+        right: 7px;
         background-color: #444;
         color: #fff;
         border: none;
@@ -359,7 +359,7 @@ input[type="text"] {
         font-size: 0.5em;
     }
     .upload-recipe-button {
-        top: 20px;
+        top: 6px;
         right: 70px;
         font-size: 0.7em;
     }
@@ -385,7 +385,7 @@ input[type="text"] {
         width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
     }
     .upload-recipe-button {
-        top: 65px;
+        top: 50px;
         right: 70px;
         font-size: 0.5em;
     }
