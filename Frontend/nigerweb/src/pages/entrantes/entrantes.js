@@ -81,7 +81,7 @@ const Entrantes = () => {
 
   const fetchComments = async (id_receta) => {
     try {
-      const response = await axios.get(`http://localhost:8000/comentarios/${id_receta}`, {
+      const response = await axios.get(`http://localhost:8000/comentarios/receta/${id_receta}`, {
         headers: { Authorization: `Bearer Reto5Niger` },
       });
       setComments(response.data);
