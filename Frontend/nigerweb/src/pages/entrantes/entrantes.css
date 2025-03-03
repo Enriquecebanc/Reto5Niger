@@ -139,3 +139,7 @@ button:hover {
   font-size: 1.2em;
   margin-top: 10px;
 }
+
+.comentarios-input {
+  max-width: 95%;
+}

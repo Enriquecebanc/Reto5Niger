@@ -191,6 +191,7 @@ const Entrantes = () => {
           </select>
 
           <textarea
+            className="comentarios-input"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="Escribe un comentario..."
