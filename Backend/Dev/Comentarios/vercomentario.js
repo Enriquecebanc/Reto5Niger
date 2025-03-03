@@ -9,9 +9,9 @@ const STATIC_TOKEN = process.env.STATIC_TOKEN;
 console.log('STATIC_TOKEN:', STATIC_TOKEN); // Verificar que el token se haya cargado correctamente
 
 // Función para obtener un comentario por ID
-async function verComentario(id_comentario) {
+async function verComentario(id_receta) {
     try {
-        const response = await axios.get(`http://localhost:8000/comentarios/${id_comentario}`, {
+        const response = await axios.get(`http://localhost:8000/comentarios/receta/${id_receta}`, {
             headers: {
                 'Authorization': `Bearer ${STATIC_TOKEN}`,
             },
@@ -24,5 +24,5 @@ async function verComentario(id_comentario) {
 }
 
 // Llamar a la función para obtener el comentario
-const id_comentario = 1; // Reemplaza con el ID del comentario que deseas obtener
-verComentario(id_comentario);
+const id_receta = 38964747; // Reemplaza con el ID del comentario que deseas obtener
+verComentario(id_receta);

@@ -13,6 +13,14 @@ def get_comentario(id: str):
         raise HTTPException(status_code=404, detail="Comentario no encontrado")
     return result[0]
 
+@router.get("/comentarios/receta/{id_receta}", response_model=List[Comentario])
+def obtener_comentarios_por_receta(id_receta: str):
+    query = f"SELECT * FROM comentario WHERE id_receta = {id_receta}"
+    result = execute_query(query)
+    if not result:
+        raise HTTPException(status_code=404, detail="No hay comentarios para esta receta")
+    return result
+
 @router.post("/comentarios", response_model=Comentario)
 def crear_comentario(comentario: Comentario):
     # Verificar que el id_usuario y el id_receta existen en las tablas correspondientes
