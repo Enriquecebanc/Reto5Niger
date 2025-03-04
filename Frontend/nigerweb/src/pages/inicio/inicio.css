@@ -35,6 +35,7 @@ nav a:hover {
     position: relative;
     z-index: 1;
     margin-left: 5px;
+    margin-top: 0px;
     padding: 11px;
 }
 
@@ -150,6 +151,7 @@ input[type="text"] {
     justify-content: center;
     margin-top: 10px; /* Ajustar si es necesario */
     margin-bottom: 10px;
+    height:39px;
 }
 
 .navigation-links {
