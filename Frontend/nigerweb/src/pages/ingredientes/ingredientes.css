@@ -1,204 +1,68 @@
 .ingredientes-container {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .recipe-item {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    width: 80%;
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .recipe-content {
-    padding: 0 40px;
-  }
-  
-  .recipe-item h2 {
-    margin-top: 0;
-    font-size: 1.5em;
-  }
-  
-  .recipe-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 10px;
-  }
-  
-  .recipe-item p {
-    margin: 10px 0 0;
-    line-height: 1.6;
-  }
-  
-  .recipe-item h3 {
-    margin-top: 20px;
-    font-size: 1.2em;
-  }
-  
-  .recipe-item ul,
-  .recipe-item ol {
-    margin: 10px 0 0;
-    padding-left: 20px;
-  }
-  
-  .nav-button {
-    background-color: #444;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .prev-button-entrante {
-    left: 1%;
-  }
-  
-  .next-button-entrante {
-    right: 1%;
-  }
-  
-  .nav-button:hover {
-    background-color: #555;
-  }
-  
-  .back-button-entrantes {
-    background-color: #444;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-    width: 43%;
-    margin-bottom: 20px;
-  }
-  
-  .back-button:hover {
-    background-color: #555;
-  }
-  
-  .ingredients-section ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .ingredients-section li {
-    margin-bottom: 10px;
-  }
-  
-  .ingredients-section li span {
-    font-weight: bold;
-  }
-  
-  .comments-section {
-    margin-top: 40px; /* Aumenta el margen entre la sección de ingredientes y la de comentarios */
-  }
-  
-  .comment-input-area {
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    font-size: 1em;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    resize: vertical; /* Permite redimensionar verticalmente */
-  }
-  
-  .rating-stars {
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  .rating-stars span {
-    font-size: 1.5em;
-    color: #ccc;
-    cursor: pointer;
-  }
-  
-  .rating-stars span.active {
-    color: gold;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-  
-  button:hover {
-    background-color: #555;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 1.2em;
-    margin-top: 10px;
-  }
-  
-  .comment-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .comment-item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-bottom: 10px; /* Espacio entre la foto de perfil y el comentario */
-  }
-  
-  .comment-item .comment-text {
-    font-size: 1em;
-    margin: 10px 0;
-    line-height: 1.6;
-  }
-  
-  .comment-item .rating-stars {
-    margin-top: 5px;
-  }
-  
-  .rating-stars span {
-    font-size: 1.2em;
-    color: #ccc;
-  }
-  
-  .rating-stars span.active {
-    color: gold;
-  }
-  
-  .comment-user-name {
-    margin-top: 5px;
-    font-size: 1.1em; /* Hacer el nombre un poco más grande */
-    font-weight: bold; /* Poner el nombre en negrita */
-    color: #444;
-  }
-  
-  .comment-text strong {
-    font-weight: bold;
-    font-size: 1.2em;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0, 0, 0);
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.ingredientes-container h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.ingredientes-container p {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.categoria {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.categoria h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: left;
+  flex-grow: 1; /* Esto permite que el texto ocupe todo el espacio disponible a la izquierda */
+}
+
+.categoria p {
+  font-size: 1.1em;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.categoria img {
+  width: 100px; /* Ajusta el tamaño de la imagen */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-left: 15px; /* Espaciado entre el texto y la imagen */
+}
+
+.back-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background-color: #555;
+}
