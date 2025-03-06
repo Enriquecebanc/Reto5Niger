@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
+# Modelo de Usuarios, utilizado en las consultas e inserciones de su respectiva tabla.
+
 class Usuario(BaseModel):
     id_usuario: int
     nombre_usuario: str

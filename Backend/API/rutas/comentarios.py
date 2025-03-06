@@ -3,8 +3,10 @@ from typing import List
 from modelos.comentario import Comentario
 from database import execute_query, execute_query_commit
 
+# Crear un enrutador de FastAPI para manejar las rutas relacionadas con los comentarios
 router = APIRouter()
 
+# Ruta para obtener un comentario específico por id
 @router.get("/comentarios/{id}", response_model=Comentario)
 def get_comentario(id: str):
     query = f"SELECT * FROM comentario WHERE id_comentario = {id}"
@@ -13,6 +15,7 @@ def get_comentario(id: str):
         raise HTTPException(status_code=404, detail="Comentario no encontrado")
     return result[0]
 
+# Ruta para obtener todos los comentarios de una receta específica por id_receta
 @router.get("/comentarios/receta/{id_receta}", response_model=List[Comentario])
 def obtener_comentarios_por_receta(id_receta: str):
     query = f"SELECT * FROM comentario WHERE id_receta = {id_receta}"
@@ -21,6 +24,7 @@ def obtener_comentarios_por_receta(id_receta: str):
         raise HTTPException(status_code=404, detail="No hay comentarios para esta receta")
     return result
 
+# Ruta para crear un nuevo comentario
 @router.post("/comentarios", response_model=Comentario)
 def crear_comentario(comentario: Comentario):
     # Verificar que el id_usuario y el id_receta existen en las tablas correspondientes
@@ -40,12 +44,14 @@ def crear_comentario(comentario: Comentario):
     execute_query_commit(query)
     return comentario
 
+# Ruta para obtener todos los comentarios
 @router.get("/comentarios", response_model=List[Comentario])
 def obtener_comentarios():
     query = "SELECT * FROM comentario"
     result = execute_query(query)
     return result
 
+# Ruta para actualizar un comentario específico por id
 @router.put("/comentarios/{id}", response_model=Comentario)
 def actualizar_comentario(id: str, comentario_actualizado: Comentario):
     # Verificar que el id_usuario y el id_receta existen en las tablas correspondientes
@@ -65,6 +71,7 @@ def actualizar_comentario(id: str, comentario_actualizado: Comentario):
     execute_query_commit(query)
     return comentario_actualizado
 
+# Ruta para eliminar un comentario específico por id
 @router.delete("/comentarios/{id}")
 def eliminar_comentario(id: str):
     query = f"DELETE FROM comentario WHERE id_comentario = {id}"

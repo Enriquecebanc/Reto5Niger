@@ -1,6 +1,8 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
+# Modelo de Recetas, utilizado en las consultas e inserciones de su respectiva tabla.
+
 class Receta(BaseModel):
     id_receta: int
     id_usuario: int

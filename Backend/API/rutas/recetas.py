@@ -4,12 +4,15 @@ from modelos.receta import Receta
 from database import execute_query
 from database import execute_query_commit
 
+# Crear un enrutador de FastAPI para manejar las rutas relacionadas con las recetas
 router = APIRouter()
 
+# Ruta de prueba para verificar que el enrutador está funcionando
 @router.get("/print")
 def print_recetas():
     return {"message": "Recetas"}
 
+# Ruta para obtener una receta específica por id
 @router.get("/recetas/{id}", response_model=Receta)
 def get_receta(id: int):
     print(id)
@@ -19,6 +22,7 @@ def get_receta(id: int):
         raise HTTPException(status_code=404, detail="Receta no encontrada")
     return result[0]
 
+# Ruta para crear una nueva receta
 @router.post("/recetas", response_model=Receta)
 def crear_receta(receta: Receta):
     query = f"""
@@ -28,12 +32,14 @@ def crear_receta(receta: Receta):
     execute_query_commit(query)
     return receta
 
+# Ruta para obtener todas las recetas
 @router.get("/recetas", response_model=List[Receta])
 def obtener_recetas():
     query = "SELECT * FROM receta"
     result = execute_query(query)
     return result
 
+# Ruta para actualizar una receta específica por id
 @router.put("/recetas/{id}", response_model=Receta)
 def actualizar_receta(id: str, receta_actualizada: Receta):
     query = f"""
@@ -43,12 +49,14 @@ def actualizar_receta(id: str, receta_actualizada: Receta):
     execute_query_commit(query)
     return receta_actualizada
 
+# Ruta para eliminar una receta específica por id
 @router.delete("/recetas/{id}")
 def eliminar_receta(id: int):
     query = f"DELETE FROM receta WHERE id_receta = {id}"
     execute_query_commit(query)
     return {"message": "Receta eliminada exitosamente"}
 
+# Ruta para obtener todas las recetas de una categoría específica por id_categoria
 @router.get("/recetas/categoria/{categoria}", response_model=List[Receta])
 def obtener_recetas_por_categoria(categoria: int):
     # Obtener las recetas por categoría
