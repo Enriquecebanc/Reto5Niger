@@ -3,21 +3,25 @@ import { Link } from 'react-router-dom';
 import './panelAdmin.css';
 
 const AdminPanel = () => {
+  // Definición de estados para manejar los datos de receta, categoría, ingrediente y usuario
   const [receta, setReceta] = useState({ nombre: '', instrucciones: '', tiempo: '', personas: '', cantidad_ingredientes: '', imagen: '', id_ingredientes: '', id_categoria: '', id_comentarios: '', descripcion: '' });
   const [categoria, setCategoria] = useState({ nombre: '', descripcion: '', imagen: '' });
   const [ingrediente, setIngrediente] = useState({ nombre: '', descripcion: '', imagen: '' });
   const [usuario, setUsuario] = useState({ nombre: '', correo: '', contraseña: '', foto_perfil: '' });
 
+  // Definición de estados para mostrar u ocultar las secciones de receta, categoría, ingrediente y usuario
   const [showReceta, setShowReceta] = useState(false);
   const [showCategoria, setShowCategoria] = useState(false);
   const [showIngrediente, setShowIngrediente] = useState(false);
   const [showUsuario, setShowUsuario] = useState(false);
 
+  // Funciones para manejar los cambios en los formularios
   const handleRecetaChange = (e) => setReceta({ ...receta, [e.target.name]: e.target.value });
   const handleCategoriaChange = (e) => setCategoria({ ...categoria, [e.target.name]: e.target.value });
   const handleIngredienteChange = (e) => setIngrediente({ ...ingrediente, [e.target.name]: e.target.value });
   const handleUsuarioChange = (e) => setUsuario({ ...usuario, [e.target.name]: e.target.value });
 
+  // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -48,6 +52,7 @@ const AdminPanel = () => {
         <button className="back-button">Volver a Inicio</button>
       </Link>
 
+      {/* Sección para gestionar recetas */}
       <div className="section">
         <button onClick={() => { setShowReceta(true); setShowCategoria(false); setShowIngrediente(false); setShowUsuario(false); }} className="toggle-button">Recetas</button>
         {showReceta && (
@@ -68,6 +73,7 @@ const AdminPanel = () => {
         )}
       </div>
 
+      {/* Sección para gestionar categorías */}
       <div className="section">
         <button onClick={() => { setShowReceta(false); setShowCategoria(true); setShowIngrediente(false); setShowUsuario(false); }} className="toggle-button">Categorías</button>
         {showCategoria && (
@@ -81,6 +87,7 @@ const AdminPanel = () => {
         )}
       </div>
 
+      {/* Sección para gestionar ingredientes */}
       <div className="section">
         <button onClick={() => { setShowReceta(false); setShowCategoria(false); setShowIngrediente(true); setShowUsuario(false); }} className="toggle-button">Ingredientes</button>
         {showIngrediente && (
@@ -94,6 +101,7 @@ const AdminPanel = () => {
         )}
       </div>
 
+      {/* Sección para gestionar usuarios */}
       <div className="section">
         <button onClick={() => { setShowReceta(false); setShowCategoria(false); setShowIngrediente(false); setShowUsuario(true); }} className="toggle-button">Usuarios</button>
         {showUsuario && (

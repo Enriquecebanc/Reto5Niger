@@ -3,8 +3,10 @@ from typing import List
 from modelos.categoria import Categoria
 from database import execute_query, execute_query_commit
 
+# Crear un enrutador de FastAPI para manejar las rutas relacionadas con las categorías
 router = APIRouter()
 
+# Ruta para obtener una categoría específica por id
 @router.get("/categorias/{id}", response_model=Categoria)
 def get_categoria(id: str):
     query = f"SELECT * FROM categorias WHERE id_categoria = {id}"
@@ -13,6 +15,7 @@ def get_categoria(id: str):
         raise HTTPException(status_code=404, detail="Categoría no encontrada")
     return result[0]
 
+# Ruta para crear una nueva categoría
 @router.post("/categorias", response_model=Categoria)
 def crear_categoria(categoria: Categoria):
     query = f"""
@@ -22,12 +25,14 @@ def crear_categoria(categoria: Categoria):
     execute_query_commit(query)
     return categoria
 
+# Ruta para obtener todas las categorías
 @router.get("/categorias", response_model=List[Categoria])
 def obtener_categorias():
     query = "SELECT * FROM categorias"
     result = execute_query(query)
     return result
 
+# Ruta para actualizar una categoría específica por id
 @router.put("/categorias/{id}", response_model=Categoria)
 def actualizar_categoria(id: str, categoria_actualizada: Categoria):
     query = f"""
@@ -37,6 +42,7 @@ def actualizar_categoria(id: str, categoria_actualizada: Categoria):
     execute_query_commit(query)
     return categoria_actualizada
 
+# Ruta para eliminar una categoría específica por id
 @router.delete("/categorias/{id}")
 def eliminar_categoria(id: str):
     query = f"DELETE FROM categorias WHERE id_categoria = {id}"

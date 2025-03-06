@@ -6,7 +6,7 @@ import "./entrantes.css";
 
 // Definir el componente Entrantes
 const Entrantes = () => {
-  // Definir variables de estado
+  // Definición de estados para manejar datos y estados de la aplicación
   const [recipes, setRecipes] = useState([]);
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -24,14 +24,14 @@ const Entrantes = () => {
   // Obtener el objeto location de react-router-dom
   const location = useLocation();
 
-  // Efecto para establecer el ID del usuario desde el estado de la ubicación
+  // useEffect para obtener el id del usuario desde la ubicación
   useEffect(() => {
     if (location.state && location.state.id_usuario) {
       setIdUsuario(location.state.id_usuario);
     }
   }, [location]);
 
-  // Efecto para obtener recetas de la API
+  // useEffect para obtener las recetas desde el servidor
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -48,7 +48,7 @@ const Entrantes = () => {
     fetchRecipes();
   }, []);
 
-  // Efecto para obtener cantidades y comentarios de la receta actual
+  // useEffect para obtener cantidades e ingredientes de la receta actual
   useEffect(() => {
     if (recipes.length > 0) {
       const currentRecipe = recipes[currentRecipeIndex];
@@ -57,7 +57,7 @@ const Entrantes = () => {
     }
   }, [currentRecipeIndex, recipes]);
 
-  // Función para obtener cantidades de una receta
+  // Función para obtener las cantidades de ingredientes de una receta
   const fetchQuantities = async (id_receta) => {
     try {
       const response = await axios.get(`http://localhost:8000/cantidades/${id_receta}`, {
@@ -72,7 +72,7 @@ const Entrantes = () => {
     }
   };
 
-  // Función para obtener detalles de un ingrediente
+  // Función para obtener los detalles de un ingrediente
   const fetchIngredient = async (id_ingrediente, cantidad_ingrediente) => {
     try {
       if (!ingredients[id_ingrediente]) {
@@ -89,20 +89,20 @@ const Entrantes = () => {
     }
   };
 
-  // Función para obtener comentarios de una receta
+  // Función para obtener los comentarios de una receta
   const fetchComments = async (id_receta) => {
     try {
       const response = await axios.get(`http://localhost:8000/comentarios/receta/${id_receta}`, {
         headers: { Authorization: `Bearer Reto5Niger` },
       });
       setComments(response.data);
-      fetchUserProfilePics(response.data); 
+      fetchUserProfilePics(response.data);
     } catch (err) {
       setComments([]);
     }
   };
 
-  // Función para obtener fotos de perfil de los usuarios que comentaron
+  // Función para obtener las fotos de perfil y nombres de usuario de los comentarios
   const fetchUserProfilePics = async (comments) => {
     try {
       const userPics = {};
@@ -115,7 +115,7 @@ const Entrantes = () => {
 
         const photoNumber = response.data.foto_perfil;
         userPics[comment.id_usuario] = require(`../../images/${photoNumber}.png`);
-        
+
         // Asignamos el nombre del usuario
         names[comment.id_usuario] = response.data.nombre_usuario;
       }
@@ -127,7 +127,7 @@ const Entrantes = () => {
     }
   };
 
-  // Función para generar un ID de comentario
+  // Función para generar un ID de comentario aleatorio
   const generateComentarioId = () => {
     return `${Math.floor(Math.random() * 10000)}`;
   };
@@ -173,23 +173,25 @@ const Entrantes = () => {
   };
 
   // Función para manejar la navegación a la siguiente receta
+  // Función para manejar la navegación a la siguiente receta
   const handleNext = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex + 1) % recipes.length);
   };
 
   // Función para manejar la navegación a la receta anterior
+  // Función para manejar la navegación a la receta anterior
   const handlePrev = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex - 1 + recipes.length) % recipes.length);
   };
-  
-  // Función para manejar la valoración
+
+  // Función para manejar la valoración de la receta
   const handleRating = (newRating) => {
     setRating(newRating);
     // Aquí puedes añadir el código para guardar el valor en la bbdd
     console.log('Valoración guardada:', newRating);
   };
 
-  // Mostrar un mensaje de carga mientras se obtienen las recetas
+  // Renderizado condicional basado en el estado de carga y error
   if (loading) return <div className="loading">Cargando recetas...</div>;
   // Mostrar un mensaje de error si ocurre un error al obtener las recetas
   if (error) return <div className="error-message">{error}</div>;
