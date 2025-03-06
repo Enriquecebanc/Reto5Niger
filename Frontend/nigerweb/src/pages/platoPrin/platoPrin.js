@@ -4,6 +4,7 @@ import axios from 'axios';
 import './platoPrin.css';
 
 const PrimerosPlatos = () => {
+  // Definición de estados para manejar datos y estados de la aplicación
   const [recipes, setRecipes] = useState([]);
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -20,12 +21,14 @@ const PrimerosPlatos = () => {
 
   const location = useLocation();
 
+  // useEffect para obtener el id del usuario desde la ubicación
   useEffect(() => {
     if (location.state && location.state.id_usuario) {
       setIdUsuario(location.state.id_usuario);
     }
   }, [location]);
 
+  // useEffect para obtener las recetas desde el servidor
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -42,6 +45,7 @@ const PrimerosPlatos = () => {
     fetchRecipes();
   }, []);
 
+  // useEffect para obtener cantidades e ingredientes de la receta actual
   useEffect(() => {
     if (recipes.length > 0) {
       const currentRecipe = recipes[currentRecipeIndex];
@@ -50,6 +54,7 @@ const PrimerosPlatos = () => {
     }
   }, [currentRecipeIndex, recipes]);
 
+  // Función para obtener las cantidades de ingredientes de una receta
   const fetchQuantities = async (id_receta) => {
     try {
       const response = await axios.get(`http://localhost:8000/cantidades/${id_receta}`, {
@@ -64,6 +69,7 @@ const PrimerosPlatos = () => {
     }
   };
 
+  // Función para obtener los detalles de un ingrediente
   const fetchIngredient = async (id_ingrediente, cantidad_ingrediente) => {
     try {
       if (!ingredients[id_ingrediente]) {
@@ -80,6 +86,7 @@ const PrimerosPlatos = () => {
     }
   };
 
+  // Función para obtener los comentarios de una receta
   const fetchComments = async (id_receta) => {
     try {
       const response = await axios.get(`http://localhost:8000/comentarios/receta/${id_receta}`, {
@@ -92,6 +99,7 @@ const PrimerosPlatos = () => {
     }
   };
 
+  // Función para obtener las fotos de perfil y nombres de usuario de los comentarios
   const fetchUserProfilePics = async (comments) => {
     try {
       const userPics = {};
@@ -116,10 +124,12 @@ const PrimerosPlatos = () => {
     }
   };
 
+  // Función para generar un ID de comentario aleatorio
   const generateComentarioId = () => {
     return `${Math.floor(Math.random() * 10000)}`;
   };
 
+  // Función para manejar el envío de un nuevo comentario
   const handleNewComment = async () => {
     setPostError("");
 
@@ -159,20 +169,24 @@ const PrimerosPlatos = () => {
     }
   };
 
+  // Función para manejar la navegación a la siguiente receta
   const handleNext = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex + 1) % recipes.length);
   };
 
+  // Función para manejar la navegación a la receta anterior
   const handlePrev = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex - 1 + recipes.length) % recipes.length);
   };
   
-    const handleRating = (newRating) => {
-      setRating(newRating);
-      // Aquí puedes añadir el código para guardar el valor en la bbdd
-      console.log('Valoración guardada:', newRating);
-    };
+  // Función para manejar la valoración de la receta
+  const handleRating = (newRating) => {
+    setRating(newRating);
+    // Aquí puedes añadir el código para guardar el valor en la bbdd
+    console.log('Valoración guardada:', newRating);
+  };
 
+  // Renderizado condicional basado en el estado de carga y error
   if (loading) return <div className="loading">Cargando recetas...</div>;
   if (error) return <div className="error-message">{error}</div>;
 

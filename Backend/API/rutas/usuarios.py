@@ -15,6 +15,7 @@ def get_usuario(id: str):
 
 @router.post("/usuarios", response_model=Usuario)
 def crear_usuario(usuario: Usuario):
+    print(usuario)
     query = f"""
     INSERT INTO usuario (id_usuario, nombre_usuario, correo, contraseña, foto_perfil, respuesta_pregunta_1, respuesta_pregunta_2, respuesta_pregunta_3)
     VALUES ({usuario.id_usuario}, '{usuario.nombre_usuario}', '{usuario.correo}', '{usuario.contraseña}', '{usuario.foto_perfil}', '{usuario.respuesta_pregunta_1}', '{usuario.respuesta_pregunta_2}', '{usuario.respuesta_pregunta_3}')
