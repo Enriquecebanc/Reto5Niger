@@ -1,9 +1,12 @@
+// Importar los módulos y componentes necesarios de React, react-router-dom y axios
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./entrantes.css";
 
+// Definir el componente Entrantes
 const Entrantes = () => {
+  // Definir variables de estado
   const [recipes, setRecipes] = useState([]);
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -15,17 +18,20 @@ const Entrantes = () => {
   const [newComment, setNewComment] = useState("");
   const [rating, setRating] = useState(5);
   const [postError, setPostError] = useState("");
-  const [userProfilePics, setUserProfilePics] = useState({}); 
+  const [userProfilePics, setUserProfilePics] = useState({});
   const [userNames, setUserNames] = useState({}); // Para almacenar los nombres de usuario
 
+  // Obtener el objeto location de react-router-dom
   const location = useLocation();
 
+  // Efecto para establecer el ID del usuario desde el estado de la ubicación
   useEffect(() => {
     if (location.state && location.state.id_usuario) {
       setIdUsuario(location.state.id_usuario);
     }
   }, [location]);
 
+  // Efecto para obtener recetas de la API
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -42,6 +48,7 @@ const Entrantes = () => {
     fetchRecipes();
   }, []);
 
+  // Efecto para obtener cantidades y comentarios de la receta actual
   useEffect(() => {
     if (recipes.length > 0) {
       const currentRecipe = recipes[currentRecipeIndex];
@@ -50,6 +57,7 @@ const Entrantes = () => {
     }
   }, [currentRecipeIndex, recipes]);
 
+  // Función para obtener cantidades de una receta
   const fetchQuantities = async (id_receta) => {
     try {
       const response = await axios.get(`http://localhost:8000/cantidades/${id_receta}`, {
@@ -64,6 +72,7 @@ const Entrantes = () => {
     }
   };
 
+  // Función para obtener detalles de un ingrediente
   const fetchIngredient = async (id_ingrediente, cantidad_ingrediente) => {
     try {
       if (!ingredients[id_ingrediente]) {
@@ -80,6 +89,7 @@ const Entrantes = () => {
     }
   };
 
+  // Función para obtener comentarios de una receta
   const fetchComments = async (id_receta) => {
     try {
       const response = await axios.get(`http://localhost:8000/comentarios/receta/${id_receta}`, {
@@ -92,6 +102,7 @@ const Entrantes = () => {
     }
   };
 
+  // Función para obtener fotos de perfil de los usuarios que comentaron
   const fetchUserProfilePics = async (comments) => {
     try {
       const userPics = {};
@@ -116,10 +127,12 @@ const Entrantes = () => {
     }
   };
 
+  // Función para generar un ID de comentario
   const generateComentarioId = () => {
     return `${Math.floor(Math.random() * 10000)}`;
   };
 
+  // Función para manejar el envío de un nuevo comentario
   const handleNewComment = async () => {
     setPostError("");
 
@@ -159,25 +172,32 @@ const Entrantes = () => {
     }
   };
 
+  // Función para manejar la navegación a la siguiente receta
   const handleNext = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex + 1) % recipes.length);
   };
 
+  // Función para manejar la navegación a la receta anterior
   const handlePrev = () => {
     setCurrentRecipeIndex((prevIndex) => (prevIndex - 1 + recipes.length) % recipes.length);
   };
   
-    const handleRating = (newRating) => {
-      setRating(newRating);
-      // Aquí puedes añadir el código para guardar el valor en la bbdd
-      console.log('Valoración guardada:', newRating);
-    };
+  // Función para manejar la valoración
+  const handleRating = (newRating) => {
+    setRating(newRating);
+    // Aquí puedes añadir el código para guardar el valor en la bbdd
+    console.log('Valoración guardada:', newRating);
+  };
 
+  // Mostrar un mensaje de carga mientras se obtienen las recetas
   if (loading) return <div className="loading">Cargando recetas...</div>;
+  // Mostrar un mensaje de error si ocurre un error al obtener las recetas
   if (error) return <div className="error-message">{error}</div>;
 
+  // Obtener la receta actual
   const currentRecipe = recipes[currentRecipeIndex];
 
+  // Renderizar el componente
   return (
     <div className="entrantes-container">
       <h1>Entrantes</h1>
@@ -279,4 +299,5 @@ const Entrantes = () => {
   );
 };
 
+// Exportar el componente Entrantes
 export default Entrantes;
