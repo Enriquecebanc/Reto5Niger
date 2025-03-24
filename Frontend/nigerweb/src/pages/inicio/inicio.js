@@ -51,6 +51,15 @@ const Inicio = ({ user, onLogout }) => {
     // Rutas para las diferentes categorías de recetas.
     const categoryRoutes = ['/entrantes', '/platoPrin', '/platoSec', '/postres'];
 
+    const handleExport = () => {
+        navigate('/exportar', { state: { id_usuario: idUsuario } });
+    };
+
+    const handleImport = () => {
+        navigate('/importar', { state: { id_usuario: idUsuario } });
+    };
+
+
     return (
         <div className="inicio-container">
             <div className="header-inicio">
@@ -86,6 +95,11 @@ const Inicio = ({ user, onLogout }) => {
                 <Link to="/ingredientes" state={{ id_usuario: idUsuario }}>
                     <button className="search-button">Ingredientes</button>
                 </Link>
+            </div>
+            {/* Botones de exportar e importar */}
+            <div className="import-export-container">
+                <button className="import-button" onClick={handleImport}>Importar Datos</button>
+                <button className="export-button" onClick={handleExport}>Exportar Datos</button>
             </div>
             <div className="recipes-list">
                 {/* Listado de categorías con botones para ver recetas */}

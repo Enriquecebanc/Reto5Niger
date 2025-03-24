@@ -14,6 +14,10 @@ import Registro from './pages/registro/registro';
 import Opiniones from './pages/opiniones/opiniones';
 import Perfil from './pages/perfil/perfil';
 import SubirReceta from './pages/subirReceta/subirReceta';
+import Exportar from './pages/exportar/exportar';
+import Importar from './pages/importar/importar';
+
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -57,6 +61,8 @@ function App() {
               <Route path="/opiniones" element={<Opiniones />} />
               <Route path="/perfil" element={<Perfil onLogout={handleLogout} />} />
               <Route path="/subirReceta" element={<SubirReceta />} />
+              <Route path="/exportar" element={<Exportar />} />
+              <Route path="/importar" element={<Importar />} />
             </>
           )}
         </Routes>
