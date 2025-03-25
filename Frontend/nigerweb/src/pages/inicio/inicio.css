@@ -249,7 +249,7 @@ input[type="text"] {
     background-color: #444;
     color: #fff;
     border: none;
-    padding: 10px 2px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: flex;
@@ -264,7 +264,7 @@ input[type="text"] {
 .upload-recipe-button {
     position: absolute;
     top: 20px;
-    right: 185px;
+    right: 220px;
     background-color: #444;
     color: #fff;
     border: none;
@@ -440,7 +440,7 @@ input[type="text"] {
 .import-button {
     position: absolute;
     top: 20px;
-    right: 442px;
+    right: 477px;
     background-color: #444;
     color: #fff;
     border: none;
@@ -452,7 +452,7 @@ input[type="text"] {
 .export-button{
     position: absolute;
     top: 20px;
-    right: 308px;
+    right: 342px;
     background-color: #444;
     color: #fff;
     border: none;
