@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './inicio.css';
-import logoImage from '../../images/NigerLogo.jpg';
+import LogoActalizadoImage from '../../images/LogoActalizado.jpg';
 import '../../App.js';
 import Tenedor from '../../iconos/Tenedor.png';
 import Cuchillo from '../../iconos/Cuchillo.png';
@@ -64,13 +64,18 @@ const Inicio = ({ user, onLogout }) => {
         <div className="inicio-container">
             <div className="header-inicio">
                 {/* Logo y mensaje de bienvenida */}
-                <img src={logoImage} alt="Logo" className="logo-image" />
+                <img src={LogoActalizadoImage} alt="Logo" className="logo-image" />
                 <h1>¡Bienvenido a Recetas Niger!</h1>
                 {idUsuario && (
                     <Link to="/subirReceta" state={{ id_usuario: idUsuario }}>
                         <button className="upload-recipe-button">Subir Receta</button>
                     </Link>
                 )}
+                {/* Botones de exportar e importar */}
+            <div className="import-export-container">
+                <button className="import-button" onClick={handleImport}>Importar Datos</button>
+                <button className="export-button" onClick={handleExport}>Exportar Datos</button>
+            </div>
             </div>
             <div className="perfil">
                 {/* Imagen de perfil o botón para navegar al perfil */}
@@ -96,11 +101,7 @@ const Inicio = ({ user, onLogout }) => {
                     <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
-            {/* Botones de exportar e importar */}
-            <div className="import-export-container">
-                <button className="import-button" onClick={handleImport}>Importar Datos</button>
-                <button className="export-button" onClick={handleExport}>Exportar Datos</button>
-            </div>
+            
             <div className="recipes-list">
                 {/* Listado de categorías con botones para ver recetas */}
                 {recipesCategories.map((category, index) => (
