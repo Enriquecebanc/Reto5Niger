@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -131,11 +133,11 @@ input[type="text"] {
 }
 
 .logo-image {
-    max-width: 75px;
+    max-width: 95px;
     margin: 20px 20px 20px 20px;
     margin-top: 20px;
-    border-radius: 75%; 
-    border: 3px solid;  
+    border-radius: 70%; 
+    border: 0px solid;  
     border-color: #ff7434;
     float: left;
 }
@@ -192,7 +194,7 @@ input[type="text"] {
     font-size: 2.5em;
     text-align: left;
     padding: 20px 0;
-    font-family: Garamond, serif;
+    font-family: 'Montserrat', sans-serif;
     color: #ffeddc;
 }
 

@@ -47,4 +47,4 @@ def actualizar_categoria(id: str, categoria_actualizada: Categoria):
 def eliminar_categoria(id: str):
     query = f"DELETE FROM categorias WHERE id_categoria = {id}"
     execute_query_commit(query)
-    return {"message": "Categoría eliminada exitosamente"}
+    return {"message": "Categoría eliminada exitosamente"} 
