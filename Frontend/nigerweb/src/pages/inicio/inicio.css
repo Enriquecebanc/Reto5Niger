@@ -352,7 +352,7 @@ input[type="text"] {
         background-color: #444;
         color: #fff;
         border: none;
-        padding: 10px 2px;
+        padding: 10px 20px;
         cursor: pointer;
         transition: background-color 0.3s ease;
         display: flex;
@@ -435,17 +435,28 @@ input[type="text"] {
 }
 
 /* Estilos para los botones de importar y exportar */
-.import-button, .export-button {
-    background-color: #f19500; /* Color azul */
-    color: white; /* Texto blanco */
-    border: none; /* Sin borde */
-    padding: 10px 20px; /* Espacio interior */
-    margin: 0 10px; /* Espacio entre los botones */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s ease; /* Transición suave */
+.import-button {
+    position: absolute;
+    top: 20px;
+    right: 442px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.export-button{
+    position: absolute;
+    top: 20px;
+    right: 308px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
 
-.import-button:hover, .export-button:hover {
-    background-color: #f3df00; /* Color azul más oscuro al pasar el mouse */
-}

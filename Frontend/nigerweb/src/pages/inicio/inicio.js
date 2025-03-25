@@ -71,6 +71,11 @@ const Inicio = ({ user, onLogout }) => {
                         <button className="upload-recipe-button">Subir Receta</button>
                     </Link>
                 )}
+                {/* Botones de exportar e importar */}
+            <div className="import-export-container">
+                <button className="import-button" onClick={handleImport}>Importar Datos</button>
+                <button className="export-button" onClick={handleExport}>Exportar Datos</button>
+            </div>
             </div>
             <div className="perfil">
                 {/* Imagen de perfil o botón para navegar al perfil */}
@@ -96,11 +101,7 @@ const Inicio = ({ user, onLogout }) => {
                     <button className="search-button">Ingredientes</button>
                 </Link>
             </div>
-            {/* Botones de exportar e importar */}
-            <div className="import-export-container">
-                <button className="import-button" onClick={handleImport}>Importar Datos</button>
-                <button className="export-button" onClick={handleExport}>Exportar Datos</button>
-            </div>
+            
             <div className="recipes-list">
                 {/* Listado de categorías con botones para ver recetas */}
                 {recipesCategories.map((category, index) => (
