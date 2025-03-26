@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'; // Importa React, useState y useEffect
-import { Link, useLocation } from 'react-router-dom'; // Importa Link y useLocation de react-router-dom
-import axios from 'axios'; // Importa axios para las peticiones HTTP
-import './exportar.css'; // Importa los estilos CSS
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import './exportar.css';
 
-// Componente funcional Exportar
 const Exportar = () => {
-    // Estado para almacenar el id del usuario
     const [idUsuario, setIdUsuario] = useState(null);
     const [usuarios, setUsuarios] = useState([]);
     const [categorias, setCategorias] = useState([]);
@@ -22,33 +20,24 @@ const Exportar = () => {
     const [platosSecundarios, setPlatosSecundarios] = useState([]);
     const [postres, setPostres] = useState([]);
 
-    // Obtener el objeto location de react-router-dom
     const location = useLocation();
 
-    // useEffect para obtener el id del usuario desde la ubicación
     useEffect(() => {
         if (location.state && location.state.id_usuario) {
             setIdUsuario(location.state.id_usuario);
         }
     }, [location]);
 
-    // useEffect para obtener los datos desde el servidor
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const usuariosResponse = await axios.get("http://localhost:8000/usuarios", {
-                    headers: { Authorization: `Bearer Reto5Niger` },
-                });
+                const usuariosResponse = await axios.get("http://localhost:8000/usuarios");
                 setUsuarios(usuariosResponse.data);
 
-                const categoriasResponse = await axios.get("http://localhost:8000/categorias", {
-                    headers: { Authorization: `Bearer Reto5Niger` },
-                });
+                const categoriasResponse = await axios.get("http://localhost:8000/categorias");
                 setCategorias(categoriasResponse.data);
 
-                const ingredientesResponse = await axios.get("http://localhost:8000/ingredientes", {
-                    headers: { Authorization: `Bearer Reto5Niger` },
-                });
+                const ingredientesResponse = await axios.get("http://localhost:8000/ingredientes");
                 setIngredientes(ingredientesResponse.data);
             } catch (err) {
                 console.error("Error al obtener los datos", err);
@@ -57,35 +46,21 @@ const Exportar = () => {
         fetchData();
     }, []);
 
-    // Función para exportar datos específicos
-    const handleExport = (data, type) => {
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${type}.json`;
-        a.click();
-        URL.revokeObjectURL(url);
-    };
-
-    // Función para obtener recetas de una categoría específica
     const handleFetchRecetas = async (categoriaId, setRecetas) => {
         try {
-            const response = await axios.get(`http://localhost:8000/recetas/categoria/${categoriaId}`, {
-                headers: { Authorization: `Bearer Reto5Niger` },
-            });
+            const response = await axios.get(`http://localhost:8000/recetas/categoria/${categoriaId}`);
             setRecetas(response.data);
         } catch (err) {
             console.error(`Error al obtener las recetas de la categoría ${categoriaId}`, err);
         }
     };
 
-    // Renderiza el componente
     return (
         <div className="exportar-container">
             <h1>Exportar Datos</h1>
-            <p>Esta es una página sencilla para exportar datos.</p>
+            <p>Selecciona los datos que deseas exportar:</p>
 
+            {/* Sección de Usuarios */}
             <div className="exportar-section">
                 <button onClick={() => setShowUsuarios(!showUsuarios)} className="toggle-button">
                     {showUsuarios ? "▼ Ocultar Usuarios" : "► Mostrar Usuarios"}
@@ -97,9 +72,6 @@ const Exportar = () => {
                             {usuarios.map((usuario) => (
                                 <li key={usuario.id_usuario}>
                                     {usuario.nombre_usuario}
-                                    <button onClick={() => handleExport(usuario, `usuario_${usuario.id_usuario}`)}>
-                                        <i className="fas fa-download"></i>
-                                    </button>
                                 </li>
                             ))}
                         </ul>
@@ -107,6 +79,7 @@ const Exportar = () => {
                 )}
             </div>
 
+            {/* Sección de Categorías */}
             <div className="exportar-section">
                 <button onClick={() => setShowCategorias(!showCategorias)} className="toggle-button">
                     {showCategorias ? "▼ Ocultar Categorías" : "► Mostrar Categorías"}
@@ -124,9 +97,6 @@ const Exportar = () => {
                                         {entrantes.map((receta) => (
                                             <li key={receta.id_receta}>
                                                 {receta.nombre_receta}
-                                                <button onClick={() => handleExport(receta, `entrante_${receta.id_receta}`)}>
-                                                    <i className="fas fa-download"></i>
-                                                </button>
                                             </li>
                                         ))}
                                     </ul>
@@ -141,9 +111,6 @@ const Exportar = () => {
                                         {platosPrincipales.map((receta) => (
                                             <li key={receta.id_receta}>
                                                 {receta.nombre_receta}
-                                                <button onClick={() => handleExport(receta, `plato_principal_${receta.id_receta}`)}>
-                                                    <i className="fas fa-download"></i>
-                                                </button>
                                             </li>
                                         ))}
                                     </ul>
@@ -158,9 +125,6 @@ const Exportar = () => {
                                         {platosSecundarios.map((receta) => (
                                             <li key={receta.id_receta}>
                                                 {receta.nombre_receta}
-                                                <button onClick={() => handleExport(receta, `plato_secundario_${receta.id_receta}`)}>
-                                                    <i className="fas fa-download"></i>
-                                                </button>
                                             </li>
                                         ))}
                                     </ul>
@@ -175,9 +139,6 @@ const Exportar = () => {
                                         {postres.map((receta) => (
                                             <li key={receta.id_receta}>
                                                 {receta.nombre_receta}
-                                                <button onClick={() => handleExport(receta, `postre_${receta.id_receta}`)}>
-                                                    <i className="fas fa-download"></i>
-                                                </button>
                                             </li>
                                         ))}
                                     </ul>
@@ -188,6 +149,7 @@ const Exportar = () => {
                 )}
             </div>
 
+            {/* Sección de Ingredientes */}
             <div className="exportar-section">
                 <button onClick={() => setShowIngredientes(!showIngredientes)} className="toggle-button">
                     {showIngredientes ? "▼ Ocultar Ingredientes" : "► Mostrar Ingredientes"}
@@ -199,9 +161,6 @@ const Exportar = () => {
                             {ingredientes.map((ingrediente) => (
                                 <li key={ingrediente.id_ingrediente}>
                                     {ingrediente.nombre}
-                                    <button onClick={() => handleExport(ingrediente, `ingrediente_${ingrediente.id_ingrediente}`)}>
-                                        <i className="fas fa-download"></i>
-                                    </button>
                                 </li>
                             ))}
                         </ul>
@@ -217,4 +176,4 @@ const Exportar = () => {
     );
 };
 
-export default Exportar; // Exporta el componente
+export default Exportar;

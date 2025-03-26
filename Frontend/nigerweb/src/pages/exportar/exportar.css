@@ -3,25 +3,23 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #fcb35f; /* Fondo amarillo claro */
     min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
 .exportar-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
     margin-bottom: 20px;
 }
 
 .exportar-details {
     width: 100%;
     max-width: 600px;
-    background-color: white;
+    background-color: #fff3cd; /* Fondo amarillo suave */
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
@@ -31,66 +29,85 @@
     margin-bottom: 20px;
 }
 
+.exportar-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exportar-section li {
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #ffc107; /* Línea amarilla */
+}
+
+.exportar-section li:last-child {
+    border-bottom: none;
+}
+
 .toggle-button {
-    padding: 15px 30px;
-    background-color: #007bff;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #ff9800; /* Naranja */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 16px;
+    text-align: left;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    width: 100%;
+    align-items: center;
 }
 
 .toggle-button:hover {
-    background-color: #0056b3;
+    background-color: #ff7a32; /* Naranja oscuro */
 }
 
 .back-button {
     margin-top: 20px;
-    padding: 15px 30px;
-    background-color: #007bff;
+    padding: 10px 20px;
+    background-color: #ff9800; /* Naranja */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .back-button:hover {
-    background-color: #0056b3;
-}
-
-.exportar-details ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.exportar-details li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
+    background-color: #e65100; /* Naranja oscuro */
 }
 
 .exportar-details li button {
-    padding: 5px 10px;
-    background-color: #28a745;
-    color: white;
+    background: none;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    color: #ff9800; /* Naranja */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px; /* Espaciado entre el botón y el texto */
 }
 
 .exportar-details li button:hover {
-    background-color: #218838;
+    color: #ebc6ae; /* Naranja oscuro */
 }
 
 .exportar-details li button i {
-    font-size: 16px;
+    font-size: 20px;
+}
+
+.exportar-details ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.exportar-details h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #fbcdab; /* Naranja más oscuro */
 }
