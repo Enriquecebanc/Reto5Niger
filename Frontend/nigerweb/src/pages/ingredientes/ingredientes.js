@@ -52,17 +52,16 @@ const Ingredientes = () => {
   };
 
 
-  // Añadir un nuevo alérgeno a un ingrediente
   const handleAddAlergeno = async (e) => {
     e.preventDefault();
     try {
-      // Enviar el nuevo alérgeno a la API
-      const idAlergenoGenerado = Math.floor(100000 + Math.random() * 900000); // Genera un número aleatorio de 6 dígitos
+      // Generar un id_alergeno abstracto como número entero
+      const idAlergenoGenerado = Math.floor(Math.random() * 1000000); // Genera un número aleatorio entre 0 y 999999
 
 
       // Enviar el nuevo alérgeno a la API
       const response = await axios.post(`http://localhost:8000/alergenos`, {
-        id_alergeno: idAlergenoGenerado, // Generamos y enviamos el id_alergeno
+        id_alergeno: idAlergenoGenerado, // Enviamos el id_alergeno generado como número entero
         id_ingrediente: currentIngrediente.id_ingrediente, // Enviamos el id del ingrediente
         nombre_alergeno: nuevoAlergeno.nombre_alergeno, // Nombre del alérgeno
         descripcion: nuevoAlergeno.descripcion, // Descripción del alérgeno
