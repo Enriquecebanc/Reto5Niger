@@ -1,39 +1,76 @@
-.importar-container {
+/* Contenedor principal que ocupa toda la pantalla */
+.flex.justify-center.items-center.min-h-screen.bg-gray-100 {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 20px;
-    background-color: #ffc15d;
     min-height: 100vh;
+    background-color: #ffc15d; /* Fondo gris claro */
 }
 
-.importar-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.importar-details {
-    width: 100%;
-    max-width: 600px;
+/* Contenedor blanco con sombra */
+.bg-white.p-6.rounded-lg.shadow-lg.w-96 {
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
     text-align: center;
 }
 
-.back-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+/* Estilo del título */
+.text-2xl.font-bold.text-center.mb-4 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+/* Estilo para el párrafo explicativo */
+.text-center.mb-6 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #4a5568;
+}
+
+/* Estilo para el input de tipo file */
+.block.w-full.p-2.border-2.border-gray-300.rounded-md.mb-4 {
+    display: block;
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-.back-button:hover {
-    background-color: #0056b3;
+/* Estilo para el botón de importar archivos */
+.bg-blue-500.text-white.px-4.py-2.rounded-lg.hover\:bg-blue-700 {
+    background-color: #3182ce;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Estilo cuando el mouse pasa sobre el botón de importar archivos */
+.bg-blue-500.text-white.px-4.py-2.rounded-lg.hover\:bg-blue-700:hover {
+    background-color: #2b6cb0;
+}
+
+/* Estilo para el enlace de volver a inicio */
+.block.text-center.text-blue-600.mt-4 {
+    display: block;
+    margin-top: 16px;
+    color: #3182ce;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Estilo cuando el mouse pasa sobre el enlace */
+.block.text-center.text-blue-600.mt-4:hover {
+    text-decoration: underline;
 }
