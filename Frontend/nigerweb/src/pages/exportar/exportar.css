@@ -68,14 +68,15 @@
 .exportar-details ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
+    display: block; /* Asegura que las listas sean bloques */
 }
 
 .exportar-details li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: block; /* Cambiado de flex a block para apilar los elementos verticalmente */
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+    text-align: left; /* Alinea el contenido a la izquierda */
 }
 
 .exportar-details li button {
@@ -85,6 +86,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px; /* Espaciado entre el texto y el botón */
 }
 
 .exportar-details li button:hover {
@@ -93,4 +95,13 @@
 
 .exportar-details li button i {
     font-size: 16px;
+}
+
+.exportar-details ul ul {
+    margin-left: 20px; /* Indentación para sublistas */
+    padding-top: 10px; /* Espaciado entre la lista principal y la sublista */
+}
+
+.exportar-details ul ul li {
+    padding: 5px 0; /* Reduce el espaciado entre elementos de sublistas */
 }
