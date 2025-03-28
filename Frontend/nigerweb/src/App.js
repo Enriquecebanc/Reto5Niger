@@ -14,10 +14,13 @@ import Registro from './pages/registro/registro';
 import Opiniones from './pages/opiniones/opiniones';
 import Perfil from './pages/perfil/perfil';
 import SubirReceta from './pages/subirReceta/subirReceta';
+import Alergenos from './pages/alergenos/alergenos';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState('');
+
 
   const handleLogin = (email, password) => {
     // Aquí puedes agregar la lógica para autenticar al usuario
@@ -30,10 +33,12 @@ function App() {
     }
   };
 
+
   const handleLogout = () => {
     setIsAuthenticated(false);
     setUser('');
   };
+
 
   return (
     <Router>
@@ -57,6 +62,7 @@ function App() {
               <Route path="/opiniones" element={<Opiniones />} />
               <Route path="/perfil" element={<Perfil onLogout={handleLogout} />} />
               <Route path="/subirReceta" element={<SubirReceta />} />
+              <Route path="/alergenos" element={<Alergenos />} />
             </>
           )}
         </Routes>
@@ -64,5 +70,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
