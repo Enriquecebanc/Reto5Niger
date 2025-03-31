@@ -3,23 +3,25 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #fcb35f; /* Fondo amarillo claro */
+    background-color: linear-gradient(45deg, #ffc107, #fd7e14);
     min-height: 100vh;
-    font-family: Arial, sans-serif;
 }
 
 .exportar-header {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
 }
 
 .exportar-details {
     width: 100%;
     max-width: 600px;
-    background-color: #fff3cd; /* Fondo amarillo suave */
+    background-color: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -29,52 +31,34 @@
     margin-bottom: 20px;
 }
 
-.exportar-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.exportar-section li {
-    display: flex;
-    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
-    align-items: flex-start;
-    padding: 10px 0;
-    border-bottom: 1px solid #ffc107; /* Línea amarilla */
-}
-
-.exportar-section li:last-child {
-    border-bottom: none;
-}
-
 .toggle-button {
-    width: 100%;
-    padding: 15px 20px;
-    background-color: #ff9800; /* Naranja */
+    padding: 15px 30px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    text-align: left;
+    margin-bottom: 10px;
+    font-size: 18px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .toggle-button:hover {
-    background-color: #ff7a32; /* Naranja oscuro */
+    background-color: #0056b3;
 }
 
 .back-button {
     margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #ff9800; /* Naranja */
+    padding: 15px 30px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .back-button:hover {
@@ -84,39 +68,33 @@
 .exportar-details ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
+    display: block; /* Asegura que las listas sean bloques */
 }
 
 .exportar-details li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: block; /* Cambiado de flex a block para apilar los elementos verticalmente */
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+    text-align: left; /* Alinea el contenido a la izquierda */
 }
 
 .exportar-details li button {
-    background: none;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px; /* Espaciado entre el texto y el botón */
 }
 
 .exportar-details li button:hover {
-    color: #ebc6ae; /* Naranja oscuro */
+    background-color: #218838;
 }
 
 .exportar-details li button i {
-    font-size: 20px;
-}
-
-.exportar-details ul {
-    margin-top: 10px;
-    padding-left: 20px;
-}
-
-.exportar-details h2 {
-    margin-bottom: 10px;
-    font-size: 20px;
-    color: #fbcdab; /* Naranja más oscuro */
+    font-size: 16px;
 }
 
 .exportar-details ul ul {
@@ -126,4 +104,33 @@
 
 .exportar-details ul ul li {
     padding: 5px 0; /* Reduce el espaciado entre elementos de sublistas */
+}
+
+.ingrediente-item {
+    display: flex;
+    flex-direction: row; /* Cambiado a fila para alinear el texto y el botón horizontalmente */
+    align-items: center; /* Centra verticalmente el texto y el botón */
+    justify-content: space-between; /* Añade espacio entre el texto y el botón */
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.ingrediente-item span {
+    flex-grow: 1; /* Permite que el texto ocupe el espacio disponible */
+    margin-right: 15px; /* Añade separación entre el texto y el botón */
+}
+
+.export-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.export-button:hover {
+    background-color: #0056b3;
 }

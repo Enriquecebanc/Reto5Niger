@@ -74,7 +74,7 @@ const Inicio = ({ user, onLogout }) => {
                 {/* Botones de exportar e importar */}
             <div className="import-export-container">
                 <button className="import-button" onClick={handleImport}>Importar Datos</button>
-                <button className="export-button" onClick={handleExport}>Exportar Datos</button>
+                <button className="export-botonmain" onClick={handleExport}>Exportar Datos</button>
             </div>
             </div>
             <div className="perfil">
