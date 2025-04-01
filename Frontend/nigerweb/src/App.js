@@ -16,6 +16,8 @@ import Perfil from './pages/perfil/perfil';
 import SubirReceta from './pages/subirReceta/subirReceta';
 import Exportar from './pages/exportar/exportar';
 import Importar from './pages/importar/importar';
+import Rss from './pages/RSS/Rss'; 
+
 
 
 
@@ -63,6 +65,7 @@ function App() {
               <Route path="/subirReceta" element={<SubirReceta />} />
               <Route path="/exportar" element={<Exportar />} />
               <Route path="/importar" element={<Importar />} />
+              <Route path="/RSS" element={<Rss />} /> {/* Ruta para el RSS */}
             </>
           )}
         </Routes>

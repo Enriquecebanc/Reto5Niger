@@ -100,6 +100,9 @@ const Inicio = ({ user, onLogout }) => {
                 <Link to="/ingredientes" state={{ id_usuario: idUsuario }}>
                     <button className="search-button">Ingredientes</button>
                 </Link>
+                <Link to="/RSS" state={{ id_usuario: idUsuario }}>
+                    <button className="search-button">RSS</button>
+                </Link>
             </div>
             
             <div className="recipes-list">
