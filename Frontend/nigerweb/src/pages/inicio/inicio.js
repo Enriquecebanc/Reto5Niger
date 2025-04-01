@@ -74,7 +74,7 @@ const Inicio = ({ user, onLogout }) => {
                 {/* Botones de exportar e importar */}
             <div className="import-export-container">
                 <button className="import-button" onClick={handleImport}>Importar Datos</button>
-                <button className="export-button" onClick={handleExport}>Exportar Datos</button>
+                <button className="export-botonmain" onClick={handleExport}>Exportar Datos</button>
             </div>
             </div>
             <div className="perfil">
@@ -99,6 +99,9 @@ const Inicio = ({ user, onLogout }) => {
                 <input type="text" placeholder="Buscar recetas..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
                 <Link to="/ingredientes" state={{ id_usuario: idUsuario }}>
                     <button className="search-button">Ingredientes</button>
+                </Link>
+                <Link to="/RSS" state={{ id_usuario: idUsuario }}>
+                    <button className="search-button">RSS</button>
                 </Link>
             </div>
             
