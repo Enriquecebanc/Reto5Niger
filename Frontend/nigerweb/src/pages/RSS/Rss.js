@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./Rss.css";
 
 const RSSFeed = () => {
   const [feed, setFeed] = useState([]);
