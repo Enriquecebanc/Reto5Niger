@@ -10,7 +10,7 @@ const RSSFeed = () => {
       try {
         const corsProxy = "https://api.allorigins.win/get?url=";
         const feedUrl = encodeURIComponent(
-          "https://www.diariovasco.com/rss/atom/portada/"
+          "https://susana-od.webnode.es/rss/all.xml"
         );
 
         const response = await fetch(`${corsProxy}${feedUrl}`);
@@ -41,7 +41,7 @@ const RSSFeed = () => {
 
   return (
     <div className="container">
-      <h1 className="header">Ãšltimas Noticias</h1>
+      <h1 className="header">La Cocina Loca</h1>
       {loading ? (
         <p>Cargando...</p>
       ) : (
