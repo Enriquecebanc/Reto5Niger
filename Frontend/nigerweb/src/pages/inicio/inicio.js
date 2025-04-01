@@ -86,6 +86,10 @@ const Inicio = ({ user, onLogout }) => {
                 <Link to="/ingredientes" state={{ id_usuario: idUsuario }}>
                     <button className="search-button">Ingredientes</button>
                 </Link>
+                {/* Botón para ver alérgenos */}
+                <Link to="/alergenos" state={{ id_usuario: idUsuario }}>
+                    <button className="allergens-button">Ver Alérgenos</button>
+                </Link>
             </div>
             <div className="recipes-list">
                 {/* Listado de categorías con botones para ver recetas */}
