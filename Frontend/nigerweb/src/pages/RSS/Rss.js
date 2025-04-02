@@ -34,7 +34,7 @@ const RSSFeed = () => {
         const parsedFeed = Array.from(items).map((item) => ({
           title: item.querySelector("title")?.textContent || "Sin título",
           pubDate:
-            item.querySelector("updated")?.textContent || "Fecha desconocida",
+            item.querySelector("pubDate")?.textContent || "Fecha desconocida",
           contentSnippet:
             item.querySelector("summary")?.textContent || "Sin descripción",
           link: item.querySelector("link")?.textContent || "#",
