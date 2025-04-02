@@ -36,8 +36,8 @@ const RSSFeed = () => {
           pubDate:
             item.querySelector("pubDate")?.textContent || "Fecha desconocida",
           contentSnippet:
-            item.querySelector("summary")?.textContent || "Sin descripción",
-          link: item.querySelector("link")?.textContent || "#",
+            item.querySelector("description")?.textContent || "Sin descripción",
+          link: item.querySelector("guid")?.textContent || "#",
         }));
 
         setFeed(parsedFeed);
