@@ -76,6 +76,7 @@ const SubirReceta = () => {
         descripcion: ingredienteNuevo.descripcion,
         imagen: ingredienteNuevo.imagen
       }; // Crea un objeto con la información del ingrediente
+      console.log('Nuevo ingrediente:', ingredienteData); // Muestra la información del nuevo ingrediente en la consola
       const response = await axios.post('http://localhost:8000/ingredientes', ingredienteData, {
         headers: {
           'Authorization': `Bearer Reto5Niger`, // Incluye el token de autorización en la cabecera
